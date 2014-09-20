@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://directsaleskit.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'America/Denver',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'cdJWvl0c8U7FlrcV83VFAZQoxZuOS6k8',
+	'key' => 'rCHyG60qZVf@#$6njQqc*2j**ide5%F',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -122,6 +122,17 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
+		//lary 4 - for db-> migrations
+		'Raahul\LarryFour\LarryFourServiceProvider',
+
+		//jeffrey way - generators
+		'Way\Generators\GeneratorsServiceProvider',
+
+		//oauth
+		'Artdarek\OAuth\OAuthServiceProvider',
+
+		//cashier
+		'Laravel\Cashier\CashierServiceProvider'
 	),
 
 	/*

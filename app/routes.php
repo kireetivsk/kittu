@@ -18,5 +18,9 @@ Route::get('/', function()
 
 	Route::get('users', function()
 		{
-			return View::make('users');
+			$users = User::all();
+
+			return View::make('users')->with('users', $users);
 		});
+
+	Route::controller('public', 'PublicController');
