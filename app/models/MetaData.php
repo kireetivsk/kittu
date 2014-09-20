@@ -1,5 +1,5 @@
 <?php
 
-class User extends \Eloquent {
+class MetaData extends \Eloquent {
 	protected $fillable = [];
 }

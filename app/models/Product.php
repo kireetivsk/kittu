@@ -1,5 +1,5 @@
 <?php
 
-class User extends \Eloquent {
+class Product extends \Eloquent {
 	protected $fillable = [];
 }

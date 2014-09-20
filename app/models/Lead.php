@@ -1,5 +1,5 @@
 <?php
 
-class User extends \Eloquent {
+class Lead extends \Eloquent {
 	protected $fillable = [];
 }
