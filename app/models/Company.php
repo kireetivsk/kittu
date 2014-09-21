@@ -25,6 +25,42 @@
 class Company extends \Eloquent {
 	protected $fillable = [];
 
+	//relationships
+	public function companyCategory()
+	{
+		return $this->hasOne('CompanyCategory');
+	}
+
+	public function metaCompanyStatus()
+	{
+		return $this->hasOne('metaCompanyStatus');
+	}
+
+	public function companyPaymentProfile()
+	{
+		return $this->belongsTo('CompanyPaymentProfile');
+	}
+
+	public function companyProfile()
+	{
+		return $this->belongsTo('CompanyProfile');
+	}
+
+	public function companyBillingTransaction()
+	{
+		return $this->belongsTo('CompanyBillingTransaction');
+	}
+
+	public function userCompanyMap()
+	{
+		return $this->belongsTo('UserCompanyMap');
+	}
+
+	public function user()
+	{
+		return $this->belongsToMany('User');
+	}
+
 	/**
 	 * Return a company name that matches term%
 	 *
@@ -33,6 +69,6 @@ class Company extends \Eloquent {
 	 */
 	public function partialNameSearch($term)
 	{
-		return $this->where('name', 'LIKE', "$term%")->get();
+		return $this->where('name', 'LIKE', "$term%")->get()->toArray();
 	}
 }

@@ -20,4 +20,15 @@
  */
 class CrmPeopleEmail extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function crmPerson()
+	{
+		return $this->belongsTo('CrmPerson');
+	}
+
+	public function metaEmailType()
+	{
+		return $this->hasOne('MetaEmailType');
+	}
 }

@@ -22,4 +22,20 @@
  */
 class QnaRepTransaction extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function metaQnaRepType()
+	{
+		return $this->hasOne('MetaQnaRepType');
+	}
+
+	public function metaQnaType()
+	{
+		return $this->hasOne('MetaQnaType');
+	}
 }

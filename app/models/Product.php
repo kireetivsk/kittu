@@ -20,4 +20,22 @@
  */
 class Product extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = array(
+		'name'                  => 'required|between:1,100',
+		'description'           => 'between:1,100',
+		'meta_product_status_id'=> 'required|integer'
+	);
+
+	//relationships
+	public function billingItem()
+	{
+		return $this->belongsToMany('BillingItem');
+	}
+
+	public function metaProductStatus()
+	{
+		return $this->hasOne('MetaProductStatus');
+	}
 }

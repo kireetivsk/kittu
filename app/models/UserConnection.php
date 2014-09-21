@@ -25,8 +25,37 @@
 class UserConnection extends \Eloquent {
 	protected $fillable = [];
 
+	//relationships
+	public function metaConnectionRelationship()
+	{
+		return $this->hasOne('MetaConnectionRelationship');
+	}
+
+	public function metaConnectionStatus()
+	{
+		return $this->hasOne('MetaConnectionStatus');
+	}
+
+	public function userCompanyMap()
+	{
+		return $this->hasOne('UserCompanyMap');
+	}
+
+	public function user()
+	{
+		return $this->hasOne('User');
+	}
+
+	public function userConnectionNote()
+	{
+		return $this->belongsTo('userConnectionNote');
+	}
+
+	//public methods
 	public function makeReferralConnections()
 	{
 		$test = 1;
 	}
+
+
 }

@@ -20,4 +20,17 @@
  */
 class DiscussionFolder extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function discussionFollow()
+	{
+		return $this->belongsTo('DiscussionFollow');
+	}
+
+
 }

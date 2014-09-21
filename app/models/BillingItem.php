@@ -28,4 +28,43 @@
  */
 class BillingItem extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = array(
+		'name'                  => 'required|between:1,45',
+		'description'           => 'required|between:1,100',
+		'price'              	=> 'required|numeric|between:1,11',
+		'billing_frequency' 	=> 'required|in:monthly,one_time',
+		'active' 				=> 'required|in:0,1',
+		'end_time' 				=> 'date_format:Y-m-d H:i:s',
+		'start_time' 			=> 'date_format:Y-m-d H:i:s'
+	);
+
+	// Relationships
+	public function companyBillingItem()
+	{
+		return $this->belongsTo('CompanyBillingItem');
+	}
+
+	public function companyBillingTransaction()
+	{
+		return $this->belongsTo('CompanyBillingTransaction');
+	}
+
+	public function userBillingItem()
+	{
+		return $this->belongsTo('UserBillingItem');
+	}
+
+	public function userBillingTransaction()
+	{
+		return $this->belongsTo('UserBillingTransaction');
+	}
+
+	public function product()
+	{
+		return $this->belongsToMany('Products');
+	}
+
+
 }

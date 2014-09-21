@@ -24,4 +24,20 @@
  */
 class DiscussionFollow extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function discussionFolder()
+	{
+		return $this->hasOne('DiscussionFolder');
+	}
+
+	public function metaDiscussionType()
+	{
+		return $this->hasOne('MetaDiscussionType');
+	}
 }

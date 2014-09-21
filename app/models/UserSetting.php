@@ -20,4 +20,15 @@
  */
 class UserSetting extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->hasOne('User');
+	}
+
+	public function metaSettingType()
+	{
+		return $this->hasOne('MetaSettingType');
+	}
 }

@@ -26,4 +26,35 @@
  */
 class DiscussionPost extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function discussionView()
+	{
+		return $this->hasMany('DiscussionView');
+	}
+
+	public function discussionComment()
+	{
+		return $this->hasMany('DiscussionComment');
+	}
+
+	public function metaDiscussionStatus()
+	{
+		return $this->hasOne('MetaDiscussionStatus');
+	}
+
+	public function discussionTopic()
+	{
+		return $this->belongsTo('DiscussionTopic');
+	}
+
+	public function metaDiscussionPermission()
+	{
+		return $this->hasOne('MetaDiscussionPermission');
+	}
 }

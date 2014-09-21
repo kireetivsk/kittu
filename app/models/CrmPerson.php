@@ -28,4 +28,55 @@
  */
 class CrmPerson extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function crmPeopleContact()
+	{
+		return $this->hasMany('CrmPeopleContact');
+	}
+
+	public function crmPeopleNotes()
+	{
+		return $this->hasMany('CrmPeopleNotes');
+	}
+
+	public function crmPeopleWebsite()
+	{
+		return $this->hasMany('CrmPeopleWebsite');
+	}
+
+	public function crmPeopleEmail()
+	{
+		return $this->hasMany('CrmPeopleEmail');
+	}
+
+	public function crmPeopleAddress()
+	{
+		return $this->hasMany('CrmPeopleAddress');
+	}
+
+	public function crmPeoplePhone()
+	{
+		return $this->hasMany('CrmPeopleAPhone');
+	}
+
+	public function crmPeopleSocial()
+	{
+		return $this->hasMany('CrmPeopleSocial');
+	}
+
+	public function metaCrmPeopleType()
+	{
+		return $this->hasOne('MetaCrmPeopleType');
+	}
+
+	public function metaCrmPeopleStatus()
+	{
+		return $this->hasOne('MetaCrmPeopleStatus');
+	}
 }

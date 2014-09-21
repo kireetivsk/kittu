@@ -24,4 +24,27 @@
  */
 class CompanyBillingTransaction extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function companyPaymentProfile()
+	{
+		return $this->hasOne('CompanyPaymentProfile');
+	}
+
+	public function billingItem()
+	{
+		return $this->hasOne('bilingItem');
+	}
+
+	public function metaBillingStatus()
+	{
+		return $this->hasOne('MetaBillingStatus');
+	}
+
+	public function company()
+	{
+		return $this->hasOne('Company');
+	}
+
+
 }

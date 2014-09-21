@@ -14,4 +14,22 @@
  */
 class UserBillingItem extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function billingItem()
+	{
+		return $this->hasOne('BillingItem');
+	}
+
+	public function userPaymentProfile()
+	{
+		return $this->hasOne('UserPaymentProfile');
+	}
+
+	public function metaBillingItemStatus()
+	{
+		return $this->hasOne('MetaBillingItemStatus');
+	}
+
+
 }

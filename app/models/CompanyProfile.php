@@ -20,4 +20,17 @@
  */
 class CompanyProfile extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function metaProfileType()
+	{
+		return $this->hasOne('MetaProfileType');
+	}
+
+	public function company()
+	{
+		return $this->hasOne('Company');
+	}
+
+
 }

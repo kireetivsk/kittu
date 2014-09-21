@@ -24,4 +24,17 @@
  */
 class QnaComment extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function metaQnaType()
+	{
+		return $this->hasOne('MetaQnaType');
+	}
+
+
 }

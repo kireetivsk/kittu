@@ -18,4 +18,12 @@
  */
 class UserConnectionNote extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function userConnection()
+	{
+		return $this->hasOne('UserConnection');
+	}
+
+
 }

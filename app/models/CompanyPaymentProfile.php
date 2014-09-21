@@ -14,4 +14,27 @@
  */
 class CompanyPaymentProfile extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function company()
+	{
+		return $this->hasOne('Company');
+	}
+
+	public function metaPaymentProfileStatus()
+	{
+		return $this->hasOne('MetaPaymentProfileStatus');
+	}
+
+	public function companyBillingTransaction()
+	{
+		return $this->belongsTo('CompanyBillingTransaction');
+	}
+
+	public function companyBillingItem()
+	{
+		return $this->belongsTo('companyBillingItem');
+	}
+
+
 }

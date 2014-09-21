@@ -26,4 +26,23 @@
  */
 class Message extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function toUser()
+	{
+		return $this->belongsTo('User', 'id', 'to_user');
+	}
+	public function fromUser()
+	{
+		return $this->belongsTo('User', 'id', 'from_user');
+	}
+
+	public function toMetaMessageStatus()
+	{
+		return $this->hasOne('MetaMessageStatus', 'id', 'to_meta_message_status_id');
+	}
+	public function fromMetaMessageStatus()
+	{
+		return $this->hasOne('MetaMessageStatus', 'id', 'from_meta_message_status_id');
+	}
 }

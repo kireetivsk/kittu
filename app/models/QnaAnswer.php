@@ -22,4 +22,22 @@
  */
 class QnaAnswer extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function qnaQuestion()
+	{
+		return $this->belongsTo('QnaQuestion');
+	}
+
+	public function acceptedAnswer()
+	{
+		return $this->belongsTo('QnaQuestion', 'accepted_qna_answer_id');
+	}
+
+
 }

@@ -18,4 +18,16 @@
  */
 class DiscussionView extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function discussionPost()
+	{
+		return $this->belongsTo('DiscussionPost');
+	}
+
 }

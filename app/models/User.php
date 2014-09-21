@@ -63,6 +63,134 @@
 class User extends \Eloquent {
 	protected $fillable = [];
 
+	//relationships
+	public function metaUserStatus()
+	{
+		return $this->hasOne('MetaUserStatus');
+	}
+
+	public function metaUserType()
+	{
+		return $this->hasOne('MetaUserType');
+	}
+
+	public function lead()
+	{
+		return $this->hasMany('Lead');
+	}
+
+	public function toMessage()
+	{
+		return $this->hasMany('Message', 'to_user');
+	}
+
+	public function fromMessage()
+	{
+		return $this->hasMany('Message', 'from_user');
+	}
+
+	public function messageFolder()
+	{
+		return $this->hasMany('MessageFolder');
+	}
+
+	public function qnaComment()
+	{
+		return $this->hasMany('QnaComment');
+	}
+
+	public function qnaAnswer()
+	{
+		return $this->hasMany('QnaAnswer');
+	}
+
+	public function qnaQuestion()
+	{
+		return $this->hasMany('QnaQuestion');
+	}
+
+	public function qnaRepTransactions()
+	{
+		return $this->hasMany('QnaRepTransactions');
+	}
+
+	public function crmPeople()
+	{
+		return $this->hasMany('CrmPeople');
+	}
+
+	public function userSetting()
+	{
+		return $this->belongsToMany('UserSetting');
+	}
+
+	public function discussionCategory()
+	{
+		return $this->belongsTo('DiscussionCategory');
+	}
+
+	public function discussionTopic()
+	{
+		return $this->belongsTo('DiscussionTopic');
+	}
+
+	public function discussionPost()
+	{
+		return $this->belongsTo('DiscussionPost');
+	}
+
+	public function discussionView()
+	{
+		return $this->belongsTo('DiscussionView');
+	}
+
+	public function discussionComment()
+	{
+		return $this->belongsTo('DiscussionComment');
+	}
+
+	public function discussionFollow()
+	{
+		return $this->belongsTo('DiscussionFollow');
+	}
+
+	public function discussionFolder()
+	{
+		return $this->hasMany('DiscussionFolder');
+	}
+
+	public function userCompanyMap()
+	{
+		return $this->belongsTo('UserCompanyMap');
+	}
+
+	public function userBillingTransaction()
+	{
+		return $this->belongsTo('UserBillingTransaction');
+	}
+
+	public function userPaymentProfile()
+	{
+		return $this->belongsTo('UserPaymentProfile');
+	}
+
+	public function userProfile()
+	{
+		return $this->belongsTo('UserProfile');
+	}
+
+	public function userConnection()
+	{
+		return $this->belongsTo('UserConnection');
+	}
+
+	public function company()
+	{
+		return $this->belongsToMany('Company');
+	}
+
+
+
 	public function addConsultantUser()
 	{
 		$test = 1;

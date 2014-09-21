@@ -26,4 +26,20 @@
  */
 class QnaQuestion extends \Eloquent {
 	protected $fillable = [];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function qnaAnswer()
+	{
+		return $this->hasMany('QnaAnswer');
+	}
+
+	public function acceptedAnswer()
+	{
+		return $this->hasOne('QnaAnswer', 'id', 'accepted_qna_answer_id');
+	}
 }
