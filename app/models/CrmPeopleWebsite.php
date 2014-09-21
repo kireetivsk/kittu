@@ -10,13 +10,14 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereCrmPeopleId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereWebsite($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereCrmPeopleId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereWebsite($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPeopleWebsite whereDeletedAt($value)
+ * @property-read \CrmPerson $crmPerson
  */
 class CrmPeopleWebsite extends \Eloquent {
 	protected $fillable = [];

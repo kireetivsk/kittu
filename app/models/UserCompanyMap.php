@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * UserCompanyMap
+ *
+ * @property-read \Company $company
+ * @property-read \MetaUserCompanyStatus $metaUserCompanyStatus
+ * @property-read \User $user
+ * @property-read \UserConnections $userConnections
+ */
 class UserCompanyMap extends \Eloquent {
 	protected $fillable = [];
 

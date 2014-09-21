@@ -12,15 +12,20 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereConnectionId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereUserCompanyMapId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereMetaConnectionStatusId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereMetaConnectionRelationshipId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserConnection whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereConnectionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereUserCompanyMapId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereMetaConnectionStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereMetaConnectionRelationshipId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserConnection whereDeletedAt($value)
+ * @property-read \MetaConnectionRelationship $metaConnectionRelationship
+ * @property-read \MetaConnectionStatus $metaConnectionStatus
+ * @property-read \UserCompanyMap $userCompanyMap
+ * @property-read \User $user
+ * @property-read \userConnectionNote $userConnectionNote
  */
 class UserConnection extends \Eloquent {
 	protected $fillable = [];

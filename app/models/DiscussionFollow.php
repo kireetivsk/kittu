@@ -12,15 +12,18 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDiscussionId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereMetaDiscussionTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDiscussionFolderId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDiscussionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereMetaDiscussionTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDiscussionFolderId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionFollow whereDeletedAt($value)
+ * @property-read \User $user
+ * @property-read \DiscussionFolder $discussionFolder
+ * @property-read \MetaDiscussionType $metaDiscussionType
  */
 class DiscussionFollow extends \Eloquent {
 	protected $fillable = [];

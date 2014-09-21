@@ -14,17 +14,22 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem wherePrice($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereBillingFrequency($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereActive($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereStartTime($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereEndTime($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\BillingItem whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem wherePrice($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereBillingFrequency($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereStartTime($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereEndTime($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\BillingItem whereDeletedAt($value)
+ * @property-read \CompanyBillingItem $companyBillingItem
+ * @property-read \CompanyBillingTransaction $companyBillingTransaction
+ * @property-read \UserBillingItem $userBillingItem
+ * @property-read \UserBillingTransaction $userBillingTransaction
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Products[] $product
  */
 class BillingItem extends \Eloquent {
 	protected $fillable = [];

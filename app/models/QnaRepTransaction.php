@@ -11,14 +11,17 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereQnaId($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereMetaQnaTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereMetaQnaRepTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereQnaId($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereMetaQnaTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereMetaQnaRepTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\QnaRepTransaction whereDeletedAt($value)
+ * @property-read \User $user
+ * @property-read \MetaQnaRepType $metaQnaRepType
+ * @property-read \MetaQnaType $metaQnaType
  */
 class QnaRepTransaction extends \Eloquent {
 	protected $fillable = [];

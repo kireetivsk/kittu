@@ -12,15 +12,22 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\Company whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereSlug($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereWebsite($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereCompanyCategoryId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereMetaCompanyStatusId($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\Company whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\Company whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereWebsite($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereCompanyCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereMetaCompanyStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Company whereDeletedAt($value)
+ * @property-read \CompanyCategory $companyCategory
+ * @property-read \metaCompanyStatus $metaCompanyStatus
+ * @property-read \CompanyPaymentProfile $companyPaymentProfile
+ * @property-read \CompanyProfile $companyProfile
+ * @property-read \CompanyBillingTransaction $companyBillingTransaction
+ * @property-read \UserCompanyMap $userCompanyMap
+ * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $user
  */
 class Company extends \Eloquent {
 	protected $fillable = [];

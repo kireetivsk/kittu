@@ -1,5 +1,18 @@
 <?php
 
+/**
+ * MetaCrmPeopleType
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property integer $ordinal
+ * @property-read \CrmPerson $crmPerson
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPeopleType whereId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPeopleType whereName($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPeopleType whereDescription($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPeopleType whereOrdinal($value) 
+ */
 class MetaCrmPeopleType extends \Eloquent {
 	protected $fillable = [];
 

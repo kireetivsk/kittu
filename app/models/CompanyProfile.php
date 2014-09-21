@@ -10,13 +10,15 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereCompanyId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereMetaProfileTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereValue($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereCompanyId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereMetaProfileTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereValue($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyProfile whereDeletedAt($value)
+ * @property-read \MetaProfileType $metaProfileType
+ * @property-read \Company $company
  */
 class CompanyProfile extends \Eloquent {
 	protected $fillable = [];

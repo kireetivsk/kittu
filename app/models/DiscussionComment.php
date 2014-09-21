@@ -13,16 +13,20 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereDiscussionPostId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereTitle($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereContent($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereMetaDiscussionPremissionId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereMetaDiscussionStatusId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereDiscussionPostId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereMetaDiscussionPremissionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereMetaDiscussionStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereDeletedAt($value)
+ * @property-read \User $user
+ * @property-read \DiscussionPost $discussionPost
+ * @property-read \DiscussionPermission $metaDiscussionPermission
+ * @property-read \DiscussionStatus $metaDiscussionStatus
  */
 class DiscussionComment extends \Eloquent {
 	protected $fillable = [];

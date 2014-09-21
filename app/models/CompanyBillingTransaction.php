@@ -12,15 +12,19 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereCompanyId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereBillingItemId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereAmount($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereMetaBillingStatusId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereCompanyPaymentProfileId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereCompanyId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereBillingItemId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereMetaBillingStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereCompanyPaymentProfileId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereDeletedAt($value)
+ * @property-read \CompanyPaymentProfile $companyPaymentProfile
+ * @property-read \bilingItem $billingItem
+ * @property-read \MetaBillingStatus $metaBillingStatus
+ * @property-read \Company $company
  */
 class CompanyBillingTransaction extends \Eloquent {
 	protected $fillable = [];

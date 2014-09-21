@@ -3,6 +3,8 @@
 /**
  * CrmPeopleSocial
  *
+ * @property-read \CrmPerson $crmPerson
+ * @property-read \MetaSocialType $metaSocialType
  */
 class CrmPeopleSocial extends \Eloquent {
 	protected $fillable = [];
