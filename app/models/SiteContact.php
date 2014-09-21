@@ -27,5 +27,11 @@
  * @method static \Illuminate\Database\Query\Builder|\SiteContact whereDeletedAt($value) 
  */
 class SiteContact extends \Eloquent {
-	protected $fillable = [];
+	protected $fillable = [
+		'email',
+		'name',
+		'message',
+		'acquired_from',
+		'notes'
+	];
 }

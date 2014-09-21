@@ -3,16 +3,12 @@
 	class PublicApiController extends ApiController
 	{
 
-		public function getIndex()
-		{
-			$data = [
-				'test1' => 123,
-				'test2' => $this
-			];
-			return Response::json($data);
-		}
-
-		public function saveEmail()
+		/**
+		 * saves an email address as a contact
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postSaveEmail()
 		{
 			$data = [
 				"email"				=> Input::get('email'),
@@ -20,41 +16,102 @@
 				"notes"				=> Input::get('notes')
 			];
 
-			$this->load->model('Site_contact_model');
-			$this->Site_contact_model->insert($data);
 			$site_contact = new SiteContact();
-			$site_contact->save();
 
-			$this->data['result'] = ['success' => TRUE];
-			$this->load->view('ajax', $this->data);
-			return Response::json($data);
+			if($site_contact->create($data))
+				$this->_success("Saved");
+			else
+				$this->_error(500, 'Failed to save');
+
+			return Response::json($this->data);
 
 		}
 
-		public function saveContactFrom()
+		/**
+		 * Returns session userdata
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postGetSessionData()
 		{
-			$email 			= $this->input->post("email");
-			$name 			= $this->input->post("name");
-			$message 		= $this->input->post("message");
-			$acquired_from 	= $this->input->post("acquired_from");
-			$notes 			= $this->input->post("notes");
+			if(Session::has('userdata'))
+			{
+				$session_data = Session::get('userdata');
+				$this->_success("Success", $session_data);
+			} else
+				$this->_error(500, 'Failed to get userdata');
+
+			return Response::json($this->data);
+		}
+
+
+		/**
+		 * Saves the contact from a form
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postSaveContactFrom()
+		{
 
 			$data = [
-				"email"				=> $email,
-				"name"				=> $name,
-				"message"			=> $message,
-				"acquired_from"		=> $acquired_from,
-				"notes"				=> $notes
+				"email"				=> Input::get('email'),
+				"name"				=> Input::get('name'),
+				"message"			=> Input::get('message'),
+				"acquired_from"		=> Input::get('acquired_from'),
+				"notes"				=> Input::get('notes')
 			];
 
-			$this->load->model('Site_contact_model');
-			$this->Site_contact_model->insert($data);
+			$site_contact = new SiteContact();
 
-			$this->data['result'] = ['success' => TRUE];
-			$this->load->view('ajax', $this->data);
+			if($site_contact->create($data))
+				$this->_success("Saved");
+			else
+				$this->_error(500, 'Failed to save');
+
+			return Response::json($this->data);
 		}
 
-		public function register()
+		public function postCompanySearch()
+		{
+			$name = Input::get('company_name');
+			$this->data['result'] = Company::partialNameSearch($name);
+			return Response::json($this->data);
+		}
+
+
+
+		public function postRegister()
+		{
+			$params = Input::all();
+
+			//check for company
+			$company_id 	= array_key_exists('company_id', $params) ? $params['company_id'] : NULL;
+			$company_name 	= $params['company_name'];
+			if (empty($company_id))
+			{
+				$params['company_id'] = Company::create($company_name);
+			}
+
+			if ($user = User::addRepUser($params))
+			{
+				if ($params['is_referral'] == 'true')
+				{
+					//make referral connections
+					UserConnection::makeReferralConnections($user['user_id'],
+															  $params['email'],
+															  $params['company_id']);
+				}
+
+				$this->_success("Registered");
+			} else {
+				$this->_error(500, 'Failed to register');
+			}
+
+			return Response::json($this->data);
+
+		}
+
+		public function postRegisterO()
 		{
 			$params = $this->input->post(NULL, TRUE);
 
@@ -90,7 +147,7 @@
 
 		}
 
-		public function login()
+		public function postLogin()
 		{
 			if ($this->tank_auth->is_logged_in())
 				$this->data['result']->success = TRUE;
@@ -138,88 +195,7 @@
 			$this->load->view('ajax', $this->data);
 		}
 
-		public function addTeam()
-		{
-			if ($this->isLoggedIn())
-			{
-				$email 			= $this->input->post("email");
-				$relationship	= $this->input->post("relationship");
-				$name       	= $this->input->post("name");
-
-				$this->load->model("Connection_request_model");
-				$result = $this->Connection_request_model->connect($email, $relationship, $name);
-				if ($result)
-				{
-					$this->_sendSuccess(TRUE);
-				} else {
-					$this->_sendError($this->Error_model->prepareAjaxError("Failed to send request."));
-				}
-			} else
-				$this->_sendSuccess($this->Error_model->prepareAjaxError("Your session expired. Please log in again."));
 
 
-			$this->load->view('ajax', $this->data);
 
-		}
-
-		public function getSessionData()
-		{
-			$session_data = $this->session->all_userdata();
-			$this->data['result']  = $session_data;
-
-			$this->load->view('ajax', $this->data);
-		}
-
-		public function companySearch()
-		{
-			$name = $this->input->post("company_name");
-			$this->load->model('Company_model');
-			$this->data['result'] = $this->Company_model->partialNameSearch($name);
-
-			$this->load->view('ajax', $this->data);
-		}
-
-		public function getNotifications()
-		{
-			if ($this->isLoggedIn())
-			{
-				$this->load->model('Notification_model');
-				$notifications = $this->Notification_model->getNotifications();
-				foreach ($notifications as &$notification)
-					$notification->body = insertBreaks($notification->body, 38);
-				$this->data['result'] = [
-					'count' => count($notifications),
-					'notifications' => $notifications
-				];
-
-			}
-			$this->load->view('ajax', $this->data);
-
-		}
-
-		public function clearNotifications()
-		{
-			$notifications = json_decode($this->input->post("notifications"));
-			foreach ($notifications as $notification)
-			{
-				$this->load->model('Notification_model');
-				$this->Notification_model->clearNotification($notification->id);
-
-			}
-			$this->data['result']->success = TRUE;
-			$this->load->view('ajax', $this->data);
-
-		}
-
-		public function clearNotification()
-		{
-			$notification = json_decode($this->input->post("notification"));
-
-			$this->load->model('Notification_model');
-			$this->Notification_model->clearNotification($notification->id);
-
-			$this->data['result']->success = TRUE;
-			$this->load->view('ajax', $this->data);
-
-		}
 	}

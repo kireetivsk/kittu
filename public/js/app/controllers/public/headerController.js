@@ -14,7 +14,7 @@ dsk.controller('header', function ($scope, $http) {
 			var email = $scope.header_login_email;
 			var password = $scope.header_login_password;
 
-			var ajax_url = "/ajax/login";
+			var ajax_url = "/publicapi/login";
 			var form_data = {
 				email: 			$scope.header_login_email,
 				password: 		$scope.header_login_password
@@ -23,11 +23,11 @@ dsk.controller('header', function ($scope, $http) {
 			$http.post(ajax_url, form_data)
 				.success(function (data) {
 					//successful
-					if (data.success == true)
+					if (data.code == 200)
 					{
 						window.location.href = "/dashboard";
 					} else { //failed
-						$scope.alerts = data.error;
+						$scope.alerts = data.message;
 					}
 				})
 				.error(function () { //ajax error

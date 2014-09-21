@@ -62,4 +62,10 @@
  */
 class User extends \Eloquent {
 	protected $fillable = [];
+
+	public function addConsultantUser()
+	{
+		$test = 1;
+
+	}
 }

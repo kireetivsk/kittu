@@ -3,7 +3,7 @@ dsk.controller('public', function ($scope, $http) {
 	$scope.saveContactForm = function(){
 		if ($scope.contact_name === undefined || $scope.contact_email === undefined || $scope.contact_message === undefined)
 			return false;
-		var ajax_url = "/ajax/saveContactFrom";
+		var ajax_url = "/publicapi/save-contact-from";
 		var form_data = {
 			name			: $scope.contact_name,
 			email			: $scope.contact_email,
@@ -14,7 +14,7 @@ dsk.controller('public', function ($scope, $http) {
 		$http.post(ajax_url, form_data)
 			.success(function (data) {
 				//successful
-				if (data.success == true)
+				if (data.code == 200)
 				{
 					$scope.alerts = [{message: "Thank you, we will be in touch.", type: "success"}];
 					$scope.footer_email = "";
@@ -55,7 +55,7 @@ dsk.controller('public', function ($scope, $http) {
 			var email = $scope.email;
 			var password = $scope.password;
 
-			var ajax_url = "/ajax/login";
+			var ajax_url = "/publicapi/login";
 			var form_data = {
 				email: 			$scope.email,
 				password: 		$scope.password
@@ -64,11 +64,11 @@ dsk.controller('public', function ($scope, $http) {
 			$http.post(ajax_url, form_data)
 				.success(function (data) {
 					//successful
-					if (data.success == true)
+					if (data.code == 200)
 					{
 						window.location.href = "/dashboard";
 					} else { //failed
-						$scope.alerts = data.error;
+						$scope.alerts = data.message;
 					}
 				})
 				.error(function () { //ajax error

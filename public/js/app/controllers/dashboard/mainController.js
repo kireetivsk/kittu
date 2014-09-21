@@ -1,7 +1,7 @@
 dsk.controller('main', function ($scope, $http) {
 
 	$scope.clearAllNotifications = function(){
-		var ajax_url = "/ajax/clearNotifications";
+		var ajax_url = "/ajax/clear-notifications";
 		var form_data = {
 			notifications: angular.toJson($scope.notifications.notifications)
 		};
@@ -15,7 +15,7 @@ dsk.controller('main', function ($scope, $http) {
 
 	$scope.clearNotification = function(notification, index)
 	{
-		var ajax_url = "/ajax/clearNotification";
+		var ajax_url = "/ajax/clear-notification";
 		var form_data = {
 			notification: angular.toJson(notification)
 		};
@@ -29,7 +29,7 @@ dsk.controller('main', function ($scope, $http) {
 	}
 
 	var getNotifications = function(){
-		var ajax_url = "/ajax/getNotifications";
+		var ajax_url = "/ajax/get-notifications";
 		$http.post(ajax_url)
 			.success(function (data) {
 				//successful

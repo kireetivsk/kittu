@@ -24,4 +24,15 @@
  */
 class Company extends \Eloquent {
 	protected $fillable = [];
+
+	/**
+	 * Return a company name that matches term%
+	 *
+	 * @param $term
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function partialNameSearch($term)
+	{
+		return $this->where('name', 'LIKE', "$term%")->get();
+	}
 }

@@ -24,4 +24,9 @@
  */
 class UserConnection extends \Eloquent {
 	protected $fillable = [];
+
+	public function makeReferralConnections()
+	{
+		$test = 1;
+	}
 }

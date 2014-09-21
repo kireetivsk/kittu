@@ -10,7 +10,7 @@
 							<input
 								type			= "email"
 								class			= "form-control orange_border"
-								id				= "login_email"
+								id				= "footer_email"
 								placeholder		= "Enter your email address"
 								ng-model		= "footer_email">
 							<span class="input-group-btn">
