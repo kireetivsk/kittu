@@ -2,6 +2,8 @@
 
 class HomeController extends BaseController {
 
+	public $_module = 'home';
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -15,9 +17,13 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{
-		return View::make('hello');
+		$this->data['view'] 			= 'index';
+		$this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/homeController.js";
+
+		return View::make('template', $this->data);
 	}
+
 
 }

@@ -2,6 +2,17 @@
 
 class BaseController extends Controller {
 
+	public function __construct()
+	{
+		$this->data = [
+			'module' 	=> $this->_module,
+			'files' 	=> new stdClass()
+		];
+		$this->data['files']->js 	= [];
+		$this->data['files']->css 	= [];
+
+	}
+
 	/**
 	 * Setup the layout used by the controller.
 	 *

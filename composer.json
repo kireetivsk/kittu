@@ -11,7 +11,11 @@
 	},
 	"require-dev": {
 		"raahul/larryfour": "1.*",
-		"way/generators": "2.*"
+		"way/generators": "2.*",
+		"barryvdh/laravel-ide-helper": "1.*",
+		"doctrine/dbal": "~2.3",
+		"dflydev/markdown": "1.0.*",
+		"erusev/parsedown": "~0.7"
 	},
 	"autoload": {
 		"classmap": [

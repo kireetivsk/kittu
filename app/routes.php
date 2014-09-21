@@ -11,16 +11,34 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+	//api
+	//public
+	Route::controller('publicapi', 			'PublicApiController');
 
-	Route::get('users', function()
-		{
-			$users = User::all();
+	//public
+	Route::get('about', 					'PublicController@getAbout');
+	Route::get('advertiser', 				'PublicController@getAdvertiser');
+	Route::get('company', 					'PublicController@getCompany');
+	Route::get('company_directory', 		'PublicController@getCompanyDirectory');
+	Route::get('company_finder', 			'PublicController@getCompanyFinder');
+	Route::get('consultant_finder', 		'PublicController@getConsultantFinder');
+	Route::get('consultant', 				'PublicController@getConsultant');
+	Route::get('consumer', 					'PublicController@getConsumer');
+	Route::get('contact', 					'PublicController@getContact');
+	Route::get('features', 					'PublicController@getFeatures');
+	Route::get('forgot_password', 			'PublicController@getForgotPassword');
+	Route::get('forgot_username', 			'PublicController@getForgotUsername');
+	Route::get('industry_news', 			'PublicController@getIndustryNews');
+	Route::get('login', 					'PublicController@getLogin');
+	Route::get('plans', 					'PublicController@getPlans');
+	Route::get('press', 					'PublicController@getPress');
+	Route::get('privacy', 					'PublicController@getPrivacy');
+	Route::get('recruit', 					'PublicController@getRecruit');
+	Route::get('refund_policy', 			'PublicController@getRefundPolicy');
+	Route::get('service_provider', 			'PublicController@getServiceProvider');
+	Route::get('support', 					'PublicController@getSupport');
+	Route::get('terms', 					'PublicController@getTerms');
 
-			return View::make('users')->with('users', $users);
-		});
+	//home
+	Route::controller('/', 					'HomeController');
 
-	Route::controller('public', 'PublicController');

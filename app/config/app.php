@@ -132,7 +132,10 @@ return array(
 		'Artdarek\OAuth\OAuthServiceProvider',
 
 		//cashier
-		'Laravel\Cashier\CashierServiceProvider'
+		'Laravel\Cashier\CashierServiceProvider',
+
+		//ide helper
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	),
 
 	/*

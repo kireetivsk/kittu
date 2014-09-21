@@ -1,0 +1,172 @@
+body {
+    padding-bottom: 40px;
+    background-color: white;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control:not(select) {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input[type="text"] {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#main_container {
+    padding-bottom: 50px;
+
+}
+.bg-lblue {
+     background-color: rgb(237, 244, 244);
+ }
+#footer{
+    background-color: white;
+    padding-top: 20px;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+hr {
+    border-color: #ccc;
+}
+a:link {
+    text-decoration: none;
+}
+
+#header {
+    min-height: 75px;
+    background-color: rgb(106, 193, 198);
+    border-bottom: rgb(209, 74, 64) solid medium;
+}
+.orange {
+    color: rgb(209, 74, 64);
+}
+.brown {
+    color: rgb(77, 70, 51);
+}
+#logo {
+    padding-top: 15px;
+    font-size: 30px;
+	cursor: pointer;
+}
+button.blue {
+    background-color: rgb(106, 193, 198);
+    color: rgb(255, 255, 255);
+}
+button.lblue {
+    background-color: rgb(237, 244, 244);
+    color: rgb(209, 74, 64);
+    border: rgb(209, 74, 64) thin solid;
+}
+button.orange {
+    background-color: rgb(209, 74, 64);
+    color: rgb(237, 244, 244);
+    border: rgb(106, 193, 198) thin solid;
+}
+input.orange_border {
+    border: rgb(209, 74, 64) thin solid;
+}
+h1 {
+    font-size: 47px;
+}
+ul {
+    font-size: 19px;
+}
+ul.home {
+    margin-top: 15px;
+}
+ul.home li  {
+    margin-bottom: 15px;
+    list-style: none;
+}
+ul li .glyphicon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.light-text {
+    font-size: 12px;
+    color: #999;
+}
+.full {
+    width: 100% !important;
+}
+.half {
+	width: 48% !important;
+}
+.spacer {
+	margin-bottom: 10px;
+}
+.spacer-top {
+	margin-top: 10px;
+}
+.space-10 {
+    max-height: 1px;
+    min-height: 1px;
+    overflow: hidden;
+    margin: 12px 0;
+    margin: 10px 0 9px;
+}
+.space-50 {
+    max-height: 1px;
+    min-height: 1px;
+    overflow: hidden;
+    margin: 12px 0;
+    margin: 50px 0 9px;
+}
+.footer-links {
+    font-size: 9px;
+}
+#footer a {
+	color: #999999;
+}
+#footer a:hover {
+	color: #D14A40;
+	transition: color 0.5s ease;
+}
+.navbar {
+	margin-bottom: 0;
+}
+#registration_company_names {
+	border: 1px solid #999;
+	padding: 5px;
+	border-top: none;
+	margin-top: -20px;
+	margin-bottom: 10px;
+	background-color: white;
+}
