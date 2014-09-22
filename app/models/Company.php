@@ -32,6 +32,15 @@
 class Company extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'name'                  => 'required|between:1,100|unique:companies',
+		'slug'           		=> 'required|between:1,100|unique:companies',
+		'website'              	=> 'between:1,254|url',
+		'company_category_id' 	=> 'integer',
+		'meta_company_status_id'=> 'required|integer'
+	];
+
 	//relationships
 	public function companyCategory()
 	{

@@ -6,7 +6,7 @@
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaSocialType $metaSocialType
  */
-class CrmPeopleSocial extends \Eloquent {
+class CrmPersonSocial extends \Eloquent {
 	protected $fillable = [];
 
 		//relationships

@@ -29,6 +29,17 @@
 class CompanyBillingTransaction extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'company_id'                => 'required|integer',
+		'billing_item_id'           => 'required|integer',
+		'amount'              		=> 'required|numeric|between:1,11',
+		'meta_billing_status_id' 	=> 'required|integer',
+		'company_payment_profile_id'=> 'required|integer'
+	];
+
+
+
 	//relationships
 	public function companyPaymentProfile()
 	{

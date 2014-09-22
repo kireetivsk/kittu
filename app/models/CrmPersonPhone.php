@@ -20,7 +20,7 @@
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaPhoneType $metaPhoneType
  */
-class CrmPeoplePhone extends \Eloquent {
+class CrmPersonPhone extends \Eloquent {
 	protected $fillable = [];
 
 	//relationships

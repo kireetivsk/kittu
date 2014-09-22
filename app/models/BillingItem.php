@@ -35,7 +35,7 @@ class BillingItem extends \Eloquent {
 	protected $fillable = [];
 
 	//validation
-	public static $rules = array(
+	public static $rules = [
 		'name'                  => 'required|between:1,45',
 		'description'           => 'required|between:1,100',
 		'price'              	=> 'required|numeric|between:1,11',
@@ -43,7 +43,7 @@ class BillingItem extends \Eloquent {
 		'active' 				=> 'required|in:0,1',
 		'end_time' 				=> 'date_format:Y-m-d H:i:s',
 		'start_time' 			=> 'date_format:Y-m-d H:i:s'
-	);
+	];
 
 	// Relationships
 	public function companyBillingItem()

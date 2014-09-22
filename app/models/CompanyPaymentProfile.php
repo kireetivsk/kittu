@@ -19,6 +19,12 @@
 class CompanyPaymentProfile extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'company_id' 			=> 'required|integer',
+		'merchant_customer_id' 	=> 'required|between:1,256'
+	];
+
 	//relationships
 	public function company()
 	{

@@ -12,4 +12,16 @@
  */
 class CompanyCategory extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' => 'required|between:1,45'
+	];
+
+
+	//relationships
+	public function company()
+	{
+		return $this->belongsTo('Company');
+	}
 }

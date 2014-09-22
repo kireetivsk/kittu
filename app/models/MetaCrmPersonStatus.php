@@ -13,7 +13,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaCrmPeopleStatus whereDescription($value) 
  * @method static \Illuminate\Database\Query\Builder|\MetaCrmPeopleStatus whereOrdinal($value) 
  */
-class MetaCrmPeopleStatus extends \Eloquent {
+class MetaCrmPersonStatus extends \Eloquent {
 	protected $fillable = [];
 
 	//relationships

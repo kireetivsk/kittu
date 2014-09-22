@@ -45,48 +45,48 @@ class CrmPerson extends \Eloquent {
 		return $this->belongsTo('User');
 	}
 
-	public function crmPeopleContact()
+	public function crmPersonContact()
 	{
-		return $this->hasMany('CrmPeopleContact');
+		return $this->hasMany('CrmPersonContact');
 	}
 
-	public function crmPeopleNotes()
+	public function crmPersonNotes()
 	{
-		return $this->hasMany('CrmPeopleNotes');
+		return $this->hasMany('CrmPersonNotes');
 	}
 
-	public function crmPeopleWebsite()
+	public function crmPersonWebsite()
 	{
-		return $this->hasMany('CrmPeopleWebsite');
+		return $this->hasMany('CrmPersonWebsite');
 	}
 
-	public function crmPeopleEmail()
+	public function crmPersonEmail()
 	{
-		return $this->hasMany('CrmPeopleEmail');
+		return $this->hasMany('CrmPersonEmail');
 	}
 
-	public function crmPeopleAddress()
+	public function crmPersonAddress()
 	{
-		return $this->hasMany('CrmPeopleAddress');
+		return $this->hasMany('CrmPersonAddress');
 	}
 
-	public function crmPeoplePhone()
+	public function crmPersonPhone()
 	{
-		return $this->hasMany('CrmPeopleAPhone');
+		return $this->hasMany('CrmPersonAPhone');
 	}
 
-	public function crmPeopleSocial()
+	public function crmPersonSocial()
 	{
-		return $this->hasMany('CrmPeopleSocial');
+		return $this->hasMany('CrmPersonSocial');
 	}
 
-	public function metaCrmPeopleType()
+	public function metaCrmPersonType()
 	{
-		return $this->hasOne('MetaCrmPeopleType');
+		return $this->hasOne('MetaCrmPersonType');
 	}
 
-	public function metaCrmPeopleStatus()
+	public function metaCrmPersonStatus()
 	{
-		return $this->hasOne('MetaCrmPeopleStatus');
+		return $this->hasOne('MetaCrmPersonStatus');
 	}
 }

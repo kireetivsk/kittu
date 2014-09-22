@@ -214,8 +214,12 @@ class User extends \Eloquent {
 		return $this->belongsToMany('Company');
 	}
 
+	public function connectionRequest()
+	{
+		return $this->hasMany('ConnectionRequest');
+	}
 
-
+	//public methods
 	public function addConsultantUser()
 	{
 		$test = 1;

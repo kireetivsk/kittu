@@ -20,7 +20,7 @@
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaEmailType $metaEmailType
  */
-class CrmPeopleEmail extends \Eloquent {
+class CrmPersonEmail extends \Eloquent {
 	protected $fillable = [];
 
 	//relationships

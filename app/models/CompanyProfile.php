@@ -23,6 +23,13 @@
 class CompanyProfile extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'company_id' 			=> 'required|integer',
+		'meta_profile_type_id' 	=> 'required|integer',
+		'value' 				=> 'required'
+	];
+
 	//relationships
 	public function metaProfileType()
 	{

@@ -19,7 +19,7 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleContact whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
  */
-class CrmPeopleContact extends \Eloquent {
+class CrmPersonContact extends \Eloquent {
 	protected $fillable = [];
 
 	//relationships

@@ -18,6 +18,20 @@
  * @method static \Illuminate\Database\Query\Builder|\ConnectionRequest whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\ConnectionRequest whereDeletedAt($value)
  */
-class ConnectionRequest extends \Eloquent {
+class ConnectionRequest extends \Eloquent
+{
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'email' 							=> 'required|email',
+		'meta_connection_relationship_id'	=> 'required|integer'
+	];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
 }

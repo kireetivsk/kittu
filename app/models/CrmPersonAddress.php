@@ -36,8 +36,15 @@
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaAddressType $metaAddressType
  */
-class CrmPeopleAddress extends \Eloquent {
+class CrmPersonAddress extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'email' 							=> 'required|email',
+		'meta_connection_relationship_id'	=> 'required|integer'
+	];
 
 	//relationships
 	public function crmPerson()
