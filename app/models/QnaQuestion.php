@@ -30,6 +30,16 @@
 class QnaQuestion extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = array(
+		'user_id'						=> 'required|integer',
+		'title'							=> 'required|integer',
+		'content'						=> 'required',
+		'votes'							=> 'required|integer',
+		'qna_question_destination_id' 	=> 'required|integer',
+		'accepted_qna_answer_id' 		=> 'integer'
+	);
+
 	//relationships
 	public function user()
 	{
@@ -45,4 +55,10 @@ class QnaQuestion extends \Eloquent {
 	{
 		return $this->hasOne('QnaAnswer', 'id', 'accepted_qna_answer_id');
 	}
+
+	public function qnaComment()
+	{
+		return $this->hasMany('QnaComment', 'qna_id');
+	}
+
 }

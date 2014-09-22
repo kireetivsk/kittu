@@ -4,7 +4,7 @@
  * CrmPeopleSocial
  *
  * @property-read \CrmPerson $crmPerson
- * @property-read \MetaSocialType $metaSocialType
+ * @property-read \MetaSocialNetwork $metaSocialNetwork
  * @property integer $id
  * @property integer $crm_person_id
  * @property string $social
@@ -25,15 +25,22 @@
 class CrmPersonSocial extends \Eloquent {
 	protected $fillable = [];
 
-		//relationships
+	//validation
+	public static $rules = [
+		'crm_person_id' 					=> 'required|integer',
+		'website'							=> 'required|max:254|url',
+		'description'						=> 'max:100'
+	];
+
+	//relationships
 	public function crmPerson()
 	{
 		return $this->belongsTo('CrmPerson');
 	}
 
-	public function metaSocialType()
+	public function metaSocialNetwork()
 	{
-		return $this->hasOne('MetaSocialType');
+		return $this->hasOne('MetaSocialNetwork');
 	}
 
 }

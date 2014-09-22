@@ -14,4 +14,16 @@
  */
 class MetaEmailType extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100'
+	];
+
+	//validation
+	public function crmPersonEmail()
+	{
+		return $this->belongsTo('CrmPersonEmail');
+	}
 }

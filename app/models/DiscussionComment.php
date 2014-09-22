@@ -15,8 +15,8 @@
  * @property string $deleted_at
  * @property-read \User $user
  * @property-read \DiscussionPost $discussionPost
- * @property-read \DiscussionPermission $metaDiscussionPermission
- * @property-read \DiscussionStatus $metaDiscussionStatus
+ * @property-read \MetaDiscussionPermission $metaDiscussionPermission
+ * @property-read \MetaDiscussionStatus $metaDiscussionStatus
  * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereUserId($value) 
  * @method static \Illuminate\Database\Query\Builder|\DiscussionComment whereDiscussionPostId($value) 
@@ -31,6 +31,16 @@
 class DiscussionComment extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'discussion_post_id'				=> 'required|integer',
+		'title'								=> 'required|alpha_num|max:100',
+		'content'							=> 'required',
+		'meta_discussion_permission_id'		=> 'required|integer',
+		'meta_discussion_status_id'			=> 'required|integer'
+	];
+
 	//relationships
 	public function user()
 	{
@@ -39,12 +49,12 @@ class DiscussionComment extends \Eloquent {
 
 	public function discussionPost()
 	{
-		return $this->belongsTo('DiscussionPost');
+		return $this->belongsTo('MetaDiscussionPost');
 	}
 
 	public function metaDiscussionPermission()
 	{
-		return $this->hasOne('DiscussionPermission');
+		return $this->hasOne('MetaDiscussionPermission');
 	}
 
 	public function metaDiscussionStatus()

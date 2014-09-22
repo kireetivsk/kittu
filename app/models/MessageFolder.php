@@ -16,6 +16,12 @@
 class MessageFolder extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 	=> 'required|integer',
+		'name' 		=> 'required|max:45'
+	];
+
 	//relationships
 	public function user()
 	{

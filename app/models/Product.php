@@ -25,8 +25,8 @@ class Product extends \Eloquent {
 
 	//validation
 	public static $rules = array(
-		'name'                  => 'required|between:1,100',
-		'description'           => 'between:1,100',
+		'name'                  => 'required|max:100',
+		'description'           => 'max:100',
 		'meta_product_status_id'=> 'required|integer'
 	);
 

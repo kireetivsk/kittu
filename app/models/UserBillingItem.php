@@ -20,6 +20,13 @@
 class UserBillingItem extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'billing_item_id' 				=> 'required|integer',
+		'user_payment_profile_id' 		=> 'required|integer',
+		'meta_billing_item_status_id' 	=> 'required|integer'
+	];
+
 	//relationships
 	public function billingItem()
 	{

@@ -22,6 +22,13 @@
 class CrmPersonWebsite extends \Eloquent {
 	protected $fillable = [];
 
+	public static $rules = [
+		'crm_person_id' 					=> 'required|integer',
+		'website'							=> 'required|max:254|url',
+		'meta_social_network_id'			=> 'required|integer',
+		'description'						=> 'max:100'
+	];
+
 	//relationships
 	public function crmPerson()
 	{

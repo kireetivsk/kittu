@@ -23,6 +23,13 @@
 class CrmPersonEmail extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'crm_person_id' 					=> 'required|integer',
+		'email'								=> 'required|email|max:100',
+		'meta_email_type_id'				=> 'required|integer'
+	];
+
 	//relationships
 	public function crmPerson()
 	{

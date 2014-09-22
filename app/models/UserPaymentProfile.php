@@ -19,6 +19,13 @@
 class UserPaymentProfile extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'merchant_customer_id' 				=> 'required|max:45',
+		'meta_payment_profile_status_id' 	=> 'required|integer',
+	];
+
 	//relationships
 	public function user()
 	{

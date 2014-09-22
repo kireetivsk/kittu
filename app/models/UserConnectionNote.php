@@ -20,6 +20,12 @@
 class UserConnectionNote extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_connection_id' 		=> 'required|integer',
+		'content' 					=> 'required'
+	];
+
 	//relationships
 	public function userConnection()
 	{

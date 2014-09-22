@@ -14,13 +14,19 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaProductStatus whereOrdinal($value)
  */
 class MetaProductStatus extends \Eloquent
+{
+	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100'
+	];
+
+	//relationships
+	public function product()
 	{
-		protected $fillable = [];
-
-		//relationships
-		public function product()
-		{
-			return $this->belongsTo('Product');
-		}
-
+		return $this->belongsTo('Product');
 	}
+
+}

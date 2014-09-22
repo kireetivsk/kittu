@@ -33,7 +33,7 @@ class CompanyBillingTransaction extends \Eloquent {
 	public static $rules = [
 		'company_id'                => 'required|integer',
 		'billing_item_id'           => 'required|integer',
-		'amount'              		=> 'required|numeric|between:1,11',
+		'amount'              		=> 'required|numeric|max:11',
 		'meta_billing_status_id' 	=> 'required|integer',
 		'company_payment_profile_id'=> 'required|integer'
 	];

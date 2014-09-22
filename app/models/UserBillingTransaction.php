@@ -22,12 +22,21 @@
  * @method static \Illuminate\Database\Query\Builder|\UserBillingTransaction whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\UserBillingTransaction whereDeletedAt($value)
  * @property-read \UserPaymentProfile $userPaymentProfile
- * @property-read \bilingItem $billingItem
+ * @property-read \BillingItem $billingItem
  * @property-read \MetaBillingStatus $metaBillingStatus
  * @property-read \User $user
  */
 class UserBillingTransaction extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 						=> 'required|integer',
+		'billing_item_id' 				=> 'required|integer',
+		'amount' 						=> 'required|numeric',
+		'meta_billing_status_id' 		=> 'required|integer',
+		'user_payment_profile_id' 		=> 'required|integer'
+	];
 
 	//relationships
 	public function userPaymentProfile()
@@ -37,7 +46,7 @@ class UserBillingTransaction extends \Eloquent {
 
 	public function billingItem()
 	{
-		return $this->hasOne('bilingItem');
+		return $this->hasOne('BillingItem');
 	}
 
 	public function metaBillingStatus()

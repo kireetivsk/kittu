@@ -41,9 +41,8 @@ class CrmPersonAddress extends \Eloquent {
 
 	//validation
 	public static $rules = [
-		'user_id' 							=> 'required|integer',
-		'email' 							=> 'required|email',
-		'meta_connection_relationship_id'	=> 'required|integer'
+		'crm_person_id' 					=> 'required|integer',
+		'meta_address_type_id'				=> 'required|integer'
 	];
 
 	//relationships

@@ -16,11 +16,11 @@
  * @property string $deleted_at
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonContact[] $crmPersonContact
- * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonNotes[] $crmPersonNotes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonNote[] $crmPersonNote
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonWebsite[] $crmPersonWebsite
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonEmail[] $crmPersonEmail
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonAddress[] $crmPersonAddress
- * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonAPhone[] $crmPersonPhone
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonPhone[] $crmPersonPhone
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonSocial[] $crmPersonSocial
  * @property-read \MetaCrmPersonType $metaCrmPersonType
  * @property-read \MetaCrmPersonStatus $metaCrmPersonStatus
@@ -39,6 +39,18 @@
 class CrmPerson extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'first_name' 						=> 'alpha|max:45',
+		'last_name' 						=> 'alpha|max:45',
+		'company' 							=> 'alpha|max:45',
+		'birthdate'							=> 'date',
+		'meta_crm_person_type_id'			=> 'integer',
+		'meta_crm_person_status_id'			=> 'integer'
+	];
+
+
 	//relationships
 	public function user()
 	{
@@ -50,9 +62,9 @@ class CrmPerson extends \Eloquent {
 		return $this->hasMany('CrmPersonContact');
 	}
 
-	public function crmPersonNotes()
+	public function crmPersonNote()
 	{
-		return $this->hasMany('CrmPersonNotes');
+		return $this->hasMany('CrmPersonNote');
 	}
 
 	public function crmPersonWebsite()
@@ -72,7 +84,7 @@ class CrmPerson extends \Eloquent {
 
 	public function crmPersonPhone()
 	{
-		return $this->hasMany('CrmPersonAPhone');
+		return $this->hasMany('CrmPersonPhone');
 	}
 
 	public function crmPersonSocial()

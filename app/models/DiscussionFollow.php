@@ -28,6 +28,15 @@
 class DiscussionFollow extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'discussion_id'						=> 'required|integer',
+		'meta_discussion_type_id'			=> 'required|integer',
+		'discussion_folder_id'				=> 'integer',
+		'description'						=> 'max:100'
+	];
+
 	//relationships
 	public function user()
 	{

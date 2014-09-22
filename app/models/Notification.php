@@ -30,4 +30,22 @@
  */
 class Notification extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 					=> 'required|integer',
+		'origin' 					=> 'max:255',
+		'title' 					=> 'required|max:45',
+		'body' 						=> 'required',
+		'meta_notification_type_id'	=> 'required|integer',
+		'sent' 						=> 'required|date_format:Y-m-d H:i:s',
+		'seen' 						=> 'date_format:Y-m-d H:i:s',
+		'dismissed' 				=> 'date_format:Y-m-d H:i:s'
+	];
+
+	//relationships
+	public function metaNotificationType()
+	{
+		return $this->hasOne('MetaNotificationType');
+	}
 }

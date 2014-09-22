@@ -12,4 +12,12 @@
  */
 class SubmissionSocialNetwork extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:100',
+		'website'			=> 'required|max:254|url'
+	];
+
+
 }

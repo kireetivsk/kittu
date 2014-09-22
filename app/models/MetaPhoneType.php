@@ -14,4 +14,16 @@
  */
 class MetaPhoneType extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100'
+	];
+
+	//relatuionships
+	public function cromPersonPhone()
+	{
+		return $this->belongsTo('CrmPersonPhone');
+	}
 }

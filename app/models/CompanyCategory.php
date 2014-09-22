@@ -16,9 +16,8 @@ class CompanyCategory extends \Eloquent {
 
 	//validation
 	public static $rules = [
-		'name' => 'required|between:1,45'
+		'name' => 'required|max:45'
 	];
-
 
 	//relationships
 	public function company()

@@ -36,9 +36,9 @@ class BillingItem extends \Eloquent {
 
 	//validation
 	public static $rules = [
-		'name'                  => 'required|between:1,45',
-		'description'           => 'required|between:1,100',
-		'price'              	=> 'required|numeric|between:1,11',
+		'name'                  => 'required|max:45',
+		'description'           => 'required|max:100',
+		'price'              	=> 'required|numeric|max:11',
 		'billing_frequency' 	=> 'required|in:monthly,one_time',
 		'active' 				=> 'required|in:0,1',
 		'end_time' 				=> 'date_format:Y-m-d H:i:s',

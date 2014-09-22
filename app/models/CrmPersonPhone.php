@@ -23,6 +23,13 @@
 class CrmPersonPhone extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'crm_person_id' 					=> 'required|integer',
+		'phone'								=> 'required|max:45',
+		'meta_phone_type_id'				=> 'required|integer'
+	];
+
 	//relationships
 	public function crmPerson()
 	{

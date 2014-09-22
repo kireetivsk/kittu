@@ -18,6 +18,13 @@
 class MetaQnaRepType extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100',
+		'points'			=> 'required|integer'
+	];
+
 	//relationships
 	public function qnaRepTransaction()
 	{

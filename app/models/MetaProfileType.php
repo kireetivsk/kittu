@@ -11,8 +11,8 @@
  * @property string $profile_type
  * @property integer $ordinal
  * @property-read \MetaProfileCategory $metaProfileCategory
- * @property-read \CompanyProfileType $companyProfileType
- * @property-read \UserProfileType $userProfileType
+ * @property-read \CompanyProfile $companyProfile
+ * @property-read \UserProfile $userProfile
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereDescription($value)
@@ -24,20 +24,29 @@
 class MetaProfileType extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'name' 							=> 'required|max:45',
+		'description' 					=> 'max:100',
+		'default_value'					=> 'required|max:100',
+		'meta_profile_category_id'		=> 'required|integer',
+		'profile_type'					=> 'required|in:user,company'
+	];
+
 	//relationships
 	public function metaProfileCategory()
 	{
 		return $this->hasOne('MetaProfileCategory');
 	}
 
-	public function companyProfileType()
+	public function companyProfile()
 	{
-		return $this->belongsTo('CompanyProfileType');
+		return $this->belongsTo('CompanyProfile');
 	}
 
-	public function userProfileType()
+	public function userProfile()
 	{
-		return $this->belongsTo('UserProfileType');
+		return $this->belongsTo('UserProfile');
 	}
 
 

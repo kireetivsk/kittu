@@ -34,9 +34,9 @@ class Company extends \Eloquent {
 
 	//validation
 	public static $rules = [
-		'name'                  => 'required|between:1,100|unique:companies',
-		'slug'           		=> 'required|between:1,100|unique:companies',
-		'website'              	=> 'between:1,254|url',
+		'name'                  => 'required|max:100|unique:companies',
+		'slug'           		=> 'required|max:100|unique:companies',
+		'website'              	=> 'max:254|url',
 		'company_category_id' 	=> 'integer',
 		'meta_company_status_id'=> 'required|integer'
 	];

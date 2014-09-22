@@ -22,6 +22,13 @@
 class UserProfile extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 				=> 'required|integer',
+		'meta_profile_type_id' 	=> 'required|integer',
+		'value' 				=> 'required|max:100'
+	];
+
 	//relationships
 	public function metaProfileType()
 	{

@@ -26,6 +26,15 @@
 class Lead extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'email' 							=> 'email|max:255',
+		'phone'								=> 'max:20',
+		'first_name' 						=> 'alpha|max:45',
+		'last_name' 						=> 'alpha|max:45',
+		'assigned_user_id'					=> 'integer'
+	];
+
 	//relationships
 	public function user()
 	{

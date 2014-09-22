@@ -23,6 +23,13 @@
 class DiscussionFolder extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'name'								=> 'required|max:45',
+		'description'						=> 'max:100'
+	];
+
 	//relationships
 	public function user()
 	{

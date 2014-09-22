@@ -22,6 +22,13 @@
 class CrmPersonContact extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'crm_person_id' 					=> 'required|integer',
+		'contact_type'						=> 'max:100',
+		'contact_date'						=> 'date'
+	];
+
 	//relationships
 	public function crmPerson()
 	{

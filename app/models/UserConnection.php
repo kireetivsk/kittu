@@ -25,10 +25,19 @@
  * @property-read \MetaConnectionStatus $metaConnectionStatus
  * @property-read \UserCompanyMap $userCompanyMap
  * @property-read \User $user
- * @property-read \userConnectionNote $userConnectionNote
+ * @property-read \UserConnectionNote $userConnectionNote
  */
 class UserConnection extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'connection_id' 					=> 'required|integer',
+		'user_company_map_id' 				=> 'required|integer',
+		'meta_connection_status_id' 		=> 'required|integer',
+		'meta_connection_relationship_id' 	=> 'required|integer'
+	];
 
 	//relationships
 	public function metaConnectionRelationship()
@@ -53,7 +62,7 @@ class UserConnection extends \Eloquent {
 
 	public function userConnectionNote()
 	{
-		return $this->belongsTo('userConnectionNote');
+		return $this->belongsTo('UserConnectionNote');
 	}
 
 	//public methods

@@ -22,7 +22,7 @@ class CompanyPaymentProfile extends \Eloquent {
 	//validation
 	public static $rules = [
 		'company_id' 			=> 'required|integer',
-		'merchant_customer_id' 	=> 'required|between:1,256'
+		'merchant_customer_id' 	=> 'required|max:256'
 	];
 
 	//relationships

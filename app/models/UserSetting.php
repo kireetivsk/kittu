@@ -23,6 +23,13 @@
 class UserSetting extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 				=> 'required|integer',
+		'meta_setting_type_id' 	=> 'required|integer',
+		'value' 				=> 'required|max:100'
+	];
+
 	//relationships
 	public function user()
 	{

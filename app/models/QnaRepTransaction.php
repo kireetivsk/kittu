@@ -26,6 +26,14 @@
 class QnaRepTransaction extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 					=> 'required|integer',
+		'qna_id' 					=> 'required|integer',
+		'meta_qna_type_id' 			=> 'required|integer',
+		'meta_qna_rep_type_id' 		=> 'required|integer'
+	];
+
 	//relationships
 	public function user()
 	{

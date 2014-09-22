@@ -8,7 +8,7 @@
  * @property string $description
  * @property integer $ordinal
  * @property-read \QnaRepTransaction $qnaRepTransaction
- * @property-read \QnaComment $qnacomment
+ * @property-read \QnaComment $qnaComment
  * @method static \Illuminate\Database\Query\Builder|\MetaQnaType whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaQnaType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaQnaType whereDescription($value)
@@ -17,13 +17,19 @@
 class MetaQnaType extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100'
+	];
+
 	//relationships
 	public function qnaRepTransaction()
 	{
 		return $this->belongsTo('QnaRepTransaction');
 	}
 
-	public function qnacomment()
+	public function qnaComment()
 	{
 		return $this->belongsTo('QnaComment');
 	}

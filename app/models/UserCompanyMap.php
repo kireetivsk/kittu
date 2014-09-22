@@ -6,10 +6,18 @@
  * @property-read \Company $company
  * @property-read \MetaUserCompanyStatus $metaUserCompanyStatus
  * @property-read \User $user
- * @property-read \UserConnections $userConnections
+ * @property-read \UserConnection $userConnection
  */
 class UserCompanyMap extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 						=> 'required|integer',
+		'company_id' 					=> 'required|integer',
+		'meta_user_comapny_status_id' 	=> 'integer'
+
+	];
 
 	//relationships
 	public function company()
@@ -29,7 +37,7 @@ class UserCompanyMap extends \Eloquent {
 
 	public function userConnections()
 	{
-		return $this->belongsTo('UserConnections');
+		return $this->belongsTo('UserConnection');
 	}
 
 

@@ -34,4 +34,13 @@ class SiteContact extends \Eloquent {
 		'acquired_from',
 		'notes'
 	];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'max:45',
+		'phone' 			=> 'max:45',
+		'email' 			=> 'max:255|email',
+		'subject' 			=> 'max:255',
+		'acquired_from' 	=> 'max:45'
+	];
 }

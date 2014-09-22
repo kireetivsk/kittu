@@ -14,4 +14,16 @@
  */
 class MetaSocialNetwork extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100'
+	];
+
+	//relationships
+	public function crmPersonSocial()
+	{
+		return $this->belongsTo('CrmPersonSocial');
+	}
 }

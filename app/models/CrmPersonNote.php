@@ -20,6 +20,12 @@
 class CrmPersonNote extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'crm_person_id' 					=> 'required|integer',
+		'content'							=> 'required'
+	];
+
 	//relationships
 	public function crmPerson()
 	{

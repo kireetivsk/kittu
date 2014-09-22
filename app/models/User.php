@@ -89,6 +89,34 @@
 class User extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'username' 					=> 'required|max:45',
+		'email' 					=> 'required|max:255|email',
+		'password' 					=> 'required|between:6,100',
+		'salt' 						=> 'required|max:100',
+		'first_name' 				=> 'required|alpha_num|max:45',
+		'last_name' 				=> 'required|alpha_num|max:45',
+		'activated' 				=> 'required|integer',
+		'banned' 					=> 'required|integer',
+		'ban_reason' 				=> 'max"255',
+		'new_password_key' 			=> 'max:50',
+		'new_password_requested' 	=> 'date_format:Y-m-d H:i:s',
+		'new_email' 				=> 'max:100|email',
+		'new_email_key' 			=> 'max:50',
+		'last_ip' 					=> 'required|ip',
+		'last_login' 				=> 'date_format:Y-m-d H:i:s',
+		'meta_user_status_id' 		=> 'required|integer',
+		'meta_user_type_id' 		=> 'required|integer',
+		'stripe_active' 			=> 'required|integer',
+		'stripe_id' 				=> 'max:255',
+		'stripe_subscription' 		=> 'max:255',
+		'stripe_plan' 				=> 'max:25',
+		'last_four' 				=> 'max:4',
+		'trial_ends_at' 			=> 'date_format:Y-m-d H:i:s',
+		'subscription_ends_at' 		=> 'date_format:Y-m-d H:i:s'
+	];
+
 	//relationships
 	public function metaUserStatus()
 	{

@@ -14,4 +14,21 @@
  */
 class MetaMessageStatus extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'name' 				=> 'required|max:45',
+		'description' 		=> 'max:100'
+	];
+
+	//validation
+	public function toMessage()
+	{
+		return $this->belongsTo('Message', 'to_message_status_id');
+	}
+
+	public function fromMessage()
+	{
+		return $this->belongsTo('Message', 'from_message_status_id');
+	}
 }

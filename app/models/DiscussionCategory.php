@@ -24,4 +24,34 @@
  */
 class DiscussionCategory extends \Eloquent {
 	protected $fillable = [];
+
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'title'								=> 'required|alpha_num|max:100',
+		'description'						=> 'max:100',
+		'meta_discussion_permission_id'		=> 'required|integer',
+		'meta_discussion_status_id'			=> 'required|integer'
+	];
+
+	//relationships
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
+	public function discussionTopic()
+	{
+		return $this->belongsTo('DiscussionTopic');
+	}
+
+	public function metaDiscussionStatus()
+	{
+		return $this->hasOne('MetaDiscussionStatus');
+	}
+
+	public function discussionPermission()
+	{
+		return $this->hasOne('DiscussionPermission');
+	}
 }

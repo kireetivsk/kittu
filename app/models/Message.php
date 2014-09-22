@@ -31,6 +31,16 @@
 class Message extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'title' 						=> 'required|max:45',
+		'content'						=> 'required|max:160',
+		'to_user' 						=> 'required|integer',
+		'to_meta_message_status_id' 	=> 'required|integer',
+		'from_user' 					=> 'required|integer',
+		'from_meta_message_status_id' 	=> 'required|integer'
+	];
+
 	//relationships
 	public function toUser()
 	{

@@ -21,6 +21,12 @@
 class DiscussionView extends \Eloquent {
 	protected $fillable = [];
 
+	//validation
+	public static $rules = [
+		'user_id' 							=> 'required|integer',
+		'discuession_post_id'				=> 'required|integer'
+	];
+
 	//relationships
 	public function user()
 	{
