@@ -11,10 +11,10 @@
  * @property-read \DiscussionTopic $discussionTopic
  * @property-read \DiscussionPost $discussionPost
  * @property-read \DiscussionComment $discussionComment
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereOrdinal($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereOrdinal($value)
  */
 class MetaDiscussionStatus extends \Eloquent {
 	protected $fillable = [];

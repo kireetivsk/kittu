@@ -35,6 +35,8 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaAddressType $metaAddressType
+ * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereCrmPersonId($value) 
  */
 class CrmPersonAddress extends \Eloquent {
 	protected $fillable = [];

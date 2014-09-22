@@ -9,6 +9,7 @@
  * @method static \Illuminate\Database\Query\Builder|\CompanyCategory whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\CompanyCategory whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\CompanyCategory whereActive($value)
+ * @property-read \Company $company
  */
 class CompanyCategory extends \Eloquent {
 	protected $fillable = [];

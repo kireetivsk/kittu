@@ -35,6 +35,19 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPeopleSocial[] $crmPeopleSocial
  * @property-read \MetaCrmPeopleType $metaCrmPeopleType
  * @property-read \MetaCrmPeopleStatus $metaCrmPeopleStatus
+ * @property integer $meta_crm_person_type_id
+ * @property integer $meta_crm_person_status_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonContact[] $crmPersonContact
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonNotes[] $crmPersonNotes
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonWebsite[] $crmPersonWebsite
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonEmail[] $crmPersonEmail
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonAddress[] $crmPersonAddress
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonAPhone[] $crmPersonPhone
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonSocial[] $crmPersonSocial
+ * @property-read \MetaCrmPersonType $metaCrmPersonType
+ * @property-read \MetaCrmPersonStatus $metaCrmPersonStatus
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereMetaCrmPersonTypeId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereMetaCrmPersonStatusId($value) 
  */
 class CrmPerson extends \Eloquent {
 	protected $fillable = [];

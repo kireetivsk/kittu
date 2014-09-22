@@ -8,10 +8,10 @@
  * @property string $description
  * @property integer $ordinal
  * @property-read \userCompanyMap $userCompanyMap
- * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereOrdinal($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereOrdinal($value)
  */
 class MetaUserCompanyStatus extends \Eloquent {
 	protected $fillable = [];

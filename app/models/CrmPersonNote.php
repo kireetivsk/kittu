@@ -16,6 +16,8 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleNote whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleNote whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
+ * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereCrmPersonId($value) 
  */
 class CrmPersonNote extends \Eloquent {
 	protected $fillable = [];

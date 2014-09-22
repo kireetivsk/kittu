@@ -15,7 +15,7 @@
  * @property-read \BillingItem $billingItem
  * @property-read \UserPaymentProfile $userPaymentProfile
  * @property-read \MetaBillingItemStatus $metaBillingItemStatus
- * @method static \Illuminate\Database\Query\Builder|\UserBillingItem whereUserPaymentProfileId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\UserBillingItem whereUserPaymentProfileId($value)
  */
 class UserBillingItem extends \Eloquent {
 	protected $fillable = [];

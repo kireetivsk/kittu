@@ -19,6 +19,8 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaEmailType $metaEmailType
+ * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCrmPersonId($value) 
  */
 class CrmPersonEmail extends \Eloquent {
 	protected $fillable = [];

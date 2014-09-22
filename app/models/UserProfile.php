@@ -11,13 +11,13 @@
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
  * @property-read \MetaProfileType $metaProfileType
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereMetaProfileTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereValue($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\UserProfile whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereMetaProfileTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereValue($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\UserProfile whereDeletedAt($value)
  */
 class UserProfile extends \Eloquent {
 	protected $fillable = [];

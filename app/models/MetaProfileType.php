@@ -13,13 +13,13 @@
  * @property-read \MetaProfileCategory $metaProfileCategory
  * @property-read \CompanyProfileType $companyProfileType
  * @property-read \UserProfileType $userProfileType
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereDefaultValue($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereMetaProfileCategoryId($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereProfileType($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereOrdinal($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereDefaultValue($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereMetaProfileCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereProfileType($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereOrdinal($value)
  */
 class MetaProfileType extends \Eloquent {
 	protected $fillable = [];

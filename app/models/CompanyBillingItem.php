@@ -15,7 +15,7 @@
  * @property-read \BillingItem $billingItem
  * @property-read \CompanyPaymentProfile $companyPaymentProfile
  * @property-read \MetaBillingItemStatus $metaBillingItemStatus
- * @method static \Illuminate\Database\Query\Builder|\CompanyBillingItem whereCompanyPaymentProfileId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CompanyBillingItem whereCompanyPaymentProfileId($value)
  */
 class CompanyBillingItem extends \Eloquent {
 	protected $fillable = [];

@@ -19,6 +19,8 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaPhoneType $metaPhoneType
+ * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereCrmPersonId($value) 
  */
 class CrmPersonPhone extends \Eloquent {
 	protected $fillable = [];

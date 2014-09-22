@@ -18,6 +18,8 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleContact whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\CrmPeopleContact whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
+ * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereCrmPersonId($value) 
  */
 class CrmPersonContact extends \Eloquent {
 	protected $fillable = [];

@@ -84,6 +84,7 @@
  * @property-read \UserProfile $userProfile
  * @property-read \UserConnection $userConnection
  * @property-read \Illuminate\Database\Eloquent\Collection|\Company[] $company
+ * @property-read \Illuminate\Database\Eloquent\Collection|\ConnectionRequest[] $connectionRequest
  */
 class User extends \Eloquent {
 	protected $fillable = [];
