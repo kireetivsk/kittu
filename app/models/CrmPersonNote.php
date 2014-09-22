@@ -10,12 +10,12 @@
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
  * @property-read \CrmPerson $crmPerson
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereCrmPersonId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereContent($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereCrmPersonId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonNote whereDeletedAt($value)
  */
 class CrmPersonNote extends \Eloquent {
 	protected $fillable = [];

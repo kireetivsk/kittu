@@ -23,6 +23,8 @@
  * @method static \Illuminate\Database\Query\Builder|\QnaComment whereDeletedAt($value)
  * @property-read \User $user
  * @property-read \MetaQnaType $metaQnaType
+ * @property-read \QnaQuestion $qnaQuestion
+ * @property-read \QnaAnswer $qnaAnswer
  */
 class QnaComment extends \Eloquent {
 	protected $fillable = [];

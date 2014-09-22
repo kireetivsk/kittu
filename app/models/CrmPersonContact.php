@@ -11,13 +11,13 @@
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
  * @property-read \CrmPerson $crmPerson
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereCrmPersonId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereContactType($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereContactDate($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereCrmPersonId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereContactType($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereContactDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonContact whereDeletedAt($value)
  */
 class CrmPersonContact extends \Eloquent {
 	protected $fillable = [];

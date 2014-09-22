@@ -9,7 +9,7 @@
  * @property integer $ordinal
  * @property-read \CompanyBillingTransaction $companyBillingTransactions
  * @property-read \UserBillingTransaction $userBillingTransactions
- * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereInt($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereOrdinal($value)

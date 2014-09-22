@@ -18,16 +18,16 @@
  * @property-read \MetaDiscussionPermission $metaDiscussionPermission
  * @property-read \MetaDiscussionStatus $metaDiscussionStatus
  * @property-read \DiscussionCategory $discussionCategory
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDiscussionCategoryId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereTitle($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionPermissionId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionStatusId($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDiscussionCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionPermissionId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDeletedAt($value)
  */
 class DiscussionTopic extends \Eloquent {
 	protected $fillable = [];

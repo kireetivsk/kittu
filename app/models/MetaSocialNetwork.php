@@ -11,6 +11,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaSocialNetwork whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaSocialNetwork whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaSocialNetwork whereOrdinal($value)
+ * @property-read \CrmPersonSocial $crmPersonSocial
  */
 class MetaSocialNetwork extends \Eloquent {
 	protected $fillable = [];

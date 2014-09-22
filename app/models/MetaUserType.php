@@ -8,7 +8,7 @@
  * @property string $description
  * @property integer $ordinal
  * @property-read \User $user
- * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereInt($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereOrdinal($value)

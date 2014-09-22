@@ -3,6 +3,7 @@
 /**
  * MetaCompanyStatus
  *
+ * @property-read \Company $comapny
  */
 class MetaCompanyStatus extends \Eloquent {
 	protected $fillable = [];

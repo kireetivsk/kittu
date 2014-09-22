@@ -8,10 +8,10 @@
  * @property string $description
  * @property integer $ordinal
  * @property-read \CrmPerson $crmPerson
- * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereOrdinal($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonStatus whereOrdinal($value)
  */
 class MetaCrmPersonStatus extends \Eloquent {
 	protected $fillable = [];

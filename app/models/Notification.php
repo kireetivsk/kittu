@@ -27,6 +27,7 @@
  * @method static \Illuminate\Database\Query\Builder|\Notification whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Notification whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Notification whereDeletedAt($value)
+ * @property-read \MetaNotificationType $metaNotificationType
  */
 class Notification extends \Eloquent {
 	protected $fillable = [];

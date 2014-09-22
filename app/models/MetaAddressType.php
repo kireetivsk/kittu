@@ -11,6 +11,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaAddressType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaAddressType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaAddressType whereOrdinal($value)
+ * @property-read \CrmPeopleAddress $crmPeopleAddress
  */
 class MetaAddressType extends \Eloquent {
 	protected $fillable = [];

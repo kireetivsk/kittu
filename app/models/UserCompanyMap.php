@@ -35,7 +35,7 @@ class UserCompanyMap extends \Eloquent {
 		return $this->hasOne('User');
 	}
 
-	public function userConnections()
+	public function userConnection()
 	{
 		return $this->belongsTo('UserConnection');
 	}

@@ -26,6 +26,7 @@
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\QnaAnswer[] $qnaAnswer
  * @property-read \QnaAnswer $acceptedAnswer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\QnaComment[] $qnaComment
  */
 class QnaQuestion extends \Eloquent {
 	protected $fillable = [];

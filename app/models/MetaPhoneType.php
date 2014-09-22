@@ -11,6 +11,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaPhoneType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaPhoneType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaPhoneType whereOrdinal($value)
+ * @property-read \CrmPersonPhone $cromPersonPhone
  */
 class MetaPhoneType extends \Eloquent {
 	protected $fillable = [];

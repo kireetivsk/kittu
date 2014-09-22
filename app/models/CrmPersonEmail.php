@@ -12,13 +12,13 @@
  * @property string $deleted_at
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaEmailType $metaEmailType
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCrmPersonId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereEmail($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereMetaEmailTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCrmPersonId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereMetaEmailTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereDeletedAt($value)
  */
 class CrmPersonEmail extends \Eloquent {
 	protected $fillable = [];

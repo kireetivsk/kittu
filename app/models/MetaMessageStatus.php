@@ -11,6 +11,8 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaMessageStatus whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaMessageStatus whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaMessageStatus whereOrdinal($value)
+ * @property-read \Message $toMessage
+ * @property-read \Message $fromMessage
  */
 class MetaMessageStatus extends \Eloquent {
 	protected $fillable = [];

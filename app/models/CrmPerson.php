@@ -24,17 +24,17 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonSocial[] $crmPersonSocial
  * @property-read \MetaCrmPersonType $metaCrmPersonType
  * @property-read \MetaCrmPersonStatus $metaCrmPersonStatus
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereUserId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereFirstName($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereLastName($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereCompany($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereBirthdate($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereMetaCrmPersonTypeId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereMetaCrmPersonStatusId($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereCreatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereUpdatedAt($value) 
- * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereDeletedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereFirstName($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereLastName($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereCompany($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereBirthdate($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereMetaCrmPersonTypeId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereMetaCrmPersonStatusId($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\CrmPerson whereDeletedAt($value)
  */
 class CrmPerson extends \Eloquent {
 	protected $fillable = [];

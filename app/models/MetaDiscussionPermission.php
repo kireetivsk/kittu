@@ -11,10 +11,10 @@
  * @property string $name
  * @property string $description
  * @property integer $ordinal
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereName($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereDescription($value) 
- * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereOrdinal($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereOrdinal($value)
  */
 class MetaDiscussionPermission extends \Eloquent {
 	protected $fillable = [];
