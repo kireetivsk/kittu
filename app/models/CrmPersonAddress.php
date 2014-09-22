@@ -17,26 +17,25 @@
  * @property integer $meta_address_type_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property integer $crm_person_id
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereCrmPeopleId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereAddress1($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereAddress2($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereAddress3($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereCity($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereState($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress wherePostalCode($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereCountry($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereLat($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereLng($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereMetaAddressTypeId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleAddress whereDeletedAt($value)
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaAddressType $metaAddressType
- * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereCrmPersonId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereAddress1($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereAddress2($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereAddress3($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereCity($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereState($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress wherePostalCode($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereCountry($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereLat($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereLng($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereMetaAddressTypeId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereCreatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonAddress whereDeletedAt($value) 
  */
 class CrmPersonAddress extends \Eloquent {
 	protected $fillable = [];

@@ -13,21 +13,22 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDiscussionCategoryId($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionPremissionId($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionStatusId($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDeletedAt($value)
+ * @property integer $meta_discussion_permission_id
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\DiscussionPost[] $discussionPost
  * @property-read \MetaDiscussionPermission $metaDiscussionPermission
  * @property-read \MetaDiscussionStatus $metaDiscussionStatus
  * @property-read \DiscussionCategory $discussionCategory
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUserId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDiscussionCategoryId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereTitle($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDescription($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionPermissionId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereMetaDiscussionStatusId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereCreatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDeletedAt($value) 
  */
 class DiscussionTopic extends \Eloquent {
 	protected $fillable = [];

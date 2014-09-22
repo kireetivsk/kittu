@@ -10,17 +10,16 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereCrmPeopleId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereMetaEmailTypeId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeopleEmail whereDeletedAt($value)
+ * @property integer $crm_person_id
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaEmailType $metaEmailType
- * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCrmPersonId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereEmail($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereMetaEmailTypeId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereCreatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereDeletedAt($value) 
  */
 class CrmPersonEmail extends \Eloquent {
 	protected $fillable = [];

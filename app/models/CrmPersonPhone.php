@@ -10,17 +10,16 @@
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereCrmPeopleId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone wherePhone($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereMetaPhoneTypeId($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\CrmPeoplePhone whereDeletedAt($value)
+ * @property integer $crm_person_id
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaPhoneType $metaPhoneType
- * @property integer $crm_person_id
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereCrmPersonId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone wherePhone($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereMetaPhoneTypeId($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereCreatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereUpdatedAt($value) 
+ * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereDeletedAt($value) 
  */
 class CrmPersonPhone extends \Eloquent {
 	protected $fillable = [];
