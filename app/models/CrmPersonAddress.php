@@ -4,7 +4,7 @@
  * CrmPeopleAddress
  *
  * @property integer $id
- * @property integer $crm_people_id
+ * @property integer $crm_person_id
  * @property string $address1
  * @property string $address2
  * @property string $address3
@@ -17,7 +17,6 @@
  * @property integer $meta_address_type_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property integer $crm_person_id
  * @property string $deleted_at
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaAddressType $metaAddressType

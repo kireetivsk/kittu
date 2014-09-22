@@ -8,12 +8,11 @@
  * @property integer $discussion_category_id
  * @property string $title
  * @property string $description
- * @property integer $meta_discussion_premission_id
+ * @property integer $meta_discussion_permission_id
  * @property integer $meta_discussion_status_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @property integer $meta_discussion_permission_id
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\DiscussionPost[] $discussionPost
  * @property-read \MetaDiscussionPermission $metaDiscussionPermission

@@ -9,13 +9,11 @@
  * @property string $last_name
  * @property string $company
  * @property string $birthdate
- * @property integer $meta_crm_people_type_id
- * @property integer $neta_crm_people_status_id
+ * @property integer $meta_crm_person_type_id
+ * @property integer $meta_crm_person_status_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @property integer $meta_crm_person_type_id
- * @property integer $meta_crm_person_status_id
  * @property-read \User $user
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonContact[] $crmPersonContact
  * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPersonNotes[] $crmPersonNotes

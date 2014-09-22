@@ -4,13 +4,12 @@
  * CrmPeopleEmail
  *
  * @property integer $id
- * @property integer $crm_people_id
+ * @property integer $crm_person_id
  * @property string $email
  * @property integer $meta_email_type_id
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @property integer $crm_person_id
  * @property-read \CrmPerson $crmPerson
  * @property-read \MetaEmailType $metaEmailType
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonEmail whereId($value) 

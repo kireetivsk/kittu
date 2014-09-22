@@ -4,13 +4,12 @@
  * CrmPeopleWebsite
  *
  * @property integer $id
- * @property integer $crm_people_id
+ * @property integer $crm_person_id
  * @property string $website
  * @property string $description
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property string $deleted_at
- * @property integer $crm_person_id
  * @property-read \CrmPerson $crmPerson
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonWebsite whereId($value) 
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonWebsite whereCrmPersonId($value) 
