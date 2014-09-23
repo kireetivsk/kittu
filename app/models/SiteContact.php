@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * SiteContact
@@ -26,7 +27,7 @@
  * @method static \Illuminate\Database\Query\Builder|\SiteContact whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\SiteContact whereDeletedAt($value)
  */
-class SiteContact extends \Eloquent {
+class SiteContact extends Ardent {
 	protected $fillable = [
 		'email',
 		'name',

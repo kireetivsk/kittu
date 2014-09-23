@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * UserProfile
@@ -19,7 +20,7 @@
  * @method static \Illuminate\Database\Query\Builder|\UserProfile whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\UserProfile whereDeletedAt($value)
  */
-class UserProfile extends \Eloquent {
+class UserProfile extends Ardent {
 	protected $fillable = [];
 
 	//validation

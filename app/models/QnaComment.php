@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * QnaComment
@@ -26,7 +27,7 @@
  * @property-read \QnaQuestion $qnaQuestion
  * @property-read \QnaAnswer $qnaAnswer
  */
-class QnaComment extends \Eloquent {
+class QnaComment extends Ardent {
 	protected $fillable = [];
 
 	//validation

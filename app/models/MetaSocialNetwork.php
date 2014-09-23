@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaSocialNetwork
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaSocialNetwork whereOrdinal($value)
  * @property-read \CrmPersonSocial $crmPersonSocial
  */
-class MetaSocialNetwork extends \Eloquent {
+class MetaSocialNetwork extends Ardent {
 	protected $fillable = [];
 
 	//validation

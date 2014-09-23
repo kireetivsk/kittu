@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 	/**
  * MetaProductStatus
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaProductStatus whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaProductStatus whereOrdinal($value)
  */
-class MetaProductStatus extends \Eloquent
+class MetaProductStatus extends Ardent
 {
 	protected $fillable = [];
 

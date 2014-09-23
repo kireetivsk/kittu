@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * CompanyProfile
@@ -20,7 +21,7 @@
  * @property-read \MetaProfileType $metaProfileType
  * @property-read \Company $company
  */
-class CompanyProfile extends \Eloquent {
+class CompanyProfile extends Ardent {
 	protected $fillable = [];
 
 	//validation

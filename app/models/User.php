@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * User
@@ -68,8 +69,8 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\QnaComment[] $qnaComment
  * @property-read \Illuminate\Database\Eloquent\Collection|\QnaAnswer[] $qnaAnswer
  * @property-read \Illuminate\Database\Eloquent\Collection|\QnaQuestion[] $qnaQuestion
- * @property-read \Illuminate\Database\Eloquent\Collection|\QnaRepTransactions[] $qnaRepTransactions
- * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPeople[] $crmPeople
+ * @property-read \Illuminate\Database\Eloquent\Collection|\QnaRepTransaction[] $qnaRepTransaction
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CrmPerson[] $crmPerson
  * @property-read \Illuminate\Database\Eloquent\Collection|\UserSetting[] $userSetting
  * @property-read \DiscussionCategory $discussionCategory
  * @property-read \DiscussionTopic $discussionTopic
@@ -86,19 +87,19 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\Company[] $company
  * @property-read \Illuminate\Database\Eloquent\Collection|\ConnectionRequest[] $connectionRequest
  */
-class User extends \Eloquent {
+class User extends Ardent {
 	protected $fillable = [];
 
 	//validation
 	public static $rules = [
-		'username' 					=> 'required|max:45',
+		'username' 					=> 'required|max:255',
 		'email' 					=> 'required|max:255|email',
 		'password' 					=> 'required|between:6,100',
-		'salt' 						=> 'required|max:100',
+		'salt' 						=> 'max:100',
 		'first_name' 				=> 'required|alpha_num|max:45',
 		'last_name' 				=> 'required|alpha_num|max:45',
-		'activated' 				=> 'required|integer',
-		'banned' 					=> 'required|integer',
+		'activated' 				=> 'integer',
+		'banned' 					=> 'integer',
 		'ban_reason' 				=> 'max"255',
 		'new_password_key' 			=> 'max:50',
 		'new_password_requested' 	=> 'date_format:Y-m-d H:i:s',
@@ -106,8 +107,8 @@ class User extends \Eloquent {
 		'new_email_key' 			=> 'max:50',
 		'last_ip' 					=> 'required|ip',
 		'last_login' 				=> 'date_format:Y-m-d H:i:s',
-		'meta_user_status_id' 		=> 'required|integer',
-		'meta_user_type_id' 		=> 'required|integer',
+		'meta_user_status_id' 		=> 'integer',
+		'meta_user_type_id' 		=> 'integer',
 		'stripe_active' 			=> 'required|integer',
 		'stripe_id' 				=> 'max:255',
 		'stripe_subscription' 		=> 'max:255',
@@ -163,14 +164,14 @@ class User extends \Eloquent {
 		return $this->hasMany('QnaQuestion');
 	}
 
-	public function qnaRepTransactions()
+	public function qnaRepTransaction()
 	{
-		return $this->hasMany('QnaRepTransactions');
+		return $this->hasMany('QnaRepTransaction');
 	}
 
-	public function crmPeople()
+	public function crmPerson()
 	{
-		return $this->hasMany('CrmPeople');
+		return $this->hasMany('CrmPerson');
 	}
 
 	public function userSetting()
@@ -249,9 +250,62 @@ class User extends \Eloquent {
 	}
 
 	//public methods
-	public function addConsultantUser()
+	public function consultantRegistration($params)
 	{
-		$test = 1;
+		//create user
+		if (!$this->createNewConsultantUser($params))
+			return FALSE;
 
+		//add company association
+		$this->company()->attach($params['company_id']);
+
+		//set setting for this company
+		UserSetting::set($this->id,
+						 UserSetting::CATEGORY_LAST_SELECTED_COMPANY,
+						 $params['company_id']);
+
+		//set default settings
+
+	}
+
+	public function createNewConsultantUser($params)
+	{
+		$this->username 			= $params['email'];
+		$this->email 				= $params['email'];
+		$this->password 			= Hash::make($params['password']);
+		$this->first_name			= $params['first_name'];
+		$this->last_name			= $params['last_name'];
+		$this->new_email_key		= Dsk::generateCode(32);
+		$this->last_ip				= Request::getClientIp();
+		if ($this->validate())
+		{
+			$this->save();
+			//send activation email
+			$this->sendActivationEmail();
+
+			return $this->id;
+		}
+
+	}
+
+	public function sendActivationEmail()
+	{
+		$views = [
+			'email.activation.html',
+			'email.activation.text'
+		];
+
+		$data = [
+			'url' => url('activation/' . $this->new_email_key)
+		];
+
+		$callback = function($message){
+			$message
+				->from(REGISTRATION_EMAIL, SITE_NAME . 'Activations')
+				->to($this->email, $this->first_name . " " . $this->last_name)
+				->subject(trans('email.activation_subject'));
+		};
+
+		Mail::send($views, $data, $callback);
 	}
 }

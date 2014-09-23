@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaBillingStatus
@@ -14,7 +15,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaBillingStatus whereOrdinal($value)
  */
-class MetaBillingStatus extends \Eloquent {
+class MetaBillingStatus extends Ardent {
 	protected $fillable = [];
 
 	//validation

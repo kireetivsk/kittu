@@ -1,5 +1,5 @@
 <?php
-
+	use LaravelBook\Ardent\Ardent;
 /**
  * BillingItem
  *
@@ -29,9 +29,9 @@
  * @property-read \CompanyBillingTransaction $companyBillingTransaction
  * @property-read \UserBillingItem $userBillingItem
  * @property-read \UserBillingTransaction $userBillingTransaction
- * @property-read \Illuminate\Database\Eloquent\Collection|\Products[] $product
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Product[] $product
  */
-class BillingItem extends \Eloquent {
+class BillingItem extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -68,7 +68,7 @@ class BillingItem extends \Eloquent {
 
 	public function product()
 	{
-		return $this->belongsToMany('Products');
+		return $this->belongsToMany('Product');
 	}
 
 

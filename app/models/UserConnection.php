@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * UserConnection
@@ -27,7 +28,7 @@
  * @property-read \User $user
  * @property-read \UserConnectionNote $userConnectionNote
  */
-class UserConnection extends \Eloquent {
+class UserConnection extends Ardent {
 	protected $fillable = [];
 
 	//validation

@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaProfileType
@@ -21,7 +22,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereProfileType($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileType whereOrdinal($value)
  */
-class MetaProfileType extends \Eloquent {
+class MetaProfileType extends Ardent {
 	protected $fillable = [];
 
 	//validation

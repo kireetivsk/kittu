@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaQnaRepType
@@ -15,7 +16,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaQnaRepType wherePoints($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaQnaRepType whereOrdinal($value)
  */
-class MetaQnaRepType extends \Eloquent {
+class MetaQnaRepType extends Ardent {
 	protected $fillable = [];
 
 	//validation

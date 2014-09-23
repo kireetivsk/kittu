@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaAddressTypes
@@ -11,9 +12,9 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaAddressType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaAddressType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaAddressType whereOrdinal($value)
- * @property-read \CrmPeopleAddress $crmPeopleAddress
+ * @property-read \CrmPersonAddress $crmPersonAddress
  */
-class MetaAddressType extends \Eloquent {
+class MetaAddressType extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -23,8 +24,8 @@ class MetaAddressType extends \Eloquent {
 	];
 
 	//relationships
-	public function crmPeopleAddress()
+	public function crmPersonAddress()
 	{
-		return $this->belongsTo('CrmPeopleAddress');
+		return $this->belongsTo('CrmPersonAddress');
 	}
 }

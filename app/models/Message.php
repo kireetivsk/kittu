@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * Message
@@ -28,7 +29,7 @@
  * @property-read \MetaMessageStatus $toMetaMessageStatus
  * @property-read \MetaMessageStatus $fromMetaMessageStatus
  */
-class Message extends \Eloquent {
+class Message extends Ardent {
 	protected $fillable = [];
 
 	//validation

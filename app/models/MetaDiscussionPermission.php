@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaDiscussionPermission
@@ -16,7 +17,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionPermission whereOrdinal($value)
  */
-class MetaDiscussionPermission extends \Eloquent {
+class MetaDiscussionPermission extends Ardent {
 	protected $fillable = [];
 
 	//validation

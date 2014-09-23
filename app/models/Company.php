@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * Company
@@ -29,8 +30,10 @@
  * @property-read \UserCompanyMap $userCompanyMap
  * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $user
  */
-class Company extends \Eloquent {
-	protected $fillable = [];
+class Company extends Ardent {
+	protected $fillable = [
+		'name'
+	];
 
 	//validation
 	public static $rules = [
@@ -38,7 +41,7 @@ class Company extends \Eloquent {
 		'slug'           		=> 'required|max:100|unique:companies',
 		'website'              	=> 'max:254|url',
 		'company_category_id' 	=> 'integer',
-		'meta_company_status_id'=> 'required|integer'
+		'meta_company_status_id'=> 'integer'
 	];
 
 	//relationships
@@ -86,5 +89,17 @@ class Company extends \Eloquent {
 	public function partialNameSearch($term)
 	{
 		return $this->where('name', 'LIKE', "$term%")->get()->toArray();
+	}
+
+	public function addByName($name)
+	{
+		$this->name = $name;
+		$this->slug = Dsk::slugify($name);
+		$this->company_category_id = CompanyCategory::USER_SUBMITTED;
+		if ($this->validate())
+		{
+			$this->save();
+			return $this->id;
+		}
 	}
 }

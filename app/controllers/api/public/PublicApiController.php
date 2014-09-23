@@ -71,10 +71,21 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Find a company name based on a partial name search
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postCompanySearch()
 		{
 			$name = Input::get('company_name');
-			$this->data['result'] = Company::partialNameSearch($name);
+			$company = new Company();
+			$companies = $company->partialNameSearch($name);
+			if(!empty($companies))
+				$this->_success("Found", $companies);
+			else
+				$this->_error(500, 'No company found');
+
 			return Response::json($this->data);
 		}
 
@@ -89,10 +100,16 @@
 			$company_name 	= $params['company_name'];
 			if (empty($company_id))
 			{
-				$params['company_id'] = Company::create($company_name);
+				$company = new Company();
+				if (!$params['company_id'] = $company->addByName($company_name))
+				{
+					$this->_error(500, 'Company name invalid');
+					return Response::json($this->data);
+				}
 			}
 
-			if ($user = User::addRepUser($params))
+			$user = new User();
+			if ($user_id =$user->consultantRegistration($params))
 			{
 				if ($params['is_referral'] == 'true')
 				{
@@ -108,42 +125,6 @@
 			}
 
 			return Response::json($this->data);
-
-		}
-
-		public function postRegisterO()
-		{
-			$params = $this->input->post(NULL, TRUE);
-
-			//check for company
-			$company_id = array_key_exists('company_id', $params) ? $params['company_id'] : NULL;
-			$company_name = $params['company_name'];
-			if (empty($company_id))
-			{
-				$this->load->model('Company_model');
-				$params['company_id'] = $this->Company_model->addCompany($company_name);
-			}
-
-			$this->load->model("User_model");
-			$user = $this->User_model->addRepUser($params);
-
-			if ($user['status'] == 'success')
-			{
-				if ($params['is_referral'] == 'true')
-				{
-					//make referral connections
-					$this->load->model('User_connection_model');
-					$this->User_connection_model->makeReferralConnections($user['user_id'],
-																		  $params['email'],
-																		  $params['company_id']);
-				}
-
-				$this->_sendSuccess(TRUE);
-			} else {
-				$this->_sendError($this->Error_model->prepareAjaxError($user['message']));
-			}
-
-			$this->load->view('ajax', $this->data);
 
 		}
 

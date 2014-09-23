@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * UserCompanyMap
@@ -8,7 +9,7 @@
  * @property-read \User $user
  * @property-read \UserConnection $userConnection
  */
-class UserCompanyMap extends \Eloquent {
+class UserCompanyMap extends Ardent {
 	protected $fillable = [];
 
 	//validation

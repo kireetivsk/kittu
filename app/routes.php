@@ -39,6 +39,8 @@
 	Route::get('support', 					'PublicController@getSupport');
 	Route::get('terms', 					'PublicController@getTerms');
 
+	Route::get('activation', 				'HomeController@getActivation');
+
 	//home
 	Route::controller('/', 					'HomeController');
 

@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaUserCompanyStatus
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaUserCompanyStatus whereOrdinal($value)
  */
-class MetaUserCompanyStatus extends \Eloquent {
+class MetaUserCompanyStatus extends Ardent {
 	protected $fillable = [];
 
 	//validation

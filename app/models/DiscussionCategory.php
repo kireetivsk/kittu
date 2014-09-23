@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * DiscussionCategory
@@ -24,9 +25,9 @@
  * @property-read \User $user
  * @property-read \DiscussionTopic $discussionTopic
  * @property-read \MetaDiscussionStatus $metaDiscussionStatus
- * @property-read \DiscussionPermission $discussionPermission
+ * @property-read \MetaDiscussionPermission $metaDiscussionPermission
  */
-class DiscussionCategory extends \Eloquent {
+class DiscussionCategory extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -54,8 +55,8 @@ class DiscussionCategory extends \Eloquent {
 		return $this->hasOne('MetaDiscussionStatus');
 	}
 
-	public function discussionPermission()
+	public function metaDiscussionPermission()
 	{
-		return $this->hasOne('DiscussionPermission');
+		return $this->hasOne('MetaDiscussionPermission');
 	}
 }

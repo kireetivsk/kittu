@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * SubmissionSocialNetwork
@@ -10,7 +11,7 @@
  * @method static \Illuminate\Database\Query\Builder|\SubmissionSocialNetwork whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\SubmissionSocialNetwork whereWebsite($value)
  */
-class SubmissionSocialNetwork extends \Eloquent {
+class SubmissionSocialNetwork extends Ardent {
 	protected $fillable = [];
 
 	//validation

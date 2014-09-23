@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * Product
@@ -20,7 +21,7 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\BillingItem[] $billingItem
  * @property-read \MetaProductStatus $metaProductStatus
  */
-class Product extends \Eloquent {
+class Product extends Ardent {
 	protected $fillable = [];
 
 	//validation

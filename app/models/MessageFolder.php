@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MessageFolder
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MessageFolder whereDescription($value)
  * @property-read \User $user
  */
-class MessageFolder extends \Eloquent {
+class MessageFolder extends Ardent {
 	protected $fillable = [];
 
 	//validation

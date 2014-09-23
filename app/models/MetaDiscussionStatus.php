@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaDiscussionStatus
@@ -16,7 +17,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaDiscussionStatus whereOrdinal($value)
  */
-class MetaDiscussionStatus extends \Eloquent {
+class MetaDiscussionStatus extends Ardent {
 	protected $fillable = [];
 
 	//validation

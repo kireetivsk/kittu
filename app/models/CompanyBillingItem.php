@@ -1,5 +1,5 @@
 <?php
-
+	use LaravelBook\Ardent\Ardent;
 /**
  * CompanyBillingItem
  *
@@ -17,7 +17,7 @@
  * @property-read \MetaBillingItemStatus $metaBillingItemStatus
  * @method static \Illuminate\Database\Query\Builder|\CompanyBillingItem whereCompanyPaymentProfileId($value)
  */
-class CompanyBillingItem extends \Eloquent {
+class CompanyBillingItem extends Ardent {
 	protected $fillable = [];
 
 	//validation

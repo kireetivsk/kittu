@@ -111,16 +111,15 @@
 		</form>
 		<div class="space-10"></div>
 		<div>
-			<p class="small">* Please note that you will not be automatically connected to those who invited you if you use a different email.</p>
-			<p class="small">You can still connect to them, you'll just have to send a new request.</p>
+			<p class="small" ng-show="readonly" >* Please note that you will not be automatically connected to those who invited you if you use a different email.</p>
+			<p class="small" ng-show="readonly" >You can still connect to them, you'll just have to send a new request.</p>
 
 		</div>
 		<div
-			class="alert alert-{{alert.type}}"
+			class="alert alert-{{alerts.type}}"
 			role="alert"
-			ng-repeat="alert in alerts"
 			ng-show="alerts">
-			{{alert.message}}
+			{{alerts.message}}
 		</div>
 
     </div>

@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * CrmPeoplePhone
@@ -20,7 +21,7 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonPhone whereDeletedAt($value)
  */
-class CrmPersonPhone extends \Eloquent {
+class CrmPersonPhone extends Ardent {
 	protected $fillable = [];
 
 	//validation

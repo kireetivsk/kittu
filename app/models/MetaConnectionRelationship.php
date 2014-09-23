@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaConnectionRelationship
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaConnectionRelationship whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaConnectionRelationship whereOrdinal($value)
  */
-class MetaConnectionRelationship extends \Eloquent {
+class MetaConnectionRelationship extends Ardent {
 	protected $fillable = [];
 
 	//validation

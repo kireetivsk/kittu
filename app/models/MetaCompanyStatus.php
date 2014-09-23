@@ -1,11 +1,12 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaCompanyStatus
  *
- * @property-read \Company $comapny
+ * @property-read \Company $company
  */
-class MetaCompanyStatus extends \Eloquent {
+class MetaCompanyStatus extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -15,7 +16,7 @@ class MetaCompanyStatus extends \Eloquent {
 	];
 
 	//relationships
-	public function comapny()
+	public function company()
 	{
 		return $this->belongsTo('Company');
 	}

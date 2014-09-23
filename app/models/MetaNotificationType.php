@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaNotificationType
@@ -17,7 +18,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaNotificationType whereOrdinal($value)
  * @property-read \Notification $notification
  */
-class MetaNotificationType extends \Eloquent {
+class MetaNotificationType extends Ardent {
 	protected $fillable = [];
 
 	//validation

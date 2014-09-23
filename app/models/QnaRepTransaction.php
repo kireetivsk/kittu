@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * QnaRepTransaction
@@ -23,7 +24,7 @@
  * @property-read \MetaQnaRepType $metaQnaRepType
  * @property-read \MetaQnaType $metaQnaType
  */
-class QnaRepTransaction extends \Eloquent {
+class QnaRepTransaction extends Ardent {
 	protected $fillable = [];
 
 	//validation

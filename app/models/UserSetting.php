@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * UserSetting
@@ -20,7 +21,7 @@
  * @property-read \User $user
  * @property-read \MetaSettingType $metaSettingType
  */
-class UserSetting extends \Eloquent {
+class UserSetting extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -40,4 +41,19 @@ class UserSetting extends \Eloquent {
 	{
 		return $this->hasOne('MetaSettingType');
 	}
+
+	//constants
+	const CATEGORY_LAST_SELECTED_COMPANY = 1;
+	const CATEGORY_CONNECTION_PERMISSION = 2;
+
+	//public functions
+	public static function set()
+	{
+		$sql = "INSERT INTO " . $this->_table_name . "
+				(user_id, meta_setting_type_id, value)
+				VALUES ($user_id, $setting_id, '$value')
+				ON DUPLICATE KEY UPDATE value = '$value'";
+		DB::statement($sql);
+	}
+
 }

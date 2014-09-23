@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * Lead
@@ -23,7 +24,7 @@
  * @method static \Illuminate\Database\Query\Builder|\Lead whereDeletedAt($value)
  * @property-read \User $user
  */
-class Lead extends \Eloquent {
+class Lead extends Ardent {
 	protected $fillable = [];
 
 	//validation

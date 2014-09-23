@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * DiscussionFollow
@@ -25,7 +26,7 @@
  * @property-read \DiscussionFolder $discussionFolder
  * @property-read \MetaDiscussionType $metaDiscussionType
  */
-class DiscussionFollow extends \Eloquent {
+class DiscussionFollow extends Ardent {
 	protected $fillable = [];
 
 	//validation

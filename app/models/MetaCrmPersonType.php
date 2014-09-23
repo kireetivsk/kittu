@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaCrmPeopleType
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaCrmPersonType whereOrdinal($value)
  */
-class MetaCrmPersonType extends \Eloquent {
+class MetaCrmPersonType extends Ardent {
 	protected $fillable = [];
 
 	//validation

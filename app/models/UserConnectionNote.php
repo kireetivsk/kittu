@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * UserConnectionNote
@@ -17,7 +18,7 @@
  * @method static \Illuminate\Database\Query\Builder|\UserConnectionNote whereDeletedAt($value)
  * @property-read \UserConnection $userConnection
  */
-class UserConnectionNote extends \Eloquent {
+class UserConnectionNote extends Ardent {
 	protected $fillable = [];
 
 	//validation

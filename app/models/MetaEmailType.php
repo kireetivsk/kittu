@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaEmailType
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaEmailType whereOrdinal($value)
  * @property-read \CrmPersonEmail $crmPersonEmail
  */
-class MetaEmailType extends \Eloquent {
+class MetaEmailType extends Ardent {
 	protected $fillable = [];
 
 	//validation

@@ -12,14 +12,14 @@ dsk.controller('home', function ($scope, $http) {
 
 		//validate
 		if ($scope.registration_password == undefined || $scope.registration_password == '' || $scope.registration_password.length < 6)
-			$scope.alerts = [{message: "Password must be 6 characters or more.", type: "danger"}];
+			$scope.alerts = {message: "Password must be 6 characters or more.", type: "danger"};
         if ($scope.registration_email == undefined || $scope.registration_email == '' || $scope.registration_email.length < 5)
-			$scope.alerts = [{message: "Please enter a valid email address", type: "danger"}];
+			$scope.alerts = {message: "Please enter a valid email address", type: "danger"};
 
         if ($scope.registration_company_id == undefined || $scope.registration_company_id == '' || $scope.registration_company_id.length < 1)
         {
             if ($scope.registration_company == undefined || $scope.registration_company == '' || $scope.registration_company.length < 3)
-                $scope.alerts = [{message: "Please select the company you are with.", type: "danger"}];
+                $scope.alerts = {message: "Please select the company you are with.", type: "danger"};
         }
 
         if ($scope.first_name == undefined
@@ -28,7 +28,7 @@ dsk.controller('home', function ($scope, $http) {
 			|| $scope.first_name.length < 2
 			|| $scope.last_name == ''
 			|| $scope.last_name.length < 2)
-			$scope.alerts = [{message: "Please enter a first and last name", type: "danger"}];
+			$scope.alerts = {message: "Please enter a first and last name", type: "danger"};
 
 		if ($scope.alerts === undefined)
 		{
@@ -47,19 +47,19 @@ dsk.controller('home', function ($scope, $http) {
 					//successful
 					if (data.code == 200)
 					{
-						$scope.alerts = [{message: "Thank you for registering. Please check your email for instructions on accessing your account.", type: "success"}];
+						$scope.alerts = {message: "Thank you for registering. Please check your email for instructions on accessing your account.", type: "success"};
 						$scope.company_names = null;
 						clearForm();
 
                     } else { //failed
                         if (data.message !== undefined)
-                            $scope.alerts = data.message;
+                            $scope.alerts = {message: data.message, type: 'danger'};
 					}
                     if ($scope.alerts === undefined)
-                        $scope.alerts = [{message: "Unknown error.", type: "danger"}];
+                        $scope.alerts = {message: "Unknown error.", type: "danger"};
 				})
 				.error(function () { //ajax error
-					$scope.alerts = [{message: "Unknown error.", type: "danger"}];
+					$scope.alerts = {message: "Unknown error.", type: "danger"};
 				});
 		}
 	};
@@ -75,7 +75,10 @@ dsk.controller('home', function ($scope, $http) {
             $http.post(ajax_url, form_data)
                 .success(function (data) {
                     //successful
-                    $scope.company_names = data.results;
+					if (data.code == 200)
+                    	$scope.company_names = data.results;
+					else
+						$scope.registration_company_id = undefined;
                 })
         }
     };

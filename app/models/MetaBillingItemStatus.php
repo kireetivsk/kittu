@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaBillingItemStatus
@@ -14,7 +15,7 @@
  * @property-read \CompanyBillingItem $companyBillingItem
  * @property-read \UserBillingItem $userBillingItem
  */
-class MetaBillingItemStatus extends \Eloquent {
+class MetaBillingItemStatus extends Ardent {
 	protected $fillable = [];
 
 	//validation

@@ -1,10 +1,11 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * SubmissionCompanyCategory
  *
  */
-class SubmissionCompanyCategory extends \Eloquent {
+class SubmissionCompanyCategory extends Ardent {
 	protected $fillable = [];
 
 	//validation

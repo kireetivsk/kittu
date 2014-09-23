@@ -25,5 +25,12 @@ class HomeController extends BaseController {
 		return View::make('template', $this->data);
 	}
 
+	public function getActivation()
+	{
+		$test = 1;
+	}
+
+
+
 
 }

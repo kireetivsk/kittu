@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * CrmPeopleWebsite
@@ -19,7 +20,7 @@
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonWebsite whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\CrmPersonWebsite whereDeletedAt($value)
  */
-class CrmPersonWebsite extends \Eloquent {
+class CrmPersonWebsite extends Ardent {
 	protected $fillable = [];
 
 	public static $rules = [

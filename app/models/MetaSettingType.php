@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaSettingType
@@ -20,7 +21,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaSettingType whereSettingType($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaSettingType whereOrdinal($value)
  */
-class MetaSettingType extends \Eloquent {
+class MetaSettingType extends Ardent {
 	protected $fillable = [];
 
 	//validation

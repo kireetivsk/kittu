@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * DiscussionTopic
@@ -29,7 +30,7 @@
  * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\DiscussionTopic whereDeletedAt($value)
  */
-class DiscussionTopic extends \Eloquent {
+class DiscussionTopic extends Ardent {
 	protected $fillable = [];
 
 	//validation

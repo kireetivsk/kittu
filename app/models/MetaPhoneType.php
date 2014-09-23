@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaPhoneType
@@ -11,9 +12,9 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaPhoneType whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaPhoneType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaPhoneType whereOrdinal($value)
- * @property-read \CrmPersonPhone $cromPersonPhone
+ * @property-read \CrmPersonPhone $crmPersonPhone
  */
-class MetaPhoneType extends \Eloquent {
+class MetaPhoneType extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -23,7 +24,7 @@ class MetaPhoneType extends \Eloquent {
 	];
 
 	//relatuionships
-	public function cromPersonPhone()
+	public function crmPersonPhone()
 	{
 		return $this->belongsTo('CrmPersonPhone');
 	}

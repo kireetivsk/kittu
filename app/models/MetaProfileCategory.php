@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaProfileCategory
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileCategory whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaProfileCategory whereOrdinal($value)
  */
-class MetaProfileCategory extends \Eloquent {
+class MetaProfileCategory extends Ardent {
 	protected $fillable = [];
 
 	//validation

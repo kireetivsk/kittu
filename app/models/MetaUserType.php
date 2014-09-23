@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * MetaUserType
@@ -13,7 +14,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaUserType whereOrdinal($value)
  */
-class MetaUserType extends \Eloquent {
+class MetaUserType extends Ardent {
 	protected $fillable = [];
 
 	//validation

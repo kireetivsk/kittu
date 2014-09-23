@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * CompanyCategory
@@ -11,7 +12,7 @@
  * @method static \Illuminate\Database\Query\Builder|\CompanyCategory whereActive($value)
  * @property-read \Company $company
  */
-class CompanyCategory extends \Eloquent {
+class CompanyCategory extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -24,4 +25,7 @@ class CompanyCategory extends \Eloquent {
 	{
 		return $this->belongsTo('Company');
 	}
+
+	//map static meta data to save queries
+	const USER_SUBMITTED = 1;
 }

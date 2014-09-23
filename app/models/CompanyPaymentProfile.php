@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * CompanyPaymentProfile
@@ -16,7 +17,7 @@
  * @property-read \CompanyBillingTransaction $companyBillingTransaction
  * @property-read \companyBillingItem $companyBillingItem
  */
-class CompanyPaymentProfile extends \Eloquent {
+class CompanyPaymentProfile extends Ardent {
 	protected $fillable = [];
 
 	//validation

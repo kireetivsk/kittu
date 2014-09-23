@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * Notification
@@ -29,7 +30,7 @@
  * @method static \Illuminate\Database\Query\Builder|\Notification whereDeletedAt($value)
  * @property-read \MetaNotificationType $metaNotificationType
  */
-class Notification extends \Eloquent {
+class Notification extends Ardent {
 	protected $fillable = [];
 
 	//validation

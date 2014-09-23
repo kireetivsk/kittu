@@ -1,4 +1,5 @@
 <?php
+	use LaravelBook\Ardent\Ardent;
 
 /**
  * CompanyBillingTransaction
@@ -22,11 +23,11 @@
  * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\CompanyBillingTransaction whereDeletedAt($value)
  * @property-read \CompanyPaymentProfile $companyPaymentProfile
- * @property-read \bilingItem $billingItem
+ * @property-read \billingItem $billingItem
  * @property-read \MetaBillingStatus $metaBillingStatus
  * @property-read \Company $company
  */
-class CompanyBillingTransaction extends \Eloquent {
+class CompanyBillingTransaction extends Ardent {
 	protected $fillable = [];
 
 	//validation
@@ -48,7 +49,7 @@ class CompanyBillingTransaction extends \Eloquent {
 
 	public function billingItem()
 	{
-		return $this->hasOne('bilingItem');
+		return $this->hasOne('billingItem');
 	}
 
 	public function metaBillingStatus()
