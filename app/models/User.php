@@ -80,6 +80,8 @@
  * @property-read \UserConnection $userConnection
  * @property-read \Illuminate\Database\Eloquent\Collection|\Company[] $company
  * @property-read \Illuminate\Database\Eloquent\Collection|\ConnectionRequest[] $connectionRequest
+ * @property string $remember_token
+ * @method static \Illuminate\Database\Query\Builder|\User whereRememberToken($value) 
  */
 class User extends Ardent {
 	protected $fillable = [

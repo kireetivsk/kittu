@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('Don-4.local'),
+	'local' => array('Dons-iMac.local'),
 
 ));
 
