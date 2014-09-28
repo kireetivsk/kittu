@@ -11,9 +11,6 @@
  * @property string $salt
  * @property string $first_name
  * @property string $last_name
- * @property boolean $activated
- * @property boolean $banned
- * @property string $ban_reason
  * @property string $new_password_key
  * @property string $new_password_requested
  * @property string $new_email
@@ -39,9 +36,6 @@
  * @method static \Illuminate\Database\Query\Builder|\User whereSalt($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereFirstName($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereLastName($value)
- * @method static \Illuminate\Database\Query\Builder|\User whereActivated($value)
- * @method static \Illuminate\Database\Query\Builder|\User whereBanned($value)
- * @method static \Illuminate\Database\Query\Builder|\User whereBanReason($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereNewPasswordKey($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereNewPasswordRequested($value)
  * @method static \Illuminate\Database\Query\Builder|\User whereNewEmail($value)
@@ -88,19 +82,18 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\ConnectionRequest[] $connectionRequest
  */
 class User extends Ardent {
-	protected $fillable = [];
+	protected $fillable = [
+		'new_email_key'
+	];
 
 	//validation
 	public static $rules = [
-		'username' 					=> 'required|max:255',
-		'email' 					=> 'required|max:255|email',
+		'username' 					=> 'required|max:255|unique:users',
+		'email' 					=> 'required|max:255|email|unique:users',
 		'password' 					=> 'required|between:6,100',
 		'salt' 						=> 'max:100',
 		'first_name' 				=> 'required|alpha_num|max:45',
 		'last_name' 				=> 'required|alpha_num|max:45',
-		'activated' 				=> 'integer',
-		'banned' 					=> 'integer',
-		'ban_reason' 				=> 'max"255',
 		'new_password_key' 			=> 'max:50',
 		'new_password_requested' 	=> 'date_format:Y-m-d H:i:s',
 		'new_email' 				=> 'max:100|email',
@@ -109,7 +102,7 @@ class User extends Ardent {
 		'last_login' 				=> 'date_format:Y-m-d H:i:s',
 		'meta_user_status_id' 		=> 'integer',
 		'meta_user_type_id' 		=> 'integer',
-		'stripe_active' 			=> 'required|integer',
+		'stripe_active' 			=> 'integer',
 		'stripe_id' 				=> 'max:255',
 		'stripe_subscription' 		=> 'max:255',
 		'stripe_plan' 				=> 'max:25',
@@ -249,7 +242,20 @@ class User extends Ardent {
 		return $this->hasMany('ConnectionRequest');
 	}
 
+	//accessors and mutators
+//	public function setNewEmailKeyAttribute($value)
+//	{
+//		$this->attributes['new_email_key'] = $value ? $value : NULL;
+//	}
+
 	//public methods
+
+	/**
+	 * Wrapper for new registration functionality
+	 *
+	 * @param array $params
+	 * @return int
+	 */
 	public function consultantRegistration($params)
 	{
 		//create user
@@ -260,14 +266,23 @@ class User extends Ardent {
 		$this->company()->attach($params['company_id']);
 
 		//set setting for this company
-		UserSetting::set($this->id,
+		$user_setting = new UserSetting();
+		$user_setting->set($this->id,
 						 UserSetting::CATEGORY_LAST_SELECTED_COMPANY,
 						 $params['company_id']);
 
 		//set default settings
+		$user_setting->setDefaults($this->id);
 
+		return $this->id;
 	}
 
+	/**
+	 * Creates new consultant user record
+	 *
+	 * @param array $params
+	 * @return int
+	 */
 	public function createNewConsultantUser($params)
 	{
 		$this->username 			= $params['email'];
@@ -285,18 +300,20 @@ class User extends Ardent {
 
 			return $this->id;
 		}
-
 	}
 
+	/**
+	 * sends activation email
+	 */
 	public function sendActivationEmail()
 	{
 		$views = [
-			'email.activation.html',
-			'email.activation.text'
+			'emails.activation.html',
+			'emails.activation.text'
 		];
 
 		$data = [
-			'url' => url('activation/' . $this->new_email_key)
+			'url' => url('activation/' . $this->id . DS . $this->new_email_key)
 		];
 
 		$callback = function($message){
@@ -307,5 +324,33 @@ class User extends Ardent {
 		};
 
 		Mail::send($views, $data, $callback);
+	}
+
+	/**
+	 * Checks an activation code and then activates the account
+	 *
+	 * @param $user_id
+	 * @param $key
+	 * @return bool
+	 */
+	public function activate($user_id, $key)
+	{
+		$user = User::
+			where('new_email_key', '=', $key)
+			->where('meta_user_status_id', '=', MetaUserStatus::PENDING)
+			->where('id', '=', $user_id)
+			->first();
+		if (!$user)
+			return FALSE;
+
+		$user->meta_user_status_id = MetaUserStatus::ACTIVE;
+		$user->new_email_key = DB::raw('NULL');
+		$user->updateUniques();
+		return TRUE;
+	}
+
+	public function loadUserData($user_id)
+	{
+		$test = 1;
 	}
 }

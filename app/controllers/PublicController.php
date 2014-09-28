@@ -81,33 +81,9 @@ class PublicController extends \BaseController {
 		return View::make('template', $this->data);
 	}
 
-	public function getForgotPassword()
-	{
-		$this->data['view'] 			= 'forgot_password';
-		$this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/publicController.js";
-
-		return View::make('template', $this->data);
-	}
-
-	public function getForgotUsername()
-	{
-		$this->data['view'] 			= 'forgot_username';
-		$this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/publicController.js";
-
-		return View::make('template', $this->data);
-	}
-
 	public function getIndustryNews()
 	{
 		$this->data['view'] 			= 'industry_news';
-		$this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/publicController.js";
-
-		return View::make('template', $this->data);
-	}
-
-	public function getLogin()
-	{
-		$this->data['view'] 			= 'login';
 		$this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/publicController.js";
 
 		return View::make('template', $this->data);

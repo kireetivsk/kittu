@@ -23,4 +23,10 @@
 					Login
 				</button>
 			</form>
-            <p class="text-center small"><a href="<?= base_url(); ?>/forgot">Forgot Password</a></p>
+			<div
+				class="alert alert-{{alerts.type}}"
+				role="alert"
+				ng-show="alerts">
+				{{alerts.message}}
+			</div>
+			<p class="text-center small"><a href="/forgot_password">Forgot Password</a></p>

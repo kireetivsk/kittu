@@ -89,8 +89,11 @@
 			return Response::json($this->data);
 		}
 
-
-
+		/**
+		 * Ajax endpoint to register a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postRegister()
 		{
 			$params = Input::all();
@@ -113,70 +116,55 @@
 			{
 				if ($params['is_referral'] == 'true')
 				{
+					//todo test this
 					//make referral connections
-					UserConnection::makeReferralConnections($user['user_id'],
-															  $params['email'],
-															  $params['company_id']);
+					UserConnection::makeReferralConnections($user['user_id'], $params['email'], $params['company_id']);
 				}
 
 				$this->_success("Registered");
 			} else {
-				$this->_error(500, 'Failed to register');
+				$errors = $user->errors();
+				$error_display = Dsk::arrayToString($errors->all());
+				$this->_error(500, 'Failed to register: ' . $error_display);
 			}
 
 			return Response::json($this->data);
 
 		}
 
+		/**
+		 * Log a user in
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postLogin()
 		{
-			if ($this->tank_auth->is_logged_in())
-				$this->data['result']->success = TRUE;
+			$email 		= Input::get('email');
+			$password 	= Input::get('password');
+			if (Auth::check())
+				$this->_success(TRUE);
 			else {
-				$params = $this->input->post(NULL, TRUE);
-				if (empty($params['email']) || empty($params['password']))
-					$this->_sendError($this->Error_model->prepareAjaxError("auth_missing"));
-				else {
-					//can login?
-					if ($this->_canLogIn($params['email']))
-					{
-						//process login
-						if ($this->tank_auth->login($params['email'], $params['password'], 0, 0, 1))
-						{
-							$this->data['result']->success = TRUE;
+				$login_attempt = new LoginAttempt();
+				if (!$login_attempt->canLogin($email))
+				{
+					$this->_error(401, Lang::get('general.max_login_attempts'));
+					return Response::json($this->data);
+				}
+				if (Auth::attempt(array('email' => $email, 'password' => $password)))
+				{
+					$login_attempt->clearStrikes($email);
 
-							//get user info and set it to the session
-							$this->load->model('User_model');
-							$user = $this->User_model->loadUserData($this->tank_auth->get_user_id());
-
-							//load settings
-							$this->load->model('User_setting_model');
-							$user['settings'] = $this->User_setting_model->getUserSettings($user['id']);
-							$user['current'] = [
-								'company' => $user['settings']['Last selected company']->value
-							];
-
-							$this->session->set_userdata($user);
-
-						} else {
-							$tankauth_error_codes = $this->tank_auth->get_error_message();
-							$error_codes = [];
-							if (!empty($tankauth_error_codes))
-								foreach ($tankauth_error_codes as $error_code)
-								{
-									$error_codes[] = $error_code;
-								}
-							$this->_sendError($this->Error_model->prepareAjaxError($error_codes));
-						}
-					} else {
-						$this->_sendError($this->Error_model->prepareAjaxError("auth_max_logins"));
-					}
+					//load userdata
+					$user = new User();
+					$user->loadUserData(Auth::id());
+					$this->_success(TRUE);
+				} else {
+					$login_attempt->addStrike($email);
+					$this->_error(401, Lang::get('general.login_failed'));
 				}
 			}
-			$this->load->view('ajax', $this->data);
+
+			return Response::json($this->data);
 		}
-
-
-
 
 	}

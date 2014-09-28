@@ -88,4 +88,14 @@
 			return $result;
 
 		}
+
+		public static function arrayToString($array)
+		{
+			$output = "";
+			foreach ($array as $key => $value)
+			{
+				$output .= $value . ". ";
+			}
+			return $output;
+		}
 	}
