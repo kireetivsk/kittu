@@ -1,6 +1,7 @@
 <?php
 	use LaravelBook\Ardent\Ardent;
-
+    use Illuminate\Auth\UserInterface;
+    use Illuminate\Auth\Reminders\RemindableInterface;
 /**
  * User
  *
@@ -83,9 +84,10 @@
  * @property string $remember_token
  * @method static \Illuminate\Database\Query\Builder|\User whereRememberToken($value) 
  */
-class User extends Ardent {
+class User extends Ardent implements UserInterface, RemindableInterface {
 	protected $fillable = [
-		'new_email_key'
+		'new_email_key',
+        'remember_token'
 	];
 
 	//validation
@@ -171,7 +173,7 @@ class User extends Ardent {
 
 	public function userSetting()
 	{
-		return $this->belongsToMany('UserSetting');
+		return $this->hasMany('UserSetting');
 	}
 
 	public function discussionCategory()
@@ -351,8 +353,86 @@ class User extends Ardent {
 		return TRUE;
 	}
 
-	public function loadUserData($user_id)
-	{
-		$test = 1;
-	}
+    /**
+     * Get the unique identifier for the user.
+     *
+     * @return mixed
+     */
+    public function getAuthIdentifier()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Get the token value for the "remember me" session.
+     *
+     * @return string
+     */
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
+
+    /**
+     * Set the token value for the "remember me" session.
+     *
+     * @param  string  $value
+     * @return void
+     */
+    public function setRememberToken($value)
+    {
+        $token = Dsk::generateCode(50);
+        $this->remember_token = $token;
+        $this->save();
+    }
+
+    /**
+     * Get the column name for the "remember me" token.
+     *
+     * @return string
+     */
+    public function getRememberTokenName()
+    {
+        return "remember_token";
+    }
+
+    /**
+     * Get the e-mail address where password reminders are sent.
+     *
+     * @return string
+     */
+    public function getReminderEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Gets the users settings
+     *
+     * @param $user_id
+     * @return mixed
+     */
+    public function getSettings($user_id)
+    {
+        $user = $this->with(['userSetting', 'userSetting.metaSettingType.metaSettingCategory'])->find($user_id);
+        foreach ($user->userSetting as $key => $value)
+        {
+            $settings[$value->meta_setting_type_id]['id']           = $value->id;
+            $settings[$value->meta_setting_type_id]['name']         = $value->metaSettingType->name;
+            $settings[$value->meta_setting_type_id]['slug']         = $value->metaSettingType->slug;
+            $settings[$value->meta_setting_type_id]['category']     = $value->metaSettingType->metaSettingCategory->name;
+            $settings[$value->meta_setting_type_id]['value']        = $value->value;
+        }
+        return $settings;
+    }
 }

@@ -24,6 +24,8 @@
 class MetaSettingType extends Ardent {
 	protected $fillable = [];
 
+    const LAST_COMPANY_SLUG = "last_company";
+
 	//validation
 	public static $rules = [
 		'name' 						=> 'required|max:45',
@@ -36,10 +38,39 @@ class MetaSettingType extends Ardent {
 	//relationships
 	public function userSetting()
 	{
-		return $this->belongsTo('UserSetting');
+		return $this->hasOne('UserSetting');
 	}
+
 	public function metaSettingCategory()
 	{
-		return $this->hasOne('MetaSettingCategory');
+		return $this->belongsTo('MetaSettingCategory');
 	}
+
+    // public functions
+
+    /**
+     * Returns the id of the setting type for the last company selected setting
+     *
+     * @param NULL|array $settings
+     * @return mixed
+     */
+    public function getLastCompanyId($settings = NULL)
+    {
+        if (is_null($settings))
+        {
+            $meta_setting = self::where('slug', '=', self::LAST_COMPANY_SLUG)->first(['id']);
+            $id = $meta_setting->id;
+        } else {
+            foreach ($settings as $key => $value)
+            {
+                if ($value['slug'] == self::LAST_COMPANY_SLUG)
+                {
+                    $id = $key;
+                    break;
+                }
+            }
+        }
+        return $id ? $id : FALSE;;
+    }
+
 }

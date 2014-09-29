@@ -27,11 +27,11 @@ dsk.controller('header', function ($scope, $http) {
 					{
 						window.location.href = "/dashboard";
 					} else { //failed
-						$scope.alerts = data.message;
+						$scope.alerts = {message: data.message, type: "error"};
 					}
 				})
 				.error(function () { //ajax error
-					$scope.alerts = [{message: "Unknown error.", type: "danger"}];
+					$scope.alerts = {message: "Unknown error.", type: "danger"};
 				});
 		}
 	};

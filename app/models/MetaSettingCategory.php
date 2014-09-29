@@ -26,7 +26,7 @@ class MetaSettingCategory extends Ardent {
 	//relationships
 	public function metaSettingType()
 	{
-		return $this->belongsTo('MetaSettingType');
+		return $this->hasOne('MetaSettingType');
 	}
 
 }

@@ -17,7 +17,7 @@
 class LoginAttempt extends Ardent {
 	protected $fillable = [];
 
-	const MAX_LOGIN_ATTEMPTS = 5;
+	const MAX_LOGIN_ATTEMPTS = 50;
 
 	//validation
 	public static $rules = [
@@ -33,7 +33,11 @@ class LoginAttempt extends Ardent {
 
 	public function canLogin($login)
 	{
-		$attempts = $this->where('ip_address', '=', Request::getClientIp())->where('login', '=', $login, 'or')->count();
+		$attempts = $this
+            ->where('ip_address', '=', Request::getClientIp())
+            ->where('login', '=', $login, 'or')
+            ->where('time', ">", DB::raw('DATE( DATE_SUB( NOW() , INTERVAL 1 HOUR))'))
+            ->count();
 		return $attempts >= self::MAX_LOGIN_ATTEMPTS ? FALSE : TRUE;
 	}
 

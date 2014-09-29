@@ -154,9 +154,16 @@
 				{
 					$login_attempt->clearStrikes($email);
 
-					//load userdata
-					$user = new User();
-					$user->loadUserData(Auth::id());
+					//load settings
+                    $user = new User();
+                    $settings = $user->getSettings(Auth::id());
+                    Session::put('settings', $settings);
+
+                    //set current company
+                    $meta_setting_type = new MetaSettingType();
+                    $current_company_id = $meta_setting_type->getLastCompanyId($settings);
+                    Session::put('current', ['company' => $settings[$current_company_id]['value']]);
+
 					$this->_success(TRUE);
 				} else {
 					$login_attempt->addStrike($email);

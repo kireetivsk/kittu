@@ -30,5 +30,5 @@
 		</form>
 	</div>
 	<div class="row">
-		<p class="text-danger" ng-repeat="alert in alerts">{{alert.message}}</p>
+		<p class="text-danger">{{alerts.message}}</p>
 	</div>

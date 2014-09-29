@@ -39,7 +39,8 @@
 	Route::get('activation', 				'HomeController@getActivation');
 	Route::get('forgot_password', 			'HomeController@getForgotPassword');
 	Route::get('forgot_username', 			'HomeController@getForgotUsername');
-	Route::get('login', 					'HomeController@getLogin');
+    Route::get('login', 					'HomeController@getLogin');
+    Route::get('logout', 					'HomeController@getLogout');
 
 	//home
 	Route::controller('/', 					'HomeController');

@@ -34,12 +34,12 @@ class UserSetting extends Ardent {
 	//relationships
 	public function user()
 	{
-		return $this->hasOne('User');
+		return $this->belongsTo('User');
 	}
 
 	public function metaSettingType()
 	{
-		return $this->hasOne('MetaSettingType');
+		return $this->belongsTo('MetaSettingType');
 	}
 
 	//constants
@@ -94,6 +94,5 @@ class UserSetting extends Ardent {
 			$this->set($user_id, $key, $value);
 		}
 	}
-
 
 }
