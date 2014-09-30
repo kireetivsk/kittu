@@ -36,12 +36,17 @@
 	Route::get('support', 					'PublicController@getSupport');
 	Route::get('terms', 					'PublicController@getTerms');
 
+    // auth
 	Route::get('activation', 				'HomeController@getActivation');
 	Route::get('forgot_password', 			'HomeController@getForgotPassword');
 	Route::get('forgot_username', 			'HomeController@getForgotUsername');
     Route::get('login', 					'HomeController@getLogin');
     Route::get('logout', 					'HomeController@getLogout');
 
-	//home
+    // dashboard
+    Route::controller('dashboard', 		    'ConsultantDashboardController');
+
+
+    //home
 	Route::controller('/', 					'HomeController');
 

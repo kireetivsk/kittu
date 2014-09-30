@@ -1,6 +1,5 @@
 dsk.controller('index', function ($scope, $http) {
 
-
     $scope.addTeam = function(){
         relationship = $scope.add_team_relationship;
         email = $scope.add_team_email;
@@ -39,6 +38,5 @@ dsk.controller('index', function ($scope, $http) {
     };
 
     getUser();
-
 
 });
