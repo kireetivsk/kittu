@@ -33,6 +33,17 @@
 class Notification extends Ardent {
 	protected $fillable = [];
 
+	protected $hidden = [
+		'created_at',
+		'deleted_at',
+		'dismissed',
+		'meta_notification_type_id',
+		'origin',
+		'updated_at',
+		'user_id'
+	];
+
+
 	//validation
 	public static $rules = [
 		'user_id' 					=> 'required|integer',
@@ -48,6 +59,15 @@ class Notification extends Ardent {
 	//relationships
 	public function metaNotificationType()
 	{
-		return $this->hasOne('MetaNotificationType');
+		return $this->belongsTo('MetaNotificationType');
+	}
+
+	public function get($user_id)
+	{
+		return $this
+			->where('user_id', '=', $user_id)
+			->with('metaNotificationType')
+			->get();
+
 	}
 }

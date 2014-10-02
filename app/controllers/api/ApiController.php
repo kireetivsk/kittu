@@ -17,7 +17,7 @@
 		 * @param string $message
 		 * @param array $results
 		 */
-		protected function _success($message, array $results = NULL)
+		protected function _success($message = 'Success', array $results = NULL)
 		{
 			$this->data['success'] 	= TRUE;
 			$this->data['code'] 	= 200;

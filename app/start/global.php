@@ -54,6 +54,11 @@
 	App::error(function(Exception $exception, $code)
 	{
 		Log::error($exception);
+
+		if (View::exists('errors.' . $code)) {
+			return View::make('errors.' . $code);
+		}
+
 	});
 
 	/*

@@ -12,8 +12,10 @@
 */
 
 	//api
-	//public
-	Route::controller('publicapi', 			'PublicApiController');
+    //public
+    Route::controller('publicapi', 			'PublicApiController');
+    //public
+    Route::controller('consultantapi', 		'ConsultantApiController');
 
 	//public
 	Route::get('about', 					'PublicController@getAbout');

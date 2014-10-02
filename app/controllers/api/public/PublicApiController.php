@@ -152,17 +152,21 @@
 				}
 				if (Auth::attempt(array('email' => $email, 'password' => $password)))
 				{
-					$login_attempt->clearStrikes($email);
+                    $user               = new User();
+                    $meta_setting_type  = new MetaSettingType();
+
+                    $login_attempt->clearStrikes($email);
+
+                    // put user data into session
+                    Session::put('userdata', $user->getUserPublicData(Auth::user()->id));
 
 					//load settings
-                    $user = new User();
                     $settings = $user->getSettings(Auth::id());
-                    Session::put('settings', $settings);
+                    Session::put('userdata.settings', $settings);
 
                     //set current company
-                    $meta_setting_type = new MetaSettingType();
                     $current_company_id = $meta_setting_type->getLastCompanyId($settings);
-                    Session::put('current', ['company' => $settings[$current_company_id]['value']]);
+                    Session::put('userdata.current', ['company' => $settings[$current_company_id]['value']]);
 
 					$this->_success(TRUE);
 				} else {

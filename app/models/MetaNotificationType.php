@@ -21,6 +21,13 @@
 class MetaNotificationType extends Ardent {
 	protected $fillable = [];
 
+	protected $hidden = [
+		'name',
+		'description',
+		'id',
+		'ordinal'
+	];
+
 	//validation
 	public static $rules = [
 		'name' 				=> 'required|max:45',
@@ -32,6 +39,6 @@ class MetaNotificationType extends Ardent {
 	//relationships
 	public function notification()
 	{
-		return $this->belongsTo('Notification');
+		return $this->hasOne('Notification');
 	}
 }

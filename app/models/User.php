@@ -90,6 +90,30 @@ class User extends Ardent implements UserInterface, RemindableInterface {
         'remember_token'
 	];
 
+    protected $hidden = array(
+        'password',
+        'last_four',
+        'last_ip',
+        'last_login',
+        'new_password_key',
+        'salt',
+        'new_password_requested',
+        'new_email',
+        'new_email_key',
+        'remember_token',
+        'meta_user_status_id',
+        'meta_user_type_id',
+        'stripe_active',
+        'stripe_id',
+        'stripe_subscription',
+        'stripe_plan',
+        'trial_ends_at',
+        'subscription_ends_at',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    );
+
 	//validation
 	public static $rules = [
 		'username' 					=> 'required|max:255|unique:users',
@@ -434,5 +458,10 @@ class User extends Ardent implements UserInterface, RemindableInterface {
             $settings[$value->meta_setting_type_id]['value']        = $value->value;
         }
         return $settings;
+    }
+
+    public function getUserPublicData($user_id)
+    {
+        return $this->find($user_id)->toArray();
     }
 }

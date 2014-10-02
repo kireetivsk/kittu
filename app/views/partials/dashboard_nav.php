@@ -108,7 +108,7 @@
 							<a href="#" ng-click="clearNotification(notification, $index)">
 								<div class="clearfix">
 									<span class="pull-left">
-										<i class="btn btn-xs no-hover {{notification.color}} {{notification.icon}}"></i>
+										<i class="btn btn-xs no-hover {{notification.meta_notification_type.color}} {{notification.meta_notification_type.icon}}"></i>
 										{{notification.title}}
 									</span>
 									<span class="pull-left" ng-bind-html="notification.body"></span>
@@ -202,7 +202,7 @@
 						<img class="nav-user-photo" src="<?= IMG_DIR; ?>/ace/avatars/user.jpg" alt="Jason's Photo"/>
 						<span class="user-info">
 							<small>Welcome,</small>
-							Jason
+							{{user.first_name}}
 						</span>
 
 						<i class="icon-caret-down"></i>
@@ -226,7 +226,7 @@
 						<li class="divider"></li>
 
 						<li>
-							<a href="#">
+							<a href="/logout">
 								<i class="icon-off"></i>
 								Logout
 							</a>
