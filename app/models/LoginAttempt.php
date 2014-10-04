@@ -9,10 +9,10 @@
  * @property string $login
  * @property string $time
  * @property-read \User $user
- * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereId($value) 
- * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereIpAddress($value) 
- * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereLogin($value) 
- * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereTime($value) 
+ * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereIpAddress($value)
+ * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereLogin($value)
+ * @method static \Illuminate\Database\Query\Builder|\LoginAttempt whereTime($value)
  */
 class LoginAttempt extends Ardent {
 	protected $fillable = [];

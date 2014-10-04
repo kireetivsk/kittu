@@ -20,6 +20,8 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaSettingType whereMetaSettingCategoryId($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaSettingType whereSettingType($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaSettingType whereOrdinal($value)
+ * @property string $slug
+ * @method static \Illuminate\Database\Query\Builder|\MetaSettingType whereSlug($value) 
  */
 class MetaSettingType extends Ardent {
 	protected $fillable = [];
