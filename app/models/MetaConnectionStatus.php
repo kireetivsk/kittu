@@ -17,6 +17,11 @@
 class MetaConnectionStatus extends Ardent {
 	protected $fillable = [];
 
+	const CONNECTION_STATUS_ACCEPTED  = 1;
+	const CONNECTION_STATUS_REQUESTED = 2;
+	const CONNECTION_STATUS_REJECTED  = 3;
+	const CONNECTION_STATUS_BLOCKED   = 4;
+
 	//validation
 	public static $rules = [
 		'name' 				=> 'required|max:45',

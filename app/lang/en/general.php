@@ -19,5 +19,13 @@
 
 		'not_authorized'				=> "You are not authorized to view this page. Please login and try again.",
 
-		'connection_request_fail'		=> "Failed to make connection.",
+		'connection_request_fail' 		=> "Failed to make connection.",
+		'connection_request' 			=> "Connection request",
+		'connection_notification' 		=> "connection notification",
+
+		'connection_body_1' 			=> 'You have connected with :name as their :relationship.',
+		'connection_body_2' 			=> 'You have sent a request to connect to :name as their :relationship.',
+		'connection_body_3' 			=> ':name has connected with you as their :relationship.',
+		'connection_body_4' 			=> ':name has sent a request to connect to you as their :relationship.',
+
 	);

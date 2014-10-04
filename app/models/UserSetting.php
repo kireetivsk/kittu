@@ -95,4 +95,13 @@ class UserSetting extends Ardent {
 		}
 	}
 
+	public function getSettingValue($meta_setting_type_id, $settings)
+	{
+		foreach($settings as $key => $value)
+		{
+			if ($value->meta_setting_type_id == $meta_setting_type_id)
+				return $value->value;
+		}
+	}
+
 }

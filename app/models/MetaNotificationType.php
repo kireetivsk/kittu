@@ -21,6 +21,15 @@
 class MetaNotificationType extends Ardent {
 	protected $fillable = [];
 
+	const NOTIFICATION_TYPE_CONNECTION = 1;
+	const NOTIFICATION_TYPE_MESSAGE    = 2;
+	const NOTIFICATION_TYPE_SYSTEM     = 3;
+	const NOTIFICATION_TYPE_BILLING    = 4;
+	const NOTIFICATION_TYPE_DISCUSSION = 5;
+	const NOTIFICATION_TYPE_QA         = 6;
+	const NOTIFICATION_TYPE_CRM        = 7;
+	const NOTIFICATION_TYPE_TRAINING   = 8;
+
 	protected $hidden = [
 		'name',
 		'description',

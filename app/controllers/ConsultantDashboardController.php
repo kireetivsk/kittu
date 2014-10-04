@@ -11,7 +11,20 @@ class ConsultantDashboardController extends BaseController {
 	||
 	*/
 
-    public function getIndex()
+	/**
+	 * Module auth
+	 */
+	public function __construct()
+	{
+		parent::__construct();
+		if (!Auth::check())
+		{
+			Session::flash('message', trans('general.not_authorized'));
+			App::abort(401);
+		}
+	}
+
+	public function getIndex()
     {
         $this->data['view'] 			= 'index'; 		
         $this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/$this->_module/indexController.js";

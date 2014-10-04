@@ -1,9 +1,12 @@
-dsk.controller('main', function ($scope, $http) {
+dsk.controller('main', function ($scope, $http, Data) {
 
+	/**
+	 * Clear all notifications
+	 */
 	$scope.clearAllNotifications = function(){
 		var ajax_url = "/consultantapi/clear-notifications";
 		var form_data = {
-			notifications: angular.toJson($scope.notifications.notifications)
+			notifications: $scope.notifications.notifications
 		};
 		$http.post(ajax_url, form_data)
 			.success(function (data) {
@@ -13,11 +16,17 @@ dsk.controller('main', function ($scope, $http) {
 
 	};
 
+	/**
+	 * Clear one notification
+	 *
+	 * @param notification
+	 * @param index
+	 */
 	$scope.clearNotification = function(notification, index)
 	{
 		var ajax_url = "/consultantapi/clear-notification";
 		var form_data = {
-			notification: angular.toJson(notification)
+			notification: notification.id
 		};
 		$http.post(ajax_url, form_data)
 			.success(function (data) {
@@ -28,6 +37,9 @@ dsk.controller('main', function ($scope, $http) {
 
 	}
 
+	/**
+	 * Get all notifications
+	 */
 	var getNotifications = function(){
 		var ajax_url = "/consultantapi/get-notifications";
 		$http.post(ajax_url)
@@ -38,16 +50,15 @@ dsk.controller('main', function ($scope, $http) {
 
 	};
 
-    getUser = function(){
-        var ajax_url = "/consultantapi/get-session-data";
-        $http.post(ajax_url)
-            .success(function (data) {
-                //successful
-                if (data.code == 200)
-                    $scope.user = data.results;
-            })
-    };
-
-    getUser();
 	getNotifications();
+
+	if (Data.getUser.lock !== true) {
+		Data.getUser.lock = true;
+		Data.getUser.ajax().success(function (result) {
+			$scope.user = result.results;
+			Data.getUser.lock = false;
+		}).error(function(){
+			Data.getUser.lock = false;
+		})
+	}
 });

@@ -78,7 +78,7 @@
 				if (strlen($chunk . $part) > $break_point)
 				{
 					$result .= $chunk.$break;
-					$chunk = '';
+					$chunk = $part;
 				} else {
 					$chunk .= " " . $part;
 				}
@@ -97,5 +97,11 @@
 				$output .= $value . ". ";
 			}
 			return $output;
+		}
+
+		public static function now()
+		{
+			$ts = new DateTime();
+			return $ts->format('Y-m-d H:i:s');
 		}
 	}

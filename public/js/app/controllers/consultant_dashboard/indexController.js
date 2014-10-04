@@ -1,9 +1,9 @@
-dsk.controller('index', function ($scope, $http) {
+dsk.controller('index', function ($scope, $http, Data) {
 
     $scope.addTeam = function(){
         relationship = $scope.add_team_relationship;
         email = $scope.add_team_email;
-        var ajax_url = "/publicapi/add-team";
+        var ajax_url = "/consultantapi/add-team";
         var form_data = {
             name			: $scope.user.first_name,
             email			: email,
@@ -14,29 +14,29 @@ dsk.controller('index', function ($scope, $http) {
                 //successful
                 if (data.code == 200)
                 {
-                    $scope.alerts = [{message: data.message, type: "alert-success"}];
+                    $scope.alerts = {message: data.message, type: "alert-success"};
 					$scope.add_team_email = "";
 					$scope.add_team_relationship = "";
                 } else { //failed
-                    $scope.alerts = [{message: data.message, type: "alert-danger"}];
+					message = data.error === undefined ? "Unknown error." : data.error.message
+					$scope.alerts = {message: message, type: "alert-danger"};
                 }
             })
-            .error(function () { //ajax error
-                $scope.alerts = [{message: "Unknown error.", type: "alert-danger"}];
+            .error(function (data) { //ajax error
+				message = data.error === undefined ? "Unknown error." : data.error.message
+                $scope.alerts = {message: message, type: "alert-danger"};
             });
 
     };
 
-    getUser = function(){
-        var ajax_url = "/publicapi/get-session-data";
-        $http.post(ajax_url)
-            .success(function (data) {
-                //successful
-				if (data.code == 200)
-                	$scope.user = data.results;
-            })
-    };
-
-    getUser();
+	if (Data.getUser.lock !== true) {
+		Data.getUser.lock = true;
+		Data.getUser.ajax().success(function (result) {
+			$scope.user = result.results;
+			Data.getUser.lock = false;
+		}).error(function () {
+			Data.getUser.lock = false;
+		})
+	}
 
 });

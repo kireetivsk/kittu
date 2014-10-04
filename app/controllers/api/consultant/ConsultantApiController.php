@@ -5,10 +5,13 @@
 	 */
 	class ConsultantApiController extends ApiController
 	{
+		/**
+		 * Module auth
+		 */
 		public function __construct()
 		{
 			if (!Auth::check()) {
-				App::abort(401, Lang::get('not_authorized'));
+				App::abort(401, Lang::get('general.not_authorized'));
 			}
 		}
 
@@ -33,52 +36,55 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Clear ALL notifications
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postClearNotifications()
 		{
-			$notifications = json_decode($this->input->post("notifications"));
-			foreach ($notifications as $notification) {
-				$this->load->model('Notification_model');
-				$this->Notification_model->clearNotification($notification->id);
+			$notification 	= new Notification();
+			$notifications 	= Input::get('notifications');
 
-			}
-			$this->data['result']->success = TRUE;
-			$this->load->view('ajax', $this->data);
+			foreach ($notifications as $value)
+				$notification->clearNotification($value['id']);
 
+			$this->_success();
+			return Response::json($this->data);
 		}
 
+		/**
+		 * Clear ONE notification
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postClearNotification()
 		{
-			$notification = json_decode($this->input->post("notification"));
+			$notification 				= new Notification();
+			$notification_to_delete 	= Input::get('notification');
 
-			$this->load->model('Notification_model');
-			$this->Notification_model->clearNotification($notification->id);
+			$notification->clearNotification($notification_to_delete);
 
-			$this->data['result']->success = TRUE;
-			$this->load->view('ajax', $this->data);
+			$this->_success();
 
+			return Response::json($this->data);
 		}
 
 		public function postAddTeam()
 		{
-			if ($this->isLoggedIn()) {
-				$email = $this->input->post("email");
-				$relationship = $this->input->post("relationship");
-				$name = $this->input->post("name");
+			$email 			= Input::get('email');
+			$relationship 	= Input::get('relationship');
+			$name 			= Input::get('name');
 
-				$this->load->model("Connection_request_model");
-				$result = $this->Connection_request_model->connect($email, $relationship, $name);
-				if ($result) {
-					$this->_sendSuccess(TRUE);
-				} else {
-					$this->_sendError($this->Error_model->prepareAjaxError("Failed to send request."));
-				}
-			} else
-				$this->_sendSuccess($this->Error_model->prepareAjaxError("Your session expired. Please log in again."));
+			$connection_request = new ConnectionRequest();
+			$result = $connection_request->connect($email, $relationship, $name);
 
+			if ($result)
+				$this->_success('Connection requested.');
+			else
+				$this->_error(500, Lang::get('general.connection_request_fail'));
 
-			$this->load->view('ajax', $this->data);
-
+			return Response::json($this->data);
 		}
-
 
 	}

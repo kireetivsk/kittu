@@ -112,7 +112,7 @@
 			}
 
 			$user = new User();
-			if ($user_id =$user->consultantRegistration($params))
+			if ($user_id = $user->consultantRegistration($params))
 			{
 				if ($params['is_referral'] == 'true')
 				{
@@ -152,23 +152,35 @@
 				}
 				if (Auth::attempt(array('email' => $email, 'password' => $password)))
 				{
-                    $user               = new User();
-                    $meta_setting_type  = new MetaSettingType();
+                    try
+					{
+						$user              = new User();
+						$meta_setting_type = new MetaSettingType();
 
-                    $login_attempt->clearStrikes($email);
+						$login_attempt->clearStrikes($email);
 
-                    // put user data into session
-                    Session::put('userdata', $user->getUserPublicData(Auth::user()->id));
+						// put user data into session
+						Session::put('userdata', $user->getUserPublicData(Auth::user()->id));
 
-					//load settings
-                    $settings = $user->getSettings(Auth::id());
-                    Session::put('userdata.settings', $settings);
+						//load settings
+						$settings = $user->getSettings(Auth::id());
+						Session::put('userdata.settings', $settings);
 
-                    //set current company
-                    $current_company_id = $meta_setting_type->getLastCompanyId($settings);
-                    Session::put('userdata.current', ['company' => $settings[$current_company_id]['value']]);
+						//set current company
+						$current_company_id = $meta_setting_type->getLastCompanyId($settings);
+						$current            = [
+							'company'        => $settings[$current_company_id]['value']
+						];
+						Session::put('userdata.current', $current);
 
-					$this->_success(TRUE);
+						$this->_success(TRUE);
+
+					} catch(Exception $e) {
+						Auth::logout();
+						Session::flush();
+						$login_attempt->addStrike($email);
+						$this->_error(401, Lang::get('general.login_failed_error'));
+					}
 				} else {
 					$login_attempt->addStrike($email);
 					$this->_error(401, Lang::get('general.login_failed'));

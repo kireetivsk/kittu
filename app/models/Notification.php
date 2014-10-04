@@ -62,12 +62,36 @@ class Notification extends Ardent {
 		return $this->belongsTo('MetaNotificationType');
 	}
 
+	/**
+	 * Return all notifications for a user
+	 *
+	 * @param $user_id
+	 *
+	 * @return mixed
+	 */
 	public function get($user_id)
 	{
 		return $this
 			->where('user_id', '=', $user_id)
+			->whereNull('seen')
+			->whereNull('dismissed')
+			->where('user_id', '=', $user_id)
 			->with('metaNotificationType')
+			->orderBy('sent', 'desc')
 			->get();
 
+	}
+
+	/**
+	 * Mark a notification as seen
+	 *
+	 * @param $id
+	 */
+	public function clearNotification($id)
+	{
+		$notification 				= $this->find($id);
+		$notification->seen 		= Dsk::now();
+		$notification->dismissed 	= Dsk::now();
+		$notification->save();
 	}
 }

@@ -237,7 +237,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
 	public function userCompanyMap()
 	{
-		return $this->belongsTo('UserCompanyMap');
+		return $this->hasMany('UserCompanyMap');
 	}
 
 	public function userBillingTransaction()
@@ -462,6 +462,8 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
     public function getUserPublicData($user_id)
     {
-        return $this->find($user_id)->toArray();
+		$user = $this->find($user_id)->toArray();
+		$user['full_name'] = $user['first_name'] . " " . $user['last_name'];
+        return $user;
     }
 }

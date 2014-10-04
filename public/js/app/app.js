@@ -59,5 +59,18 @@ var dsk = angular.module('dsk', ['ngSanitize'], function($httpProvider)
         return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
 
-
 });
+
+dsk.factory('Data', function ($http) {
+	return {
+		getUser: {
+			ajax:
+				function() {
+					var ajax_url = "/publicapi/get-session-data";
+					return $http.post(ajax_url)
+				},
+			lock: false
+		}
+	}
+});
+
