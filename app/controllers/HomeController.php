@@ -71,14 +71,6 @@ class HomeController extends BaseController {
 		return View::make('template', $this->data);
 	}
 
-    public function getLogin()
-    {
-        $this->data['view'] 			= 'login';
-        $this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/publicController.js";
-
-        return View::make('template', $this->data);
-    }
-
     public function getLogout()
     {
         Auth::logout();

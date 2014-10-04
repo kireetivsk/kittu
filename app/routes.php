@@ -29,6 +29,7 @@
 	Route::get('contact', 					'PublicController@getContact');
 	Route::get('features', 					'PublicController@getFeatures');
 	Route::get('industry_news', 			'PublicController@getIndustryNews');
+	Route::get('login', 					['as' => 'login', 'uses' => 'PublicController@getLogin']);
 	Route::get('plans', 					'PublicController@getPlans');
 	Route::get('press', 					'PublicController@getPress');
 	Route::get('privacy', 					'PublicController@getPrivacy');
@@ -38,11 +39,10 @@
 	Route::get('support', 					'PublicController@getSupport');
 	Route::get('terms', 					'PublicController@getTerms');
 
-    // auth
+	// auth
 	Route::get('activation', 				'HomeController@getActivation');
 	Route::get('forgot_password', 			'HomeController@getForgotPassword');
 	Route::get('forgot_username', 			'HomeController@getForgotUsername');
-    Route::get('login', 					'HomeController@getLogin');
     Route::get('logout', 					'HomeController@getLogout');
 
     // dashboard
@@ -50,5 +50,5 @@
 
 
     //home
-	Route::controller('/', 					'HomeController');
-
+	Route::get('/', 						['as' => 'home', 'uses' => 'HomeController@getIndex']);
+//	Route::controller('/', 					'HomeController');

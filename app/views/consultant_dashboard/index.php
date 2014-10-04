@@ -551,7 +551,7 @@
                             </label>
                         </div>
                         <div ng-show="alerts">
-                            <p ng-repeat="alert in alerts" class="alert" ng-class="alert.type">{{alert.message}}</p>
+                            <p class="alert" ng-class="alerts.type">{{alerts.message}}</p>
                         </div>
                     </div>
                 </div>

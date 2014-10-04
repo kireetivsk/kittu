@@ -4,6 +4,14 @@ class PublicController extends \BaseController {
 
 	public $_module = 'public';
 
+	public function getLogin()
+	{
+		$this->data['view']        = 'login';
+		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/public/publicController.js";
+
+		return View::make('template', $this->data);
+	}
+
 	public function getAbout()
 	{
 		$this->data['view'] 			= 'about';
