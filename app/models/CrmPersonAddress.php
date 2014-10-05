@@ -54,7 +54,7 @@ class CrmPersonAddress extends Ardent {
 
 	public function metaAddressType()
 	{
-		return $this->hasOne('MetaAddressType');
+		return $this->belongsTo('MetaAddressType');
 	}
 
 }

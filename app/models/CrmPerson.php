@@ -95,11 +95,11 @@ class CrmPerson extends Ardent {
 
 	public function metaCrmPersonType()
 	{
-		return $this->hasOne('MetaCrmPersonType');
+		return $this->belongsTo('MetaCrmPersonType');
 	}
 
 	public function metaCrmPersonStatus()
 	{
-		return $this->hasOne('MetaCrmPersonStatus');
+		return $this->belongsTo('MetaCrmPersonStatus');
 	}
 }

@@ -39,7 +39,7 @@ class CrmPersonPhone extends Ardent {
 
 	public function metaPhoneType()
 	{
-		return $this->hasOne('MetaPhoneType');
+		return $this->belongsTo('MetaPhoneType');
 	}
 
 }

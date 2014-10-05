@@ -27,12 +27,12 @@ class MetaQnaType extends Ardent {
 	//relationships
 	public function qnaRepTransaction()
 	{
-		return $this->belongsTo('QnaRepTransaction');
+		return $this->hasOne('QnaRepTransaction');
 	}
 
 	public function qnaComment()
 	{
-		return $this->belongsTo('QnaComment');
+		return $this->hasOne('QnaComment');
 	}
 
 }

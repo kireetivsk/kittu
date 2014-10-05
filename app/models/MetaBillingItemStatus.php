@@ -27,12 +27,12 @@ class MetaBillingItemStatus extends Ardent {
 	//relationships
 	public function companyBillingItem()
 	{
-		return $this->belongsTo('CompanyBillingItem');
+		return $this->hasOne('CompanyBillingItem');
 	}
 
 	public function userBillingItem()
 	{
-		return $this->belongsTo('UserBillingItem');
+		return $this->hasOne('UserBillingItem');
 	}
 
 }

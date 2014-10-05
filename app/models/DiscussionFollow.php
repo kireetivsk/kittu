@@ -46,11 +46,11 @@ class DiscussionFollow extends Ardent {
 
 	public function discussionFolder()
 	{
-		return $this->hasOne('DiscussionFolder');
+		return $this->belongsTo('DiscussionFolder');
 	}
 
 	public function metaDiscussionType()
 	{
-		return $this->hasOne('MetaDiscussionType');
+		return $this->belongsTo('MetaDiscussionType');
 	}
 }

@@ -27,11 +27,11 @@ class MetaMessageStatus extends Ardent {
 	//validation
 	public function toMessage()
 	{
-		return $this->belongsTo('Message', 'to_message_status_id');
+		return $this->hasOne('Message', 'to_message_status_id');
 	}
 
 	public function fromMessage()
 	{
-		return $this->belongsTo('Message', 'from_message_status_id');
+		return $this->hasOne('Message', 'from_message_status_id');
 	}
 }

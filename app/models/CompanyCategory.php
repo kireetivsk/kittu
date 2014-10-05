@@ -23,7 +23,7 @@ class CompanyCategory extends Ardent {
 	//relationships
 	public function company()
 	{
-		return $this->belongsTo('Company');
+		return $this->hasOne('Company');
 	}
 
 	//map static meta data to save queries

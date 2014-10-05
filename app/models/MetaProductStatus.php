@@ -27,7 +27,7 @@ class MetaProductStatus extends Ardent
 	//relationships
 	public function product()
 	{
-		return $this->belongsTo('Product');
+		return $this->hasOne('Product');
 	}
 
 }

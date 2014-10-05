@@ -47,16 +47,16 @@ class DiscussionCategory extends Ardent {
 
 	public function discussionTopic()
 	{
-		return $this->belongsTo('DiscussionTopic');
+		return $this->hasMany('DiscussionTopic');
 	}
 
 	public function metaDiscussionStatus()
 	{
-		return $this->hasOne('MetaDiscussionStatus');
+		return $this->belongsTo('MetaDiscussionStatus');
 	}
 
 	public function metaDiscussionPermission()
 	{
-		return $this->hasOne('MetaDiscussionPermission');
+		return $this->belongsTo('MetaDiscussionPermission');
 	}
 }

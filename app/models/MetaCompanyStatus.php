@@ -26,6 +26,6 @@ class MetaCompanyStatus extends Ardent {
 	//relationships
 	public function company()
 	{
-		return $this->belongsTo('Company');
+		return $this->hasOne('Company');
 	}
 }

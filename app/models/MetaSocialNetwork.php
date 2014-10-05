@@ -26,6 +26,6 @@ class MetaSocialNetwork extends Ardent {
 	//relationships
 	public function crmPersonSocial()
 	{
-		return $this->belongsTo('CrmPersonSocial');
+		return $this->hasOne('CrmPersonSocial');
 	}
 }

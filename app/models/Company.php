@@ -27,7 +27,6 @@
  * @property-read \CompanyPaymentProfile $companyPaymentProfile
  * @property-read \CompanyProfile $companyProfile
  * @property-read \CompanyBillingTransaction $companyBillingTransaction
- * @property-read \UserCompanyMap $userCompanyMap
  * @property-read \Illuminate\Database\Eloquent\Collection|\User[] $user
  */
 class Company extends Ardent {
@@ -47,32 +46,27 @@ class Company extends Ardent {
 	//relationships
 	public function companyCategory()
 	{
-		return $this->hasOne('CompanyCategory');
+		return $this->belongsTo('CompanyCategory');
 	}
 
 	public function metaCompanyStatus()
 	{
-		return $this->hasOne('metaCompanyStatus');
+		return $this->belongsTo('metaCompanyStatus');
 	}
 
 	public function companyPaymentProfile()
 	{
-		return $this->belongsTo('CompanyPaymentProfile');
+		return $this->hasOne('CompanyPaymentProfile');
 	}
 
 	public function companyProfile()
 	{
-		return $this->belongsTo('CompanyProfile');
+		return $this->hasOne('CompanyProfile');
 	}
 
 	public function companyBillingTransaction()
 	{
-		return $this->belongsTo('CompanyBillingTransaction');
-	}
-
-	public function userCompanyMap()
-	{
-		return $this->belongsTo('UserCompanyMap');
+		return $this->hasOne('CompanyBillingTransaction');
 	}
 
 	public function user()

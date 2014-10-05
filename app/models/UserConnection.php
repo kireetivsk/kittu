@@ -49,7 +49,7 @@ class UserConnection extends Ardent {
 
 	public function metaConnectionStatus()
 	{
-		return $this->hasOne('MetaConnectionStatus');
+		return $this->belongsTo('MetaConnectionStatus');
 	}
 
 	public function company()
@@ -59,17 +59,17 @@ class UserConnection extends Ardent {
 
 	public function user()
 	{
-		return $this->hasOne('User');
+		return $this->belongsTo('User');
 	}
 
 	public function connectionUser()
 	{
-		return $this->hasOne('User');
+		return $this->belongsTo('User', 'id', 'connection_user_id');
 	}
 
 	public function userConnectionNote()
 	{
-		return $this->belongsTo('UserConnectionNote');
+		return $this->hasMany('UserConnectionNote');
 	}
 
 	//public methods

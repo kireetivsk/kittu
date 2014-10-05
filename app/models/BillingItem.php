@@ -48,22 +48,22 @@ class BillingItem extends Ardent {
 	// Relationships
 	public function companyBillingItem()
 	{
-		return $this->belongsTo('CompanyBillingItem');
+		return $this->hasMany('CompanyBillingItem');
 	}
 
 	public function companyBillingTransaction()
 	{
-		return $this->belongsTo('CompanyBillingTransaction');
+		return $this->hasMany('CompanyBillingTransaction');
 	}
 
 	public function userBillingItem()
 	{
-		return $this->belongsTo('UserBillingItem');
+		return $this->hasMany('UserBillingItem');
 	}
 
 	public function userBillingTransaction()
 	{
-		return $this->belongsTo('UserBillingTransaction');
+		return $this->hasMany('UserBillingTransaction');
 	}
 
 	public function product()

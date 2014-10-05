@@ -30,7 +30,7 @@ class UserConnectionNote extends Ardent {
 	//relationships
 	public function userConnection()
 	{
-		return $this->hasOne('UserConnection');
+		return $this->belongsTo('UserConnection');
 	}
 
 

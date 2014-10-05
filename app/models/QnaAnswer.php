@@ -49,7 +49,7 @@ class QnaAnswer extends Ardent {
 
 	public function acceptedAnswer()
 	{
-		return $this->belongsTo('QnaQuestion', 'accepted_qna_answer_id');
+		return $this->hasOne('QnaQuestion', 'accepted_qna_answer_id');
 	}
 
 	public function qnaComment()

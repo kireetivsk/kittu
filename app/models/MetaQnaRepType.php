@@ -29,7 +29,7 @@ class MetaQnaRepType extends Ardent {
 	//relationships
 	public function qnaRepTransaction()
 	{
-		return $this->belongsTo('QnaRepTransaction');
+		return $this->hasOne('QnaRepTransaction');
 	}
 
 

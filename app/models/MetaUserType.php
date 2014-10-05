@@ -26,6 +26,6 @@ class MetaUserType extends Ardent {
 	//relationships
 	public function user()
 	{
-		return $this->belongsTo('User');
+		return $this->hasOne('User');
 	}
 }

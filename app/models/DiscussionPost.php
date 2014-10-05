@@ -50,9 +50,9 @@ class DiscussionPost extends Ardent {
 		return $this->belongsTo('User');
 	}
 
-	public function discussionView()
+	public function discussionTopic()
 	{
-		return $this->hasMany('DiscussionView');
+		return $this->belongsTo('DiscussionTopic');
 	}
 
 	public function discussionComment()
@@ -60,18 +60,19 @@ class DiscussionPost extends Ardent {
 		return $this->hasMany('DiscussionComment');
 	}
 
-	public function metaDiscussionStatus()
+	public function discussionView()
 	{
-		return $this->hasOne('MetaDiscussionStatus');
+		return $this->hasMany('DiscussionView');
 	}
 
-	public function discussionTopic()
+	public function metaDiscussionStatus()
 	{
-		return $this->belongsTo('DiscussionTopic');
+		return $this->belongsTo('MetaDiscussionStatus');
 	}
+
 
 	public function metaDiscussionPermission()
 	{
-		return $this->hasOne('MetaDiscussionPermission');
+		return $this->belongsTo('MetaDiscussionPermission');
 	}
 }

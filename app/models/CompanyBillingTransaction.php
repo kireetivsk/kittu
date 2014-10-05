@@ -44,22 +44,22 @@ class CompanyBillingTransaction extends Ardent {
 	//relationships
 	public function companyPaymentProfile()
 	{
-		return $this->hasOne('CompanyPaymentProfile');
+		return $this->belongsTo('CompanyPaymentProfile');
 	}
 
 	public function billingItem()
 	{
-		return $this->hasOne('billingItem');
+		return $this->belongsTo('billingItem');
 	}
 
 	public function metaBillingStatus()
 	{
-		return $this->hasOne('MetaBillingStatus');
+		return $this->belongsTo('MetaBillingStatus');
 	}
 
 	public function company()
 	{
-		return $this->hasOne('Company');
+		return $this->belongsTo('Company');
 	}
 
 

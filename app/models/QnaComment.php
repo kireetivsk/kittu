@@ -46,7 +46,7 @@ class QnaComment extends Ardent {
 
 	public function metaQnaType()
 	{
-		return $this->hasOne('MetaQnaType');
+		return $this->belongsTo('MetaQnaType');
 	}
 
 	public function qnaQuestion()

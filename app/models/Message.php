@@ -54,10 +54,10 @@ class Message extends Ardent {
 
 	public function toMetaMessageStatus()
 	{
-		return $this->hasOne('MetaMessageStatus', 'id', 'to_meta_message_status_id');
+		return $this->belongsTo('MetaMessageStatus', 'id', 'to_meta_message_status_id');
 	}
 	public function fromMetaMessageStatus()
 	{
-		return $this->hasOne('MetaMessageStatus', 'id', 'from_meta_message_status_id');
+		return $this->belongsTo('MetaMessageStatus', 'id', 'from_meta_message_status_id');
 	}
 }

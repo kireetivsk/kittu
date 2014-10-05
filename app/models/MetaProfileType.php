@@ -37,17 +37,17 @@ class MetaProfileType extends Ardent {
 	//relationships
 	public function metaProfileCategory()
 	{
-		return $this->hasOne('MetaProfileCategory');
+		return $this->belongsTo('MetaProfileCategory');
 	}
 
 	public function companyProfile()
 	{
-		return $this->belongsTo('CompanyProfile');
+		return $this->hasOne('CompanyProfile');
 	}
 
 	public function userProfile()
 	{
-		return $this->belongsTo('UserProfile');
+		return $this->hasOne('UserProfile');
 	}
 
 

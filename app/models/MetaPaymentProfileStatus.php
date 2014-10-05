@@ -27,7 +27,7 @@ class MetaPaymentProfileStatus extends Ardent {
 	//relationships
 	public function companyPaymentProfile()
 	{
-		return $this->belongsTo('CompanyPaymentProfile');
+		return $this->hasOne('CompanyPaymentProfile');
 	}
 
 	public function userPaymentProfile()

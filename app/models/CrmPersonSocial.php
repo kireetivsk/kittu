@@ -41,7 +41,7 @@ class CrmPersonSocial extends Ardent {
 
 	public function metaSocialNetwork()
 	{
-		return $this->hasOne('MetaSocialNetwork');
+		return $this->belongsTo('MetaSocialNetwork');
 	}
 
 }

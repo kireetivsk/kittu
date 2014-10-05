@@ -33,7 +33,12 @@ class UserProfile extends Ardent {
 	//relationships
 	public function metaProfileType()
 	{
-		return $this->hasOne('MetaProfileType');
+		return $this->belongsTo('MetaProfileType');
+	}
+
+	public function user()
+	{
+		return$this->belongsTo('User');
 	}
 
 }

@@ -44,7 +44,6 @@ class ConnectionRequest extends Ardent
 
 	//public functions
 
-
 	public function connect($email, $relationship, $name)
 	{
 		$company = Session::get('userdata.current.company');

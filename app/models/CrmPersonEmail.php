@@ -39,6 +39,6 @@ class CrmPersonEmail extends Ardent {
 
 	public function metaEmailType()
 	{
-		return $this->hasOne('MetaEmailType');
+		return $this->belongsTo('MetaEmailType');
 	}
 }

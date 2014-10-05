@@ -29,22 +29,22 @@ class MetaDiscussionPermission extends Ardent {
 	//relationships
 	public function discussionPost()
 	{
-		return $this->belongsTo('DiscussionPost');
+		return $this->hasOne('DiscussionPost');
 	}
 
 	public function discussionComment()
 	{
-		return $this->belongsTo('DiscussionComment');
+		return $this->hasOne('DiscussionComment');
 	}
 
 	public function discussionTopic()
 	{
-		return $this->belongsTo('DiscussionTopic');
+		return $this->hasOne('DiscussionTopic');
 	}
 
 	public function discussionCategory()
 	{
-		return $this->belongsTo('DiscussionCategory');
+		return $this->hasOne('DiscussionCategory');
 	}
 
 

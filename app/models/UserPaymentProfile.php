@@ -30,7 +30,7 @@ class UserPaymentProfile extends Ardent {
 	//relationships
 	public function user()
 	{
-		return $this->hasOne('User');
+		return $this->belongsTo('User');
 	}
 
 	public function metaPaymentProfileStatus()
@@ -40,12 +40,12 @@ class UserPaymentProfile extends Ardent {
 
 	public function userBillingItem()
 	{
-		return $this->belongsTo('MetaPaymentProfileStatus');
+		return $this->hasMany('MetaPaymentProfileStatus');
 	}
 
 	public function userBillingTransaction()
 	{
-		return $this->belongsTo('UserBillingTransaction');
+		return $this->hasMany('UserBillingTransaction');
 	}
 
 

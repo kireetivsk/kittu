@@ -26,7 +26,7 @@ class MetaCrmPersonType extends Ardent {
 	//relationships
 	public function crmPerson()
 	{
-		return $this->belongsTo('CrmPerson');
+		return $this->hasOne('CrmPerson');
 	}
 
 

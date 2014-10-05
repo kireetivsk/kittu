@@ -26,6 +26,6 @@ class MetaAddressType extends Ardent {
 	//relationships
 	public function crmPersonAddress()
 	{
-		return $this->belongsTo('CrmPersonAddress');
+		return $this->hasOne('CrmPersonAddress');
 	}
 }

@@ -74,7 +74,6 @@
  * @property-read \DiscussionComment $discussionComment
  * @property-read \DiscussionFollow $discussionFollow
  * @property-read \Illuminate\Database\Eloquent\Collection|\DiscussionFolder[] $discussionFolder
- * @property-read \UserCompanyMap $userCompanyMap
  * @property-read \UserBillingTransaction $userBillingTransaction
  * @property-read \UserPaymentProfile $userPaymentProfile
  * @property-read \UserProfile $userProfile
@@ -140,14 +139,63 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	];
 
 	//relationships
+
+	//belongs to
 	public function metaUserStatus()
 	{
-		return $this->hasOne('MetaUserStatus');
+		return $this->belongsTo('MetaUserStatus');
 	}
 
 	public function metaUserType()
 	{
-		return $this->hasOne('MetaUserType');
+		return $this->belongsTo('MetaUserType');
+	}
+
+	//belongsToMany
+	public function company()
+	{
+		return $this->belongsToMany('Company');
+	}
+
+	//hasMany
+	public function crmPerson()
+	{
+		return $this->hasMany('CrmPerson');
+	}
+
+	public function discussionCategory()
+	{
+		return $this->hasMany('DiscussionCategory');
+	}
+
+	public function discussionComment()
+	{
+		return $this->hasMany('DiscussionComment');
+	}
+
+	public function discussionFollow()
+	{
+		return $this->hasMany('DiscussionFollow');
+	}
+
+	public function discussionFolder()
+	{
+		return $this->hasMany('DiscussionFolder');
+	}
+
+	public function discussionPost()
+	{
+		return $this->hasMany('DiscussionPost');
+	}
+
+	public function discussionTopic()
+	{
+		return $this->hasMany('DiscussionTopic');
+	}
+
+	public function discussionView()
+	{
+		return $this->hasMany('DiscussionView');
 	}
 
 	public function lead()
@@ -170,14 +218,19 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 		return $this->hasMany('MessageFolder');
 	}
 
-	public function qnaComment()
+	public function notification()
 	{
-		return $this->hasMany('QnaComment');
+		return $this->hasMany('Notification');
 	}
 
 	public function qnaAnswer()
 	{
 		return $this->hasMany('QnaAnswer');
+	}
+
+	public function qnaComment()
+	{
+		return $this->hasMany('QnaComment');
 	}
 
 	public function qnaQuestion()
@@ -190,9 +243,29 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 		return $this->hasMany('QnaRepTransaction');
 	}
 
-	public function crmPerson()
+	public function userConnection()
 	{
-		return $this->hasMany('CrmPerson');
+		return $this->hasMany('UserConnection');
+	}
+
+	public function userConnected()
+	{
+		return $this->hasMany('UserConnection', 'connection_user_id');
+	}
+
+	public function connectionRequest()
+	{
+		return $this->hasMany('ConnectionRequest');
+	}
+
+	public function userBillingTransaction()
+	{
+		return $this->hasMany('UserBillingTransaction');
+	}
+
+	public function userPaymentProfile()
+	{
+		return $this->hasOne('UserPaymentProfile');
 	}
 
 	public function userSetting()
@@ -200,74 +273,10 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 		return $this->hasMany('UserSetting');
 	}
 
-	public function discussionCategory()
-	{
-		return $this->belongsTo('DiscussionCategory');
-	}
-
-	public function discussionTopic()
-	{
-		return $this->belongsTo('DiscussionTopic');
-	}
-
-	public function discussionPost()
-	{
-		return $this->belongsTo('DiscussionPost');
-	}
-
-	public function discussionView()
-	{
-		return $this->belongsTo('DiscussionView');
-	}
-
-	public function discussionComment()
-	{
-		return $this->belongsTo('DiscussionComment');
-	}
-
-	public function discussionFollow()
-	{
-		return $this->belongsTo('DiscussionFollow');
-	}
-
-	public function discussionFolder()
-	{
-		return $this->hasMany('DiscussionFolder');
-	}
-
-	public function userCompanyMap()
-	{
-		return $this->hasMany('UserCompanyMap');
-	}
-
-	public function userBillingTransaction()
-	{
-		return $this->belongsTo('UserBillingTransaction');
-	}
-
-	public function userPaymentProfile()
-	{
-		return $this->belongsTo('UserPaymentProfile');
-	}
-
+	// hasOne
 	public function userProfile()
 	{
-		return $this->belongsTo('UserProfile');
-	}
-
-	public function userConnection()
-	{
-		return $this->belongsTo('UserConnection');
-	}
-
-	public function company()
-	{
-		return $this->belongsToMany('Company');
-	}
-
-	public function connectionRequest()
-	{
-		return $this->hasMany('ConnectionRequest');
+		return $this->hasOne('UserProfile');
 	}
 
 	//accessors and mutators

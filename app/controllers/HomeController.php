@@ -56,6 +56,11 @@ class HomeController extends BaseController {
 
 	}
 
+	/**
+	 * handle referrals
+	 *
+	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\View\View
+	 */
 	public function getReferral()
 	{
 		$data = json_decode(base64_decode(urldecode(Request::segment(2)), TRUE));

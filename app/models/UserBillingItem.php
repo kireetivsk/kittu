@@ -31,17 +31,17 @@ class UserBillingItem extends Ardent {
 	//relationships
 	public function billingItem()
 	{
-		return $this->hasOne('BillingItem');
+		return $this->belongsTo('BillingItem');
 	}
 
 	public function userPaymentProfile()
 	{
-		return $this->hasOne('UserPaymentProfile');
+		return $this->belongsTo('UserPaymentProfile');
 	}
 
 	public function metaBillingItemStatus()
 	{
-		return $this->hasOne('MetaBillingItemStatus');
+		return $this->belongsTo('MetaBillingItemStatus');
 	}
 
 

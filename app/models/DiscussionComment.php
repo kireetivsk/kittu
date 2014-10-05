@@ -55,11 +55,11 @@ class DiscussionComment extends Ardent {
 
 	public function metaDiscussionPermission()
 	{
-		return $this->hasOne('MetaDiscussionPermission');
+		return $this->belongsTo('MetaDiscussionPermission');
 	}
 
 	public function metaDiscussionStatus()
 	{
-		return $this->hasOne('DiscussionStatus');
+		return $this->belongsTo('DiscussionStatus');
 	}
 }

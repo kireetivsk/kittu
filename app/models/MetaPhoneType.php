@@ -26,6 +26,6 @@ class MetaPhoneType extends Ardent {
 	//relatuionships
 	public function crmPersonPhone()
 	{
-		return $this->belongsTo('CrmPersonPhone');
+		return $this->hasOne('CrmPersonPhone');
 	}
 }

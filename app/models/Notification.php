@@ -62,6 +62,11 @@ class Notification extends Ardent {
 		return $this->belongsTo('MetaNotificationType');
 	}
 
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
+
 	/**
 	 * Return all notifications for a user
 	 *

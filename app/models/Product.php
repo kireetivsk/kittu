@@ -39,6 +39,6 @@ class Product extends Ardent {
 
 	public function metaProductStatus()
 	{
-		return $this->hasOne('MetaProductStatus');
+		return $this->belongsTo('MetaProductStatus');
 	}
 }

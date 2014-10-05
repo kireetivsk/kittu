@@ -25,7 +25,7 @@ class MetaDiscussionType extends Ardent {
 
 	public function discussionFollow()
 	{
-		return $this->belongsTo('DiscussionFollow');
+		return $this->hasOne('DiscussionFollow');
 	}
 
 
