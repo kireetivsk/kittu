@@ -88,7 +88,9 @@
                         type="hidden"
                         id="company_id"
                         ng-model="registration_company_id">
-                </div>
+					<a ng-show="readonly" href="/">Sign up with a different company *</a>
+
+				</div>
             </div>
             <div ng-show="company_names" id="registration_company_names">
 				<p>Select your company:</p>
@@ -111,7 +113,7 @@
 		</form>
 		<div class="space-10"></div>
 		<div>
-			<p class="small" ng-show="readonly" >* Please note that you will not be automatically connected to those who invited you if you use a different email.</p>
+			<p class="small" ng-show="readonly" >* Please note that you will not be automatically connected to those who invited you if you use a different email or company.</p>
 			<p class="small" ng-show="readonly" >You can still connect to them, you'll just have to send a new request.</p>
 
 		</div>
