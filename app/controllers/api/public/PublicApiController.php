@@ -118,7 +118,8 @@
 				{
 					//todo test this
 					//make referral connections
-					UserConnection::makeReferralConnections($user['user_id'], $params['email'], $params['company_id']);
+					$user_connection = new UserConnection();
+					$user_connection->makeReferralConnections($user_id, $params['email'], $params['company_id']);
 				}
 
 				$this->_success("Registered");

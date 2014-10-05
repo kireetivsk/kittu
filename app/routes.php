@@ -40,12 +40,13 @@
 	Route::get('terms', 					'PublicController@getTerms');
 
 	// auth
-	Route::get('activation', 				'HomeController@getActivation');
+	Route::get('activation/{user}/{code}', 	'HomeController@getActivation');
 	Route::get('forgot_password', 			'HomeController@getForgotPassword');
 	Route::get('forgot_username', 			'HomeController@getForgotUsername');
-    Route::get('logout', 					'HomeController@getLogout');
+	Route::get('logout', 					'HomeController@getLogout');
+	Route::get('referral/{code}', 			'HomeController@getReferral');
 
-    // dashboard
+	// dashboard
     Route::controller('dashboard', 		    'ConsultantDashboardController');
 
 

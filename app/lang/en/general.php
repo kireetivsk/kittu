@@ -21,11 +21,12 @@
 
 		'connection_request_fail' 		=> "Failed to make connection.",
 		'connection_request' 			=> "Connection request",
-		'connection_notification' 		=> "connection notification",
+		'connection_notification' 		=> "Connection notification",
 
 		'connection_body_1' 			=> 'You have connected with :name as their :relationship.',
 		'connection_body_2' 			=> 'You have sent a request to connect to :name as their :relationship.',
 		'connection_body_3' 			=> ':name has connected with you as their :relationship.',
 		'connection_body_4' 			=> ':name has sent a request to connect to you as their :relationship.',
+		'connection_body_5' 			=> ':name has accepted your invitation. You are now connected as their :relationship.',
 
 	);

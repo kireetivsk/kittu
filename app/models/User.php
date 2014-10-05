@@ -271,11 +271,10 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	}
 
 	//accessors and mutators
-//	public function setNewEmailKeyAttribute($value)
-//	{
-//		$this->attributes['new_email_key'] = $value ? $value : NULL;
-//	}
-
+	public function getFullNameAttribute()
+	{
+		return $this->first_name . " " . $this->last_name;
+	}
 	//public methods
 
 	/**

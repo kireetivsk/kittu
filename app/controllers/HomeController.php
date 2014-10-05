@@ -24,6 +24,7 @@ class HomeController extends BaseController {
 	 */
 	public function getIndex()
 	{
+		Session::forget('userdata.referral');
 		$this->data['view'] 			= 'index';
 		$this->data['files']->js[] 		= JS_CONTROLLER_DIR . "/public/homeController.js";
 
@@ -47,14 +48,47 @@ class HomeController extends BaseController {
 		if ($user->activate($user_id, $key)) {
 			$this->data['message'] = Lang::get('general.activation_successful');
 			$this->data['type'] = "success";
-			return View::make('template', $this->data);
 		} else {
 			$this->data['message'] = Lang::get('general.activation_unsuccessful');
 			$this->data['type'] = "danger";
+		}
+		return View::make('template', $this->data);
+
+	}
+
+	public function getReferral()
+	{
+		$data = json_decode(base64_decode(urldecode(Request::segment(2)), TRUE));
+
+		if (!$data)
+			return Redirect::route('home');
+
+		//validate email
+		$validator = Validator::make(
+			array('name' 	=> $data->email),
+			array('name' 	=> 'required|email')
+		);
+		if ($validator->passes())
+		{
+			$company      = Company::find($data->company);
+			$session_data = [
+				'email'        => $data->email,
+				'company_id'   => $data->company,
+				'company_name' => $company->name
+			];
+			Session::put('userdata.referral', $session_data);
+
+			$this->data['view']        = 'index';
+			$this->data['files']->js[] = JS_CONTROLLER_DIR . "/public/homeController.js";
+
 			return View::make('template', $this->data);
+
+		} else {
+			return Redirect::route('home');
 		}
 
 	}
+
 	public function getForgotPassword()
 	{
 		$this->data['view'] 			= 'forgot_password';

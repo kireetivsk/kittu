@@ -42,7 +42,12 @@ class MetaConnectionRelationship extends Ardent {
 	//relationships
 	public function userConnection()
 	{
-		return $this->belongsTo('UserConnection');
+		return $this->hasOne('UserConnection');
+	}
+
+	public function connectionRequest()
+	{
+		return $this->hasOne('ConnectionRequest');
 	}
 
 	//public functions

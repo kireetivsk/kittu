@@ -37,6 +37,11 @@ class ConnectionRequest extends Ardent
 		return $this->belongsTo('User');
 	}
 
+	public function metaConnectionRelationship()
+	{
+		return $this->belongsTo('MetaConnectionRelationship');
+	}
+
 	//public functions
 
 
