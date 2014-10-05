@@ -19,6 +19,7 @@
  * @method static \Illuminate\Database\Query\Builder|\UserProfile whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\UserProfile whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\UserProfile whereDeletedAt($value)
+ * @property-read \User $user
  */
 class UserProfile extends Ardent {
 	protected $fillable = [];

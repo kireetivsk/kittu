@@ -13,6 +13,7 @@
  * @method static \Illuminate\Database\Query\Builder|\MetaConnectionRelationship whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaConnectionRelationship whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\MetaConnectionRelationship whereOrdinal($value)
+ * @property-read \ConnectionRequest $connectionRequest
  */
 class MetaConnectionRelationship extends Ardent {
 	protected $fillable = [];

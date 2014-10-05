@@ -19,6 +19,7 @@
  * @method static \Illuminate\Database\Query\Builder|\ConnectionRequest whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\ConnectionRequest whereDeletedAt($value)
  * @property-read \User $user
+ * @property-read \MetaConnectionRelationship $metaConnectionRelationship
  */
 class ConnectionRequest extends Ardent
 {

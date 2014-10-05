@@ -82,6 +82,9 @@
  * @property-read \Illuminate\Database\Eloquent\Collection|\ConnectionRequest[] $connectionRequest
  * @property string $remember_token
  * @method static \Illuminate\Database\Query\Builder|\User whereRememberToken($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Notification[] $notification
+ * @property-read \Illuminate\Database\Eloquent\Collection|\UserConnection[] $userConnected
+ * @property-read mixed $full_name
  */
 class User extends Ardent implements UserInterface, RemindableInterface {
 	protected $fillable = [

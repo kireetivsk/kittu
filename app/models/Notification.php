@@ -29,6 +29,7 @@
  * @method static \Illuminate\Database\Query\Builder|\Notification whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Notification whereDeletedAt($value)
  * @property-read \MetaNotificationType $metaNotificationType
+ * @property-read \User $user
  */
 class Notification extends Ardent {
 	protected $fillable = [];
