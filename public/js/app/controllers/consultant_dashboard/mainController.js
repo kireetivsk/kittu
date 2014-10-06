@@ -47,7 +47,6 @@ dsk.controller('main', function ($scope, $http, Data) {
 				//successful
 				$scope.notifications = data.results;
 			})
-
 	};
 
 	getNotifications();

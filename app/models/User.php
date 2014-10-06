@@ -92,7 +92,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
         'remember_token'
 	];
 
-    protected $hidden = array(
+    protected $hidden = [
         'password',
         'last_four',
         'last_ip',
@@ -113,8 +113,8 @@ class User extends Ardent implements UserInterface, RemindableInterface {
         'subscription_ends_at',
         'created_at',
         'updated_at',
-        'deleted_at',
-    );
+        'deleted_at'
+    ];
 
 	//validation
 	public static $rules = [

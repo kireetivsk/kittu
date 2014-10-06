@@ -70,6 +70,11 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Send a connection request
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postAddTeam()
 		{
 			$email 			= Input::get('email');
@@ -85,6 +90,35 @@
 				$this->_error(500, Lang::get('general.connection_request_fail'));
 
 			return Response::json($this->data);
+		}
+
+		/**
+		 * get connection requests to display on dashboard/connection-requests
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postGetConnectionRequests()
+		{
+			$user_id         = Input::get('user_id');
+			$company_id      = Input::get('company_id');
+			$user_connection = new UserConnection();
+			$result          = $user_connection->getUserConnectionRequests($user_id, $company_id);
+
+			if (!$result->isEmpty())
+				$this->_success('Success', $result->toArray());
+			else
+				$this->_error(500, Lang::get('general.get_connection_request_fail'));
+
+			return Response::json($this->data);
+		}
+
+		public function postAcceptRequest()
+		{
+			$this->_success();
+//			$this->_error(500, Lang::get('general.get_connection_request_fail'));
+
+			return Response::json($this->data);
+
 		}
 
 	}

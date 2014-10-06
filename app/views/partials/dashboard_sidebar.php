@@ -56,6 +56,24 @@
 		</li>
 
 		<li>
+			<span class="menu-text"> &nbsp; </span>
+		</li>
+
+		<li>
+			<a href="/dashboard/connection-requests">
+				<i class="icon-link"></i>
+				<span class="menu-text"> Connection Requests</span>
+			</a>
+		</li>
+
+		<li>
+			<a href="/dashboard/my-team">
+				<i class="icon-group"></i>
+				<span class="menu-text"> My Team</span>
+			</a>
+		</li>
+
+		<li>
 			<a href="/dashboard/crm">
 				<i class="icon-phone"></i>
 				<span class="menu-text"> CRM </span>
@@ -80,13 +98,6 @@
 			<a href="/dashboard/qna">
 				<i class="icon-question"></i>
 				<span class="menu-text"> Question and Answer </span>
-			</a>
-		</li>
-
-		<li>
-			<a href="/dashboard/upline">
-				<i class="icon-level-up"></i>
-				<span class="menu-text"> Upline </span>
 			</a>
 		</li>
 
@@ -133,13 +144,6 @@
 			<a href="/dashboard/blog">
 				<i class="icon-pencil"></i>
 				<span class="menu-text"> Blog </span>
-			</a>
-		</li>
-
-		<li>
-			<a href="/dashboard/downline">
-				<i class="icon-level-down"></i>
-				<span class="menu-text"> Downline </span>
 			</a>
 		</li>
 

@@ -104,4 +104,19 @@
 			$ts = new DateTime();
 			return $ts->format('Y-m-d H:i:s');
 		}
+
+		public static function removeDuplicates($array, $field)
+		{
+			$fields = [];
+			foreach($array as $key => $value)
+			{
+				if (in_array($value->user->$field, $fields))
+				{
+					$array->forget($key);
+				} else {
+					$fields[] = $value->user->$field;
+				}
+			}
+			return $array;
+		}
 	}

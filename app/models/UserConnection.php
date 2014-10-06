@@ -32,6 +32,14 @@
 class UserConnection extends Ardent {
 	protected $fillable = [];
 
+	protected $hidden = [
+		'meta_connection_status_id',
+		'meta_connection_relationship_id',
+		'updated_at',
+		'deleted_at'
+	];
+
+
 	//validation
 	public static $rules = [
 		'user_id' 							=> 'required|integer',
@@ -73,6 +81,16 @@ class UserConnection extends Ardent {
 	}
 
 	//public methods
+
+	/**
+	 * Create a connection from a raw request - involves checking permissions/settings
+	 *
+	 * @param $that_user
+	 * @param $relationship
+	 * @param $company
+	 *
+	 * @return bool
+	 */
 	public function makeConnection($that_user, $relationship, $company)
 	{
 		$notification 			= new Notification();
@@ -163,7 +181,6 @@ class UserConnection extends Ardent {
 			'meta_connection_status_id'	   		=> $meta_connection_status_id,
 			'meta_connection_relationship_id' 	=> MetaConnectionRelationship::$relationships[$relationship]
 		];
-		$this->insert($this_data);
 
 		$that_data = [
 			'user_id'							=> $that_user->id,
@@ -172,10 +189,32 @@ class UserConnection extends Ardent {
 			'meta_connection_status_id'			=> $meta_connection_status_id,
 			'meta_connection_relationship_id' 	=> MetaConnectionRelationship::$relationships[$relationship]
 		];
-		$this->insert($that_data);
+
+		try
+		{
+			$this->insert($this_data);
+			$this->insert($that_data);
+		} catch (Exception $e)
+		{
+			return FALSE;
+		}
 
 	}
 
+
+	/**
+	 *
+	 * Make a connection from a referral link.
+	 * No need to check permissions.
+	 * todo: only auto auth the connection being responded to
+	 * currently it auto accepts all requested connections
+	 *
+	 * @param $user_id
+	 * @param $email
+	 * @param $company_id
+	 *
+	 * @return bool
+	 */
 	public function makeReferralConnections($user_id, $email, $company_id)
 	{
 		$notification 	= new Notification();
@@ -199,7 +238,6 @@ class UserConnection extends Ardent {
 				'meta_connection_status_id'	   		=> MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED,
 				'meta_connection_relationship_id' 	=> $relationship_opposite
 			];
-			$this->insert($this_data);
 
 			$this_notification_accepted = [
 				'user_id'				   			=> $user_id,
@@ -208,7 +246,6 @@ class UserConnection extends Ardent {
 				'body'					  			=> trans('general.connection_body_1', ['name' => $that_user->full_name, 'relationship' => $relationship_name]),
 				'meta_notification_type_id' 		=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
 			];
-			$notification->insert($this_notification_accepted);
 
 			//the user getting connected to
 			$that_data = [
@@ -218,7 +255,6 @@ class UserConnection extends Ardent {
 				'meta_connection_status_id'	   		=> MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED,
 				'meta_connection_relationship_id' 	=> $referral->meta_connection_relationship_id
 			];
-			$this->insert($that_data);
 
 			$that_notification_accepted = [
 				'user_id'				   			=> $referral->user_id,
@@ -227,9 +263,30 @@ class UserConnection extends Ardent {
 				'body' 								=> trans('general.connection_body_5', ['name' => $this_user->full_name, 'relationship' => $relationship_opposite_name]),
 				'meta_notification_type_id' 		=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
 			];
-			$notification->insert($that_notification_accepted);
 
+			try
+			{
+				$this->insert($this_data);
+				$notification->insert($this_notification_accepted);
+				$this->insert($that_data);
+				$notification->insert($that_notification_accepted);
+
+			} catch (Exception $e)
+			{
+				return FALSE;
+			}
 		}
+	}
+
+	public function getUserConnectionRequests($user_id, $company_id)
+	{
+		$connection_requests =  self::where("connection_user_id", '=', $user_id)
+			->where('company_id', '=', $company_id)
+			->where('meta_connection_status_id', '=', MetaConnectionStatus::CONNECTION_STATUS_REQUESTED)
+			->with('metaConnectionStatus', 'metaConnectionRelationship', 'user')
+			->get();
+		$requests = Dsk::removeDuplicates($connection_requests, 'email');
+		return $requests;
 	}
 
 }

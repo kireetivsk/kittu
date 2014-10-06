@@ -82,28 +82,28 @@
 			<?php require_once PARTIALS_DIR . "/dashboard_sidebar.php"; ?>
 
 			<div class="main-content">
-				<div class="breadcrumbs" id="breadcrumbs">
-					<script type="text/javascript">
-						try {
-							ace.settings.check('breadcrumbs', 'fixed')
-						} catch (e) {
-						}
-					</script>
-
-					<ul class="breadcrumb">
-						<li>
-							<i class="icon-home home-icon"></i>
-							<a href="#">Home</a>
-						</li>
-
-						<li>
-							<a href="#">Other Pages</a>
-						</li>
-						<li class="active">Blank Page</li>
-					</ul>
+<!--				<div class="breadcrumbs" id="breadcrumbs">-->
+<!--					<script type="text/javascript">-->
+<!--						try {-->
+<!--							ace.settings.check('breadcrumbs', 'fixed')-->
+<!--						} catch (e) {-->
+<!--						}-->
+<!--					</script>-->
+<!---->
+<!--					<ul class="breadcrumb">-->
+<!--						<li>-->
+<!--							<i class="icon-home home-icon"></i>-->
+<!--							<a href="#">Home</a>-->
+<!--						</li>-->
+<!---->
+<!--						<li>-->
+<!--							<a href="#">Other Pages</a>-->
+<!--						</li>-->
+<!--						<li class="active">Blank Page</li>-->
+<!--					</ul>-->
 					<!-- .breadcrumb -->
-
-					<div class="nav-search" id="nav-search">
+<!---->
+<!--					<div class="nav-search" id="nav-search">-->
 <!--						<form class="form-search">-->
 <!--							<span class="input-icon">-->
 <!--								<input type="text" placeholder="Search ..." class="nav-search-input"-->
@@ -111,8 +111,8 @@
 <!--								<i class="icon-search nav-search-icon"></i>-->
 <!--							</span>-->
 <!--						</form>-->
-					</div>
+<!--					</div>-->
 					<!-- #nav-search -->
-				</div>
+<!--				</div>-->
 
 				<div class="page-content">
