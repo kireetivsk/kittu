@@ -26,4 +26,10 @@ class BaseController extends Controller {
 		}
 	}
 
+	protected function _logout()
+	{
+		Auth::logout();
+		Session::flush();
+	}
+
 }

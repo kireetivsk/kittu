@@ -51,10 +51,7 @@ class Notification extends Ardent {
 		'origin' 					=> 'max:255',
 		'title' 					=> 'required|max:45',
 		'body' 						=> 'required',
-		'meta_notification_type_id'	=> 'required|integer',
-		'sent' 						=> 'required|date_format:Y-m-d H:i:s',
-		'seen' 						=> 'date_format:Y-m-d H:i:s',
-		'dismissed' 				=> 'date_format:Y-m-d H:i:s'
+		'meta_notification_type_id'	=> 'required|integer'
 	];
 
 	//relationships

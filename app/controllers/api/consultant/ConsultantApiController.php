@@ -112,10 +112,35 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Accept a connection request
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postAcceptRequest()
 		{
+			$request_id      = Input::get('request_id');
+			$user_connection = new UserConnection();
+			$user_connection->accept($request_id);
+
 			$this->_success();
-//			$this->_error(500, Lang::get('general.get_connection_request_fail'));
+
+			return Response::json($this->data);
+
+		}
+
+		/**
+		 * Reject a connection request
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postRejectRequest()
+		{
+			$request_id      = Input::get('request_id');
+			$user_connection = new UserConnection();
+			$user_connection->reject($request_id);
+
+			$this->_success();
 
 			return Response::json($this->data);
 

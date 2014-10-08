@@ -112,8 +112,7 @@ class HomeController extends BaseController {
 
     public function getLogout()
     {
-        Auth::logout();
-        Session::flush();
+        $this->_logout();
         return Redirect::to('/');
     }
 

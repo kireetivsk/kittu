@@ -105,33 +105,41 @@ class UserConnection extends Ardent {
 		//set the notifications
 		$this_notification_accepted  = [
 			'user_id'				   		=> $this_user['id'],
-			'origin'						=> "app/models/UserConnection.php:67",
+			'origin'						=> "app/models/UserConnection.php:" . __LINE__,
 			'title'					 		=> trans('general.connection_notification'),
 			'body'					  		=> trans('general.connection_body_1', ['name' => $that_user_name, 'relationship' => $relationship]),
-			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
-
+			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION,
+			'created_at' 					=> DB::raw('NOW()'),
+			'sent'							=> DB::raw('NOW()')
 		];
+
 		$this_notification_requested = [
 			'user_id'				   		=> $this_user['id'],
-			'origin'						=> "app/models/UserConnection.php:67",
+			'origin'						=> "app/models/UserConnection.php:" . __LINE__,
 			'title'					 		=> trans('general.connection_request'),
 			'body'					  		=> trans('general.connection_body_2', ['name' => $that_user_name, 'relationship' => $relationship]),
-			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
+			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION,
+			'created_at'                    => DB::raw('NOW()'),
+			'sent'                          => DB::raw('NOW()')
 		];
 
 		$that_notification_accepted  = [
 			'user_id'				   		=> $that_user->id,
-			'origin' 						=> "app/models/UserConnection.php:67",
+			'origin' 						=> "app/models/UserConnection.php:" . __LINE__,
 			'title'					 		=> trans('general.connection_notification'),
 			'body'					  		=> trans('general.connection_body_3', ['name' => $this_user['full_name'], 'relationship' => $relationship_opposite]),
-			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
+			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION,
+			'created_at'                    => DB::raw('NOW()'),
+			'sent'                          => DB::raw('NOW()')
 		];
 		$that_notification_requested = [
 			'user_id'				   		=> $that_user->id,
-			'origin' 						=> "app/models/UserConnection.php:67",
+			'origin' 						=> "app/models/UserConnection.php:" . __LINE__,
 			'title'					 		=> trans('general.connection_request'),
 			'body'					  		=> trans('general.connection_body_4', ['name' => $this_user['full_name'], 'relationship' => $relationship_opposite]),
-			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
+			'meta_notification_type_id' 	=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION,
+			'created_at'                    => DB::raw('NOW()'),
+			'sent'                          => DB::raw('NOW()')
 		];
 
 		//get the connection setting
@@ -174,26 +182,16 @@ class UserConnection extends Ardent {
 		}
 
 		//store the connection request
-		$this_data = [
-			'user_id'						 	=> $this_user['id'],
-			'company_id'				   		=> $company,
-			'connection_user_id'				=> $that_user->id,
-			'meta_connection_status_id'	   		=> $meta_connection_status_id,
-			'meta_connection_relationship_id' 	=> MetaConnectionRelationship::$relationships[$relationship]
-		];
-
-		$that_data = [
-			'user_id'							=> $that_user->id,
-			'company_id'						=> $company,
-			'connection_user_id'				=> $this_user['id'],
-			'meta_connection_status_id'			=> $meta_connection_status_id,
-			'meta_connection_relationship_id' 	=> MetaConnectionRelationship::$relationships[$relationship]
-		];
+		$this_data                                  = new self;
+		$this_data->user_id                         = $this_user['id'];
+		$this_data->company_id                      = $company;
+		$this_data->connection_user_id              = $that_user->id;
+		$this_data->meta_connection_status_id       = $meta_connection_status_id;
+		$this_data->meta_connection_relationship_id = MetaConnectionRelationship::$relationships[$relationship];
 
 		try
 		{
-			$this->insert($this_data);
-			$this->insert($that_data);
+			$this_data->save();
 		} catch (Exception $e)
 		{
 			return FALSE;
@@ -231,44 +229,47 @@ class UserConnection extends Ardent {
 			$that_user 						= User::find($referral->user_id);
 
 			//the user signing up
-			$this_data = [
-				'user_id'							=> $user_id,
-				'connection_user_id'				=> $referral->user_id,
-				'company_id'			 			=> $company_id,
-				'meta_connection_status_id'	   		=> MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED,
-				'meta_connection_relationship_id' 	=> $relationship_opposite
-			];
+			$this_data                                  = new self;
+			$this_data->user_id                         = $user_id;
+			$this_data->company_id                      = $company_id;
+			$this_data->connection_user_id              = $referral->user_id;
+			$this_data->meta_connection_status_id       = MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED;
+			$this_data->meta_connection_relationship_id = $relationship_opposite;
 
 			$this_notification_accepted = [
 				'user_id'				   			=> $user_id,
-				'origin'							=> "app/models/UserConnection.php:179",
+				'origin'							=> "app/models/UserConnection.php:" . __LINE__,
 				'title'					 			=> trans('general.connection_notification'),
 				'body'					  			=> trans('general.connection_body_1', ['name' => $that_user->full_name, 'relationship' => $relationship_name]),
-				'meta_notification_type_id' 		=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
+				'meta_notification_type_id' 		=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION,
+				'created_at'                        => DB::raw('NOW()'),
+				'sent'                              => DB::raw('NOW()')
 			];
 
 			//the user getting connected to
-			$that_data = [
-				'user_id'						 	=> $referral->user_id,
-				'connection_user_id'			  	=> $user_id,
-				'company_id'			 			=> $company_id,
-				'meta_connection_status_id'	   		=> MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED,
-				'meta_connection_relationship_id' 	=> $referral->meta_connection_relationship_id
-			];
+			$that_data                                  = new self;
+			$that_data->user_id                         = $referral->user_id;
+			$that_data->company_id                      = $company_id;
+			$that_data->connection_user_id              = $user_id;
+			$that_data->meta_connection_status_id       = MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED;
+			$that_data->meta_connection_relationship_id = $referral->meta_connection_relationship_id;
 
 			$that_notification_accepted = [
 				'user_id'				   			=> $referral->user_id,
-				'origin'							=> "app/models/UserConnection.php:179",
+				'origin'							=> "app/models/UserConnection.php:" . __LINE__,
 				'title'					 			=> trans('general.connection_notification'),
 				'body' 								=> trans('general.connection_body_5', ['name' => $this_user->full_name, 'relationship' => $relationship_opposite_name]),
-				'meta_notification_type_id' 		=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION
+				'meta_notification_type_id' 		=> MetaNotificationType::NOTIFICATION_TYPE_CONNECTION,
+				'created_at'                        => DB::raw('NOW()'),
+				'sent'                              => DB::raw('NOW()')
 			];
 
 			try
 			{
-				$this->insert($this_data);
+				$this_data->save();
 				$notification->insert($this_notification_accepted);
-				$this->insert($that_data);
+
+				$that_data->save();
 				$notification->insert($that_notification_accepted);
 
 			} catch (Exception $e)
@@ -278,6 +279,15 @@ class UserConnection extends Ardent {
 		}
 	}
 
+	/**
+	 * Get all open connection requests
+	 *
+	 *
+	 * @param $user_id
+	 * @param $company_id
+	 *
+	 * @return mixed
+	 */
 	public function getUserConnectionRequests($user_id, $company_id)
 	{
 		$connection_requests =  self::where("connection_user_id", '=', $user_id)
@@ -288,5 +298,67 @@ class UserConnection extends Ardent {
 		$requests = Dsk::removeDuplicates($connection_requests, 'email');
 		return $requests;
 	}
+
+	/**
+	 * Process an accepted connection request
+	 *
+	 * @param $request_id
+	 */
+	public function accept($request_id)
+	{
+		$notification = new Notification();
+
+		$this_connection = $this->find($request_id);
+
+		//set opposite connection
+		$relationship_opposite = MetaConnectionRelationship::getRelationshipOppositeById($this_connection->meta_connection_id);
+		$opposite                                  = new self;
+		$opposite->user_id                         = $this_connection->connection_user_id;
+		$opposite->company_id                      = $this_connection->company_id;
+		$opposite->connection_user_id              = $this_connection->user_id;
+		$opposite->meta_connection_status_id       = MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED;
+		$opposite->meta_connection_relationship_id = $relationship_opposite;
+		$opposite->save();
+
+		// set to active
+		$this_connection->meta_connection_status_id = MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED;
+		$this_connection->updateUniques();
+
+		// make notification to that user
+		$notification->user_id                   = $this_connection->user_id;
+		$notification->origin                    = "app/models/UserConnection.php:" . __LINE__;
+		$notification->title                     = trans('general.connection_accepted');
+		$notification->body                      = trans('general.connection_body_5', ['name' => $opposite->user->full_name,
+																					   'relationship' => $opposite->metaConnectionRelationship->name]);
+		$notification->meta_notification_type_id = MetaNotificationType::NOTIFICATION_TYPE_CONNECTION;
+		$notification->sent                      = DB::raw('NOW()');
+		$notification->save();
+
+	}
+
+	/**
+	 * Process a rejected connection request
+	 *
+	 * @param $request_id
+	 */
+	public function reject($request_id)
+	{
+		$this_connection = $this->find($request_id);
+
+		// set to rejected
+		$this_connection->meta_connection_status_id = MetaConnectionStatus::CONNECTION_STATUS_REJECTED;
+		$this_connection->updateUniques();
+	}
+
+	private function _getOppositeconnection($user_id, $company_id, $connection_user_id)
+	{
+		return $this
+			->where('user_id', '=', $connection_user_id)
+			->where('company_id', '=', $company_id)
+			->where('connection_user_id', '=', $user_id)
+			->with('user', 'metaConnectionRelationship')
+			->first();
+	}
+
 
 }

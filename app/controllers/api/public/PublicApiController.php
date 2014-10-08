@@ -142,50 +142,53 @@
 		{
 			$email 		= Input::get('email');
 			$password 	= Input::get('password');
+
 			if (Auth::check())
-				$this->_success(TRUE);
-			else {
-				$login_attempt = new LoginAttempt();
-				if (!$login_attempt->canLogin($email))
+				$this->_logout();
+
+			$login_attempt = new LoginAttempt();
+			if (!$login_attempt->canLogin($email))
+			{
+				$this->_error(401, Lang::get('general.max_login_attempts'));
+
+				return Response::json($this->data);
+			}
+			if (Auth::attempt(array('email' => $email, 'password' => $password)))
+			{
+				try
 				{
-					$this->_error(401, Lang::get('general.max_login_attempts'));
-					return Response::json($this->data);
-				}
-				if (Auth::attempt(array('email' => $email, 'password' => $password)))
+					$user              = new User();
+					$meta_setting_type = new MetaSettingType();
+
+					$login_attempt->clearStrikes($email);
+
+					// put user data into session
+					Session::put('userdata', $user->getUserPublicData(Auth::user()->id));
+
+					//load settings
+					$settings = $user->getSettings(Auth::id());
+					Session::put('userdata.settings', $settings);
+
+					//set current company
+					$current_company_id = $meta_setting_type->getLastCompanyId($settings);
+					$current            = [
+						'company' => $settings[$current_company_id]['value']
+					];
+					Session::put('userdata.current', $current);
+
+					$this->_success(TRUE);
+
+				} catch (Exception $e)
 				{
-                    try
-					{
-						$user              = new User();
-						$meta_setting_type = new MetaSettingType();
-
-						$login_attempt->clearStrikes($email);
-
-						// put user data into session
-						Session::put('userdata', $user->getUserPublicData(Auth::user()->id));
-
-						//load settings
-						$settings = $user->getSettings(Auth::id());
-						Session::put('userdata.settings', $settings);
-
-						//set current company
-						$current_company_id = $meta_setting_type->getLastCompanyId($settings);
-						$current            = [
-							'company'        => $settings[$current_company_id]['value']
-						];
-						Session::put('userdata.current', $current);
-
-						$this->_success(TRUE);
-
-					} catch(Exception $e) {
-						Auth::logout();
-						Session::flush();
-						$login_attempt->addStrike($email);
-						$this->_error(401, Lang::get('general.login_failed_error'));
-					}
-				} else {
+					Auth::logout();
+					Session::flush();
 					$login_attempt->addStrike($email);
-					$this->_error(401, Lang::get('general.login_failed'));
+					$this->_error(401, Lang::get('general.login_failed_error'));
 				}
+			} else
+			{
+				$login_attempt->addStrike($email);
+				$this->_error(401, Lang::get('general.login_failed'));
 			}
 
 			return Response::json($this->data);
