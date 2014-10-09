@@ -113,6 +113,26 @@
 		}
 
 		/**
+		 * get rejected connection requests to display on dashboard/connection-requests
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postGetRejectedConnectionRequests()
+		{
+			$user_id         = Input::get('user_id');
+			$company_id      = Input::get('company_id');
+			$user_connection = new UserConnection();
+			$result          = $user_connection->getRejectedUserConnectionRequests($user_id, $company_id);
+
+			if (!$result->isEmpty())
+				$this->_success('Success', $result->toArray());
+			else
+				$this->_error(500, Lang::get('general.get_connection_request_fail'));
+
+			return Response::json($this->data);
+		}
+
+		/**
 		 * Accept a connection request
 		 *
 		 * @return \Illuminate\Http\JsonResponse

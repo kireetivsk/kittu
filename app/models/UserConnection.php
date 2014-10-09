@@ -290,12 +290,34 @@ class UserConnection extends Ardent {
 	 */
 	public function getUserConnectionRequests($user_id, $company_id)
 	{
-		$connection_requests =  self::where("connection_user_id", '=', $user_id)
-			->where('company_id', '=', $company_id)
-			->where('meta_connection_status_id', '=', MetaConnectionStatus::CONNECTION_STATUS_REQUESTED)
-			->with('metaConnectionStatus', 'metaConnectionRelationship', 'user')
-			->get();
-		$requests = Dsk::removeDuplicates($connection_requests, 'email');
+		$connection_requests = self::where("connection_user_id", '=', $user_id)
+								   ->where('company_id', '=', $company_id)
+								   ->where('meta_connection_status_id', '=', MetaConnectionStatus::CONNECTION_STATUS_REQUESTED)
+								   ->with('metaConnectionStatus', 'metaConnectionRelationship', 'user')
+								   ->get();
+		$requests            = Dsk::removeDuplicates($connection_requests, 'email');
+
+		return $requests;
+	}
+
+	/**
+	 * Get all open connection requests
+	 *
+	 *
+	 * @param $user_id
+	 * @param $company_id
+	 *
+	 * @return mixed
+	 */
+	public function getRejectedUserConnectionRequests($user_id, $company_id)
+	{
+		$connection_requests = self::where("connection_user_id", '=', $user_id)
+								   ->where('company_id', '=', $company_id)
+								   ->where('meta_connection_status_id', '=', MetaConnectionStatus::CONNECTION_STATUS_REJECTED)
+								   ->with('metaConnectionStatus', 'metaConnectionRelationship', 'user')
+								   ->get();
+		$requests            = Dsk::removeDuplicates($connection_requests, 'email');
+
 		return $requests;
 	}
 

@@ -18,6 +18,24 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	}
 
+	$scope.acceptReject = function (request_id, index) {
+		var ajax_url = "/consultantapi/accept-request";
+		var form_data = {
+			request_id: request_id
+		};
+		$http.post(ajax_url, form_data)
+			.success(function (data) {
+				//successful
+				if (data.code == 200)
+					$scope.rejected_connection_requests.splice(index, 1);
+				else { //failed
+					message = data.message === undefined ? "Unknown error." : data.message
+					$scope.connection_requests[index].alert = {message: message, type: "alert-danger"};
+				}
+			})
+
+	}
+
 	$scope.rejectRequest = function (request_id, index) {
 		var ajax_url = "/consultantapi/reject-request";
 		var form_data = {
@@ -36,17 +54,30 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	}
 
-	var getConnectionRequests = function()
-	{
+	var getConnectionRequests = function () {
 		var ajax_url = "/consultantapi/get-connection-requests";
 		var form_data = {
-			user_id: 		$scope.user.id,
-			company_id: 	$scope.user.current.company
+			user_id: $scope.user.id,
+			company_id: $scope.user.current.company
 		};
 		$http.post(ajax_url, form_data)
 			.success(function (data) {
 				//successful
 				$scope.connection_requests = data.results;
+			})
+
+	}
+
+	var getRejectedConnectionRequests = function () {
+		var ajax_url = "/consultantapi/get-rejected-connection-requests";
+		var form_data = {
+			user_id: $scope.user.id,
+			company_id: $scope.user.current.company
+		};
+		$http.post(ajax_url, form_data)
+			.success(function (data) {
+				//successful
+				$scope.rejected_connection_requests = data.results;
 			})
 
 	}
@@ -60,6 +91,7 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	function waitForUser() {
 		getConnectionRequests();
+		getRejectedConnectionRequests();
 
 	}
 

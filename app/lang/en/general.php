@@ -32,6 +32,8 @@
 		'connection_body_4'            => ':name has sent a request to connect to you as their :relationship.',
 		'connection_body_5'            => ':name has accepted your invitation. You are now connected as their :relationship.',
 
-		'connection_request_view_text' => "wants to connect with you as their "
+		'connection_request_view_text' => "wants to connect with you as their ",
+
+		'no_new_connections'			=> 'You have no new connections.'
 
 	);
