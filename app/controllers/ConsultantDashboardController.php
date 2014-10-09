@@ -59,7 +59,7 @@ class ConsultantDashboardController extends BaseController {
 	public function getMyTeam()
 	{
 		$this->data['view']        = 'my_team';
-		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/Controller.js";
+		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/myTeamController.js";
 
 		return View::make('template_consultant_dashboard', $this->data);
 	}

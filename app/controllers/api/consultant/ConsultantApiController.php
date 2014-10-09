@@ -144,9 +144,7 @@
 			$user_connection->accept($request_id);
 
 			$this->_success();
-
 			return Response::json($this->data);
-
 		}
 
 		/**
@@ -161,9 +159,25 @@
 			$user_connection->reject($request_id);
 
 			$this->_success();
-
 			return Response::json($this->data);
+		}
 
+		public function postGetTeam()
+		{
+			$user_id         = Input::get('user_id');
+			$user_connection = new UserConnection();
+			$sponsor         = $user_connection->getConnectedSponsor($user_id)->toArray();
+			$upline          = $user_connection->getConnectedUpline($user_id)->toArray();
+			$downline        = $user_connection->getConnectedDownline($user_id)->toArray();
+
+			$team = [
+				'sponsor'  => $sponsor,
+				'downline' => $downline,
+				'upline'   => $upline
+			];
+
+			$this->_success('Success', $team);
+			return Response::json($this->data);
 		}
 
 	}

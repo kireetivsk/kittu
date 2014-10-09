@@ -93,8 +93,9 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	];
 
     protected $hidden = [
-        'password',
-        'last_four',
+		'email',
+		'password',
+		'last_four',
         'last_ip',
         'last_login',
         'new_password_key',
@@ -253,7 +254,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
 	public function userConnected()
 	{
-		return $this->hasMany('UserConnection', 'connection_user_id');
+		return $this->hasMany('UserConnection', 'id', 'connection_user_id');
 	}
 
 	public function connectionRequest()

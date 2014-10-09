@@ -41,7 +41,6 @@
 														<i class="icon-comments-alt"></i>
 													</strong>
 													<span class="text-warning">{{request.user.first_name + " " + request.user.last_name}} - </span>
-													Email: {{request.user.email}}
 												</p>
 											</div>
 										</div>
@@ -118,7 +117,6 @@
 														<i class="icon-comments-alt"></i>
 													</strong>
 													<span class="text-warning">{{request.user.first_name + " " + request.user.last_name}} - </span>
-													Email: {{request.user.email}}
 												</p>
 											</div>
 										</div>

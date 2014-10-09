@@ -72,7 +72,7 @@ class UserConnection extends Ardent {
 
 	public function connectionUser()
 	{
-		return $this->belongsTo('User', 'id', 'connection_user_id');
+		return $this->belongsTo('User', 'connection_user_id');
 	}
 
 	public function userConnectionNote()
@@ -333,7 +333,7 @@ class UserConnection extends Ardent {
 		$this_connection = $this->find($request_id);
 
 		//set opposite connection
-		$relationship_opposite = MetaConnectionRelationship::getRelationshipOppositeById($this_connection->meta_connection_id);
+		$relationship_opposite = MetaConnectionRelationship::getRelationshipOppositeById($this_connection->meta_connection_relationship_id);
 		$opposite                                  = new self;
 		$opposite->user_id                         = $this_connection->connection_user_id;
 		$opposite->company_id                      = $this_connection->company_id;
@@ -372,6 +372,65 @@ class UserConnection extends Ardent {
 		$this_connection->updateUniques();
 	}
 
+	/**
+	 * Gets the user's downline
+	 *
+	 * @param $user_id
+	 *
+	 * @return mixed
+	 */
+	public function getConnectedDownline($user_id)
+	{
+		return $this
+			->where('user_id', '=', $user_id)
+			->where('meta_connection_relationship_id', '=', MetaConnectionRelationship::CONNECTION_RELATIONSHIP_DOWNLINE)
+			->with('connectionUser', 'metaConnectionRelationship')
+			->get();
+	}
+
+	/**
+	 * Gets the user's upline
+	 *
+	 * @param $user_id
+	 *
+	 * @return mixed
+	 */
+	public function getConnectedUpline($user_id)
+	{
+		return $this
+			->where('user_id', '=', $user_id)
+			->where('meta_connection_relationship_id', '=', MetaConnectionRelationship::CONNECTION_RELATIONSHIP_UPLINE)
+			->with('connectionUser', 'metaConnectionRelationship')
+			->get();
+	}
+
+	/**
+	 * Gets the user's sponsor
+	 *
+	 * @param $user_id
+	 *
+	 * @return mixed
+	 */
+	public function getConnectedSponsor($user_id)
+	{
+		return $this
+			->where('user_id', '=', $user_id)
+			->where('meta_connection_relationship_id', '=', MetaConnectionRelationship::CONNECTION_RELATIONSHIP_SPONSOR)
+			->with('connectionUser', 'metaConnectionRelationship')
+			->get();
+	}
+
+	/**
+	 * Gets the opposite connection
+	 * If x is connected to y
+	 * this gets the y->x connection
+	 *
+	 * @param $user_id
+	 * @param $company_id
+	 * @param $connection_user_id
+	 *
+	 * @return mixed
+	 */
 	private function _getOppositeconnection($user_id, $company_id, $connection_user_id)
 	{
 		return $this

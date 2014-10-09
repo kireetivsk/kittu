@@ -34,6 +34,11 @@
 
 		'connection_request_view_text' => "wants to connect with you as their ",
 
-		'no_new_connections'			=> 'You have no new connections.'
+		'no_new_connections'			=> 'You have no new connections.',
+
+		'sponsor'    => 'Sponsor',
+		'no_sponsor' => 'Add your sponsor',
+		'upline'     => 'Upline',
+		'downline'   => 'Downline',
 
 	);
