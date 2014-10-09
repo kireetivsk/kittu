@@ -49,6 +49,11 @@ dsk.controller('main', function ($scope, $http, Data) {
 			})
 	};
 
+	$scope.isActive = function (viewLocation)
+	{
+		return viewLocation === window.location.pathname;
+	};
+
 	getNotifications();
 
 	if (Data.getUser.lock !== true) {
