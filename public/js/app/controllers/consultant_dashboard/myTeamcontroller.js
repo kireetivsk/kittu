@@ -3,10 +3,7 @@ dsk.controller('myTeam', function ($scope, $http, Data) {
 	var getTeam = function()
 	{
 		var ajax_url = "/consultantapi/get-team";
-		var form_data = {
-			user_id: $scope.user.id
-		};
-		$http.post(ajax_url, form_data)
+		$http.post(ajax_url)
 			.success(function (data)
 			{
 				//successful

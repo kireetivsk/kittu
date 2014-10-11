@@ -43,6 +43,7 @@
 		 */
 		public function postClearNotifications()
 		{
+			//todo: check security on these input vars
 			$notification 	= new Notification();
 			$notifications 	= Input::get('notifications');
 
@@ -60,6 +61,7 @@
 		 */
 		public function postClearNotification()
 		{
+			//todo: check security on these input vars
 			$notification 				= new Notification();
 			$notification_to_delete 	= Input::get('notification');
 
@@ -99,7 +101,7 @@
 		 */
 		public function postGetConnectionRequests()
 		{
-			$user_id         = Input::get('user_id');
+			$user_id 		 = Auth::id();
 			$company_id      = Input::get('company_id');
 			$user_connection = new UserConnection();
 			$result          = $user_connection->getUserConnectionRequests($user_id, $company_id);
@@ -119,7 +121,7 @@
 		 */
 		public function postGetRejectedConnectionRequests()
 		{
-			$user_id         = Input::get('user_id');
+			$user_id 		 = Auth::id();
 			$company_id      = Input::get('company_id');
 			$user_connection = new UserConnection();
 			$result          = $user_connection->getRejectedUserConnectionRequests($user_id, $company_id);
@@ -139,6 +141,7 @@
 		 */
 		public function postAcceptRequest()
 		{
+			//todo: check security on these input vars
 			$request_id      = Input::get('request_id');
 			$user_connection = new UserConnection();
 			$user_connection->accept($request_id);
@@ -154,6 +157,7 @@
 		 */
 		public function postRejectRequest()
 		{
+			//todo: check security on these input vars
 			$request_id      = Input::get('request_id');
 			$user_connection = new UserConnection();
 			$user_connection->reject($request_id);
@@ -162,9 +166,14 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Get connected team members
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postGetTeam()
 		{
-			$user_id         = Input::get('user_id');
+			$user_id 		 = Auth::id();
 			$user_connection = new UserConnection();
 			$sponsor         = $user_connection->getConnectedSponsor($user_id)->toArray();
 			$upline          = $user_connection->getConnectedUpline($user_id)->toArray();

@@ -56,11 +56,7 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	var getConnectionRequests = function () {
 		var ajax_url = "/consultantapi/get-connection-requests";
-		var form_data = {
-			user_id: $scope.user.id,
-			company_id: $scope.user.current.company
-		};
-		$http.post(ajax_url, form_data)
+		$http.post(ajax_url)
 			.success(function (data) {
 				//successful
 				$scope.connection_requests = data.results;
@@ -70,11 +66,7 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	var getRejectedConnectionRequests = function () {
 		var ajax_url = "/consultantapi/get-rejected-connection-requests";
-		var form_data = {
-			user_id: $scope.user.id,
-			company_id: $scope.user.current.company
-		};
-		$http.post(ajax_url, form_data)
+		$http.post(ajax_url)
 			.success(function (data) {
 				//successful
 				$scope.rejected_connection_requests = data.results;
