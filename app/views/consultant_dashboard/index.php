@@ -1,4 +1,4 @@
-<div class="row" ng-controller="index">
+<div class="row" ng-controller="index" ng-cloak>
 	<div class="col-xs-12 col-sm-8">
 	<!-- PAGE CONTENT BEGINS -->
 

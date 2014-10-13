@@ -1,4 +1,4 @@
-<div class="row" ng-controller="home">
+<div class="row" ng-controller="home" ng-cloak>
     <div class="col-sm-7 center-block">
         <h1 class="text-center">404 - Page not found</h1>
         <p class="orange text-center">It's probably Doug's fault....</p>

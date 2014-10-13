@@ -1,4 +1,4 @@
-<div class="row" ng-controller="home">
+<div class="row" ng-controller="home" ng-cloak>
     <div class="col-sm-7 center-block">
         <h1 class="text-center">Manage your team</h1>
         <p class="orange text-center">Communicate efficiently with your downline.</p>

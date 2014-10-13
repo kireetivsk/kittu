@@ -1,4 +1,4 @@
-<div class="row" ng-controller="connectionRequest">
+<div class="row" ng-controller="connectionRequest" ng-cloak>
 	<div class="col-sm-12">
 		<!-- PAGE CONTENT BEGINS -->
 

@@ -1,4 +1,4 @@
-<div class="row" ng-controller="public">
+<div class="row" ng-controller="public" ng-cloak>
 	<div class="col-md-8 col-md-push-2">
 		<?php include(PARTIALS_DIR . '/login_form.php'); ?>
 		<?php if ($message): ?>

@@ -1,6 +1,6 @@
 		    </div><!-- #main_container .container_12 -->
         </div>
-		<div id="footer" class="navbar " ng-controller="footer">
+		<div id="footer" class="navbar " ng-controller="footer" ng-cloak>
             <div class="row">
                 <div class="col-sm-4 col-sm-push-4">
                     <p class="text-center">Looking for a direct sales company?</p>

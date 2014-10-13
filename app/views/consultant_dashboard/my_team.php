@@ -1,4 +1,4 @@
-<div class="row" ng-controller="myTeam">
+<div class="row" ng-controller="myTeam" ng-cloak>
 	<div class="col-sm-12">
 		<!-- PAGE CONTENT BEGINS -->
 

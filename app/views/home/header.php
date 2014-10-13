@@ -1,5 +1,5 @@
 	<body>
-		<div id="header" ng-controller="header">
+		<div id="header" ng-controller="header" ng-cloak>
 			<div class="row-fluid text-center">
 				<!-- logo and nav bar go here -->
 				<div class="col-sm-4">
