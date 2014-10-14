@@ -18,6 +18,13 @@
 class MetaMessageStatus extends Ardent {
 	protected $fillable = [];
 
+	const STATUS_NEW     = 1;
+	const STATUS_READ    = 2;
+	const STATUS_SENT    = 3;
+	const STATUS_DELETED = 4;
+	const STATUS_REVOKED = 5;
+	const STATUS_DRAFT   = 6;
+
 	//validation
 	public static $rules = [
 		'name' 				=> 'required|max:45',
@@ -27,11 +34,11 @@ class MetaMessageStatus extends Ardent {
 	//validation
 	public function toMessage()
 	{
-		return $this->hasOne('Message', 'to_message_status_id');
+		return $this->hasOne('Message', 'id', 'to_message_status_id');
 	}
 
 	public function fromMessage()
 	{
-		return $this->hasOne('Message', 'from_message_status_id');
+		return $this->hasOne('Message', 'id', 'from_message_status_id');
 	}
 }

@@ -28,4 +28,9 @@ class MessageFolder extends Ardent {
 	{
 		return $this->belongsTo('User');
 	}
+
+	public function message()
+	{
+		return $this->hasOne('Message');
+	}
 }

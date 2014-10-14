@@ -421,6 +421,22 @@ class UserConnection extends Ardent {
 	}
 
 	/**
+	 * Gets a user connection record for a relationship
+	 *
+	 * @param $user_id
+	 *
+	 * @return mixed
+	 */
+	public function getConnectedUser($user_id)
+	{
+		return $this->where('connection_user_id', '=', $user_id)
+					->where('user_id', '=', Auth::id())
+					->with('connectionUser', 'metaConnectionRelationship')
+					->get();
+
+	}
+
+	/**
 	 * Gets the opposite connection
 	 * If x is connected to y
 	 * this gets the y->x connection

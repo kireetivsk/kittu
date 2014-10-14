@@ -73,6 +73,13 @@
 			</a>
 		</li>
 
+		<li ng-class="{ active: isActive('/dashboard/messages')}">
+			<a href="/dashboard/messages">
+				<i class="icon-envelope-alt"></i>
+				<span class="menu-text"> Messages </span>
+			</a>
+		</li>
+
 		<li ng-class="{ active: isActive('/dashboard/crm')}">
 			<a href="/dashboard/crm">
 				<i class="icon-phone"></i>

@@ -34,11 +34,43 @@
 
 		'connection_request_view_text' => "wants to connect with you as their ",
 
-		'no_new_connections'			=> 'You have no new connections.',
+		'no_new_connections'           => 'You have no new connections.',
 
-		'sponsor'    => 'Sponsor',
-		'no_sponsor' => 'Add your sponsor',
-		'upline'     => 'Upline',
-		'downline'   => 'Downline',
+		'sponsor'                      => 'Sponsor',
+		'no_sponsor'                   => 'Add your sponsor',
+		'upline'                       => 'Upline',
+		'downline'                     => 'Downline',
+
+		//messages
+		'messages'                     => 'Messages',
+		'message_your_team'            => 'Message your team',
+		'send_message'                 => 'Send Message',
+		'inbox'                        => 'Inbox',
+		'sent'                         => 'Sent',
+		'drafts'                       => 'Draft',
+		'deleted'                      => 'Deleted',
+		'folders'                      => 'Folders',
+		'add_folder'                   => "Add folder",
+		'manage_folders'               => "Manage Folders",
+
+		'loading_messages'             => "Loading Messages",
+		'no_messages'                  => "No Messages To Display",
+		'recipient'                    => "Recipient",
+		'recipients'                   => "Recipient(s)",
+		'subject'                      => "Subject",
+		'message'                      => "Message",
+		'select_recipients'            => "Select Recipients",
+		'search'                       => "Search",
+
+		'new_message_notification'     => "You have a new message",
+		'new_message_body'             => ":name sent you a message.",
+		'from'                         => "From",
+		'to'                           => "To",
+		'delete_selected'              => "Delete Selected",
+		'mark_read'                    => "Mark as read",
+		'reply'                        => "Reply",
+		'delete'                       => "Delete",
+		'delete_for_real'              => "Delete for real. Cannot be undone!",
+		'restore'                      => "Restore",
 
 	);

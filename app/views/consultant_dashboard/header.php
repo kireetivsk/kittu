@@ -43,7 +43,7 @@
 	<!-- ace styles -->
 	<link rel="stylesheet" href="<?= CSS_DIR; ?>/ace/ace.min.css"/>
 	<link rel="stylesheet" href="<?= CSS_DIR; ?>/ace/ace-rtl.min.css"/>
-	<link rel="stylesheet" href="<?= CSS_DIR; ?>/ace/ace-skins.min.css"/>
+	<link rel="stylesheet" href="<?= CSS_DIR; ?>/ace/ace-skins.min.css" />
 
 	<!--[if lte IE 8]>
 	<link rel="stylesheet" href="<?= CSS_DIR; ?>/ace/ace-ie.min.css"/>
@@ -61,9 +61,13 @@
 	<script src=<?= JS_DIR; ?>"/ace/html5shiv.js"></script>
 	<script src=<?= JS_DIR; ?>"/ace/respond.min.js"></script>
 	<![endif]-->
+
+	<!-- dashboard overrides -->
+	<link rel="stylesheet" href="<?= CSS_DIR; ?>/dashboard_overrides.css" />
+
 </head>
 
-<body ng-controller="main">
+<body ng-controller="main" ng-cloak>
 	<?php require_once PARTIALS_DIR . "/dashboard_nav.php"; ?>
 
 	<div class="main-container" id="main-container">

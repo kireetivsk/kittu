@@ -94,6 +94,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
     protected $hidden = [
 		'email',
+		'username',
 		'password',
 		'last_four',
         'last_ip',
@@ -209,12 +210,12 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
 	public function toMessage()
 	{
-		return $this->hasMany('Message', 'to_user');
+		return $this->hasMany('Message', 'id', 'to_user');
 	}
 
 	public function fromMessage()
 	{
-		return $this->hasMany('Message', 'from_user');
+		return $this->hasMany('Message', 'id', 'from_user');
 	}
 
 	public function messageFolder()
@@ -461,6 +462,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
     public function getSettings($user_id)
     {
         $user = $this->with(['userSetting', 'userSetting.metaSettingType.metaSettingCategory'])->find($user_id);
+		$settings = [];
         foreach ($user->userSetting as $key => $value)
         {
             $settings[$value->meta_setting_type_id]['id']           = $value->id;

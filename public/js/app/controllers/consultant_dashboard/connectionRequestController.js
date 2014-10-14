@@ -54,26 +54,6 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	}
 
-	var getConnectionRequests = function () {
-		var ajax_url = "/consultantapi/get-connection-requests";
-		$http.post(ajax_url)
-			.success(function (data) {
-				//successful
-				$scope.connection_requests = data.results;
-			})
-
-	}
-
-	var getRejectedConnectionRequests = function () {
-		var ajax_url = "/consultantapi/get-rejected-connection-requests";
-		$http.post(ajax_url)
-			.success(function (data) {
-				//successful
-				$scope.rejected_connection_requests = data.results;
-			})
-
-	}
-
 	var interval = setInterval(function ()
 	{
 		if ($scope.user !== undefined) {
@@ -84,8 +64,8 @@ dsk.controller('connectionRequest', function ($scope, $http, Data) {
 
 	function waitForUser()
 	{
-		getConnectionRequests();
-		getRejectedConnectionRequests();
+		dsk.custom.getConnectionRequests($scope, $http);
+		dsk.custom.getRejectedConnectionRequests($scope, $http);
 
 	}
 

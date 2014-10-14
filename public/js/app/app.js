@@ -74,3 +74,78 @@ dsk.factory('Data', function ($http) {
 	}
 });
 
+//reusable function for the app
+dsk.custom = {
+	getTeam : function ($scope, $http)
+	{
+		var ajax_url = "/consultantapi/get-team";
+		$http.post(ajax_url)
+			.success(function (data)
+			{
+				//successful
+				if (data.code == 200) {
+					$scope.sponsor = data.results.sponsor;
+					$scope.upline = data.results.upline;
+					$scope.downline = data.results.downline;
+				} else { //failed
+					message = data.message === undefined ? "Unknown error." : data.message;
+					$scope.$parent.connection_requests[index].alert = {message: message, type: "alert-danger"};
+				}
+			})
+	},
+
+	getFolders : function ($scope, $http)
+	{
+		var ajax_url = "/consultantapi/get-folders";
+		$http.post(ajax_url)
+			.success(function (data)
+			{
+				//successful
+				if (data.code == 200) {
+					$scope.folders = data.results;
+				} else { //failed
+					message = data.message === undefined ? "Unknown error." : data.message;
+					$scope.alert = {message: message, type: "alert-danger"};
+				}
+			})
+	},
+
+	getMessages : function ($scope, $http)
+	{
+		var ajax_url = "/consultantapi/get-messages";
+		$http.post(ajax_url)
+			.success(function (data)
+			{
+				//successful
+				if (data.code == 200) {
+					$scope.messages = data.results;
+				} else { //failed
+					message = data.message === undefined ? "Unknown error." : data.message;
+					$scope.alert = {message: message, type: "alert-danger"};
+				}
+			})
+	},
+
+	getConnectionRequests : function ($scope, $http)
+	{
+		var ajax_url = "/consultantapi/get-connection-requests";
+		$http.post(ajax_url)
+			.success(function (data)
+			{
+				//successful
+				$scope.connection_requests = data.results;
+			})
+	},
+
+	getRejectedConnectionRequests : function ($scope, $http)
+	{
+		var ajax_url = "/consultantapi/get-rejected-connection-requests";
+		$http.post(ajax_url)
+			.success(function (data)
+			{
+				//successful
+				$scope.rejected_connection_requests = data.results;
+			})
+	}
+
+};

@@ -24,6 +24,11 @@ class ConsultantDashboardController extends BaseController {
 		}
 	}
 
+	/**
+	 * Main consultant dashboard page
+	 *
+	 * @return \Illuminate\View\View
+	 */
 	public function getIndex()
 	{
 		$this->data['view']        = 'index';
@@ -48,6 +53,11 @@ class ConsultantDashboardController extends BaseController {
 		return View::make('template_consultant_dashboard', $this->data);
 	}
 
+	/**
+	 * Manage connection requests
+	 *
+	 * @return \Illuminate\View\View
+	 */
 	public function getConnectionRequests()
 	{
 		$this->data['view']        = 'connection_requests';
@@ -56,10 +66,32 @@ class ConsultantDashboardController extends BaseController {
 		return View::make('template_consultant_dashboard', $this->data);
 	}
 
+	/**
+	 * View team
+	 *
+	 * @return \Illuminate\View\View
+	 */
 	public function getMyTeam()
 	{
 		$this->data['view']        = 'my_team';
 		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/myTeamController.js";
+
+		return View::make('template_consultant_dashboard', $this->data);
+	}
+
+	/**
+	 * view manage and write messages
+	 *
+	 * @return \Illuminate\View\View
+	 */
+	public function getMessages()
+	{
+		$this->data['view']        = 'messages';
+		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/messagesController.js";
+		$this->data['files']->js[] = DS . ACE_DIR . "/jquery-ui-1.10.3.custom.min.js";
+		$this->data['files']->js[] = DS . ACE_DIR . "/jquery.ui.touch-punch.min.js";
+		$this->data['files']->js[] = DS . ACE_DIR . "/jquery.slimscroll.min.js";
+		$this->data['files']->js[] = "/$this->_module/messages.js";
 
 		return View::make('template_consultant_dashboard', $this->data);
 	}
