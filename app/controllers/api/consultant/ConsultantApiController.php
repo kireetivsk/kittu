@@ -315,8 +315,7 @@
 					//if it's already deleted, delete it for real
 					if ($message->to_meta_message_status_id == MetaMessageStatus::STATUS_DELETED)
 					{
-						$message->delete();
-						continue;
+						$message->to_meta_message_status_id = MetaMessageStatus::STATUS_DELETED_FOR_REAL;
 					} else {
 						$message->to_meta_message_status_id = MetaMessageStatus::STATUS_DELETED;
 					}
@@ -346,18 +345,14 @@
 			$message_data                       = Input::get('message');
 			$message                            = Message::find($message_data['id']);
 			if ($message->from_user == Auth::id()) { //from
+				$message->from_meta_message_status_id = MetaMessageStatus::STATUS_DELETED;
+			} elseif ($message->to_user == Auth::id()) { //to
 				if ($message->to_meta_message_status_id == MetaMessageStatus::STATUS_DELETED)
 				{
-					$message->delete();
-					$this->_success("Message(s) deleted.");
-					return Response::json($this->data);
+					$message->to_meta_message_status_id = MetaMessageStatus::STATUS_DELETED_FOR_REAL;
 				} else
-				{
-					$message->from_meta_message_status_id = MetaMessageStatus::STATUS_DELETED;
-				}
-			} elseif ($message->to_user == Auth::id()) //to
-				$message->to_meta_message_status_id = MetaMessageStatus::STATUS_DELETED;
-			else { //message not sent to or by logged in user so they shouldn't be able to delete it
+					$message->to_meta_message_status_id = MetaMessageStatus::STATUS_DELETED;
+			} else { //message not sent to or by logged in user so they shouldn't be able to delete it
 				$this->_error(403, "Permission denied");
 				return Response::json($this->data);
 			}

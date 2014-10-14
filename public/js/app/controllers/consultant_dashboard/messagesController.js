@@ -105,6 +105,9 @@ dsk.controller('messages', function ($scope, $http) {
 				}
 				//clear $scope.to_delete array for selected tab
 				$scope.to_delete[tab.toLowerCase()].splice(0);
+				//clear selected messages
+				$scope.message_checkbox.splice(0);
+				$scope.selectedAll = false;
 				//reload messages
 				dsk.custom.getMessages($scope, $http);
 
@@ -137,6 +140,9 @@ dsk.controller('messages', function ($scope, $http) {
 					message = data.message === undefined ? "Unknown error." : data.message;
 					$scope.message_delete.alert = {message: message, type: "danger"};
 				}
+				//clear selected messages
+				$scope.selectedAll = false;
+				$scope.message_checkbox.splice(0);
 			})
 			.error(function (data)
 			{

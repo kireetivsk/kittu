@@ -1,4 +1,4 @@
-<div ng-hide="messages">
+<div ng-hide="messages !== undefined">
 	<div class="row">
 		<div class="col-xs-8 col-xs-push-2">
 			<p class="text-center"><?= trans('general.loading_messages'); ?></p>
