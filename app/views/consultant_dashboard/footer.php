@@ -43,7 +43,6 @@
 			}
 		?>
 
-
 		<!-- ace scripts -->
 		<?php if (App::environment('local')): ?>
 			<script src="<?= JS_DIR; ?>/ace/ace-elements.min.js"></script>

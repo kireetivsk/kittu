@@ -71,6 +71,13 @@
 		'reply'                        => "Reply",
 		'delete'                       => "Delete",
 		'delete_for_real'              => "Delete for real. Cannot be undone!",
-		'restore'                      => "Restore",
+		'restore' => "Restore",
+
+		'dashboard'         => "Dashboard",
+		'dashboard_message' => "It all starts here...",
+		'my_team'         => "My Team",
+		'my_team_message' => "Manage your team",
+		'connection_requests'         => "Connection requests",
+		'connection_requests_message' => "Manage your connection requests",
 
 	);

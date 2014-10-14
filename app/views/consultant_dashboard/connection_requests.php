@@ -1,4 +1,14 @@
 <div class="row" ng-controller="connectionRequest" ng-cloak>
+	<div class="page-header">
+		<h1>
+			<?= trans('general.connection_requests'); ?>
+			<small>
+				<i class="icon-double-angle-right"></i>
+				<?= trans('general.connection_requests_message'); ?>
+			</small>
+		</h1>
+	</div>
+	<!-- /.page-header -->
 	<div class="col-sm-12">
 		<!-- PAGE CONTENT BEGINS -->
 

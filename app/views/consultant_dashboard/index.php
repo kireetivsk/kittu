@@ -1,7 +1,15 @@
 <div class="row" ng-controller="index" ng-cloak>
+	<div class="page-header">
+		<h1>
+			<?= trans('general.dashboard'); ?>
+			<small>
+				<i class="icon-double-angle-right"></i>
+				<?= trans('general.dashboard_message'); ?>
+			</small>
+		</h1>
+	</div>
+	<!-- /.page-header -->
 	<div class="col-xs-12 col-sm-8">
-	<!-- PAGE CONTENT BEGINS -->
-
 		<div class="row">
 			<div class="col-xs-12 widget-container-span">
 				<div class="widget-box">

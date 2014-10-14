@@ -1,4 +1,14 @@
 <div class="row" ng-controller="myTeam" ng-cloak>
+	<div class="page-header">
+		<h1>
+			<?= trans('general.my_team'); ?>
+			<small>
+				<i class="icon-double-angle-right"></i>
+				<?= trans('general.my_team_message'); ?>
+			</small>
+		</h1>
+	</div>
+	<!-- /.page-header -->
 	<div class="col-sm-12">
 		<!-- PAGE CONTENT BEGINS -->
 
