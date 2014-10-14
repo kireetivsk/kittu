@@ -137,7 +137,7 @@ dsk.custom = {
 			})
 	},
 
-	getRejectedConnectionRequests : function ($scope, $http)
+	getRejectedConnectionRequests: function ($scope, $http)
 	{
 		var ajax_url = "/consultantapi/get-rejected-connection-requests";
 		$http.post(ajax_url)
@@ -145,6 +145,17 @@ dsk.custom = {
 			{
 				//successful
 				$scope.rejected_connection_requests = data.results;
+			})
+	},
+
+	getConsultantProfile: function ($scope, $http)
+	{
+		var ajax_url = "/consultantapi/get-consultant-profile";
+		$http.post(ajax_url)
+			.success(function (data)
+			{
+				//successful
+				$scope.consultant_profile = data.results;
 			})
 	}
 

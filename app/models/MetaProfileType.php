@@ -25,29 +25,34 @@
 class MetaProfileType extends Ardent {
 	protected $fillable = [];
 
+	const PROFILE_TYPE_CONSULTANT  = 'consultant';
+	const PROFILE_TYPE_COMPANY     = 'company';
+	const PROFILE_TYPE_MARKETPLACE = 'marketplace';
+	const PROFILE_TYPE_ADVERTISER  = 'advertiser';
+
 	//validation
 	public static $rules = [
 		'name' 							=> 'required|max:45',
 		'description' 					=> 'max:100',
 		'default_value'					=> 'required|max:100',
-		'meta_profile_category_id'		=> 'required|integer',
-		'profile_type'					=> 'required|in:user,company'
+		'meta_profile_category_id'		=> 'integer',
+		'profile_type'					=> 'required|in:user,company,marketplace,advertiser'
 	];
 
 	//relationships
 	public function metaProfileCategory()
 	{
-		return $this->belongsTo('MetaProfileCategory');
+		return $this->hasOne('MetaProfileCategory');
 	}
 
 	public function companyProfile()
 	{
-		return $this->hasOne('CompanyProfile');
+		return $this->belongsTo('CompanyProfile');
 	}
 
 	public function userProfile()
 	{
-		return $this->hasOne('UserProfile');
+		return $this->belongsto('UserProfile');
 	}
 
 

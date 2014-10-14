@@ -284,7 +284,7 @@
 
 			foreach($messages['recipients'] as $key => $value)
 			{
-				// todo check permissions here - make sure the recipient can recieve from this user
+				// todo check permissions here - make sure the recipient can receive from this user
 				$message = new Message();
 				$message->saveMessage($value['connection_user_id'], $messages['subject'], $messages['content']);
 			}
@@ -341,9 +341,8 @@
 		 */
 		public function postDeleteMessage()
 		{
-			//todo security on input - make sure the logged in user owns the messages to delete
-			$message_data                       = Input::get('message');
-			$message                            = Message::find($message_data['id']);
+			$message_data = Input::get('message');
+			$message      = Message::find($message_data['id']);
 			if ($message->from_user == Auth::id()) { //from
 				$message->from_meta_message_status_id = MetaMessageStatus::STATUS_DELETED;
 			} elseif ($message->to_user == Auth::id()) { //to
@@ -382,4 +381,12 @@
 			return Response::json($this->data);
 		}
 
+		public function postGetConsultantProfile()
+		{
+			$user_profile = new UserProfile();
+			$profile = $user_profile->getConsultantProfile(Auth::id());
+			$this->_success('Success', $profile);
+
+			return Response::json($this->data);
+		}
 	}

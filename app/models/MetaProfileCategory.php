@@ -19,14 +19,14 @@ class MetaProfileCategory extends Ardent {
 
 	//validation
 	public static $rules = [
-		'name' 				=> 'required|max:45',
-		'description' 		=> 'max:100'
+		'name'                     => 'required|max:45',
+		'description'              => 'max:100',
 	];
 
 	//relationships
 	public function metaProfileType()
 	{
-		return $this->hasOne('MetaProfileType');
+		return $this->belongsTo('MetaProfileType');
 	}
 
 }

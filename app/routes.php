@@ -12,9 +12,11 @@
 */
 
 	//api
-    //public
-    Route::controller('publicapi', 			'PublicApiController');
-    //public
+	//public
+	Route::controller('q', 					'TinkerController');
+	//public
+	Route::controller('publicapi', 			'PublicApiController');
+	//consultant
     Route::controller('consultantapi', 		'ConsultantApiController');
 
 	//public

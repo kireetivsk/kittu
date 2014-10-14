@@ -34,12 +34,30 @@ class UserProfile extends Ardent {
 	//relationships
 	public function metaProfileType()
 	{
-		return $this->belongsTo('MetaProfileType');
+		return $this->hasMany('MetaProfileType');
 	}
 
 	public function user()
 	{
 		return$this->belongsTo('User');
+	}
+
+	//public functions
+
+	public function getConsultantProfile($user_id)
+	{
+		//get profile fields
+		$profile_types = new MetaProfileType();
+		$fields = $profile_types->where('profile_type', '=', MetaProfileType::PROFILE_TYPE_CONSULTANT)->get()->toArray();
+		//remap array
+		foreach ($fields as $value){
+			$new_fields[$value['name']] = $value;
+		}
+
+		//get profile values
+		$profile = $this->with('metaProfiletype')->whereUserId($user_id)->get()->toArray();
+
+		return ['fields'=> $fields, 'profile'=>$profile];
 	}
 
 }

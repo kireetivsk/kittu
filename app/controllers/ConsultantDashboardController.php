@@ -40,7 +40,7 @@ class ConsultantDashboardController extends BaseController {
 	public function getProfile()
 	{
 		$this->data['view']        = 'profile';
-		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/Controller.js";
+		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/profileController.js";
 
 		return View::make('template_consultant_dashboard', $this->data);
 	}

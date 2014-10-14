@@ -34,7 +34,7 @@ class CompanyProfile extends Ardent {
 	//relationships
 	public function metaProfileType()
 	{
-		return $this->belongsTo('MetaProfileType');
+		return $this->hasMany('MetaProfileType');
 	}
 
 	public function company()
