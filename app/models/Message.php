@@ -28,6 +28,9 @@
  * @property-read \User $fromUser
  * @property-read \MetaMessageStatus $toMetaMessageStatus
  * @property-read \MetaMessageStatus $fromMetaMessageStatus
+ * @property integer $message_folder_id
+ * @property-read \MessageFolder $messageFolder
+ * @method static \Illuminate\Database\Query\Builder|\Message whereMessageFolderId($value) 
  */
 class Message extends Ardent {
 	protected $fillable = [];

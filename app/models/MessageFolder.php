@@ -13,6 +13,11 @@
  * @method static \Illuminate\Database\Query\Builder|\MessageFolder whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\MessageFolder whereDescription($value)
  * @property-read \User $user
+ * @property string $slug
+ * @property string $color
+ * @property-read \Message $message
+ * @method static \Illuminate\Database\Query\Builder|\MessageFolder whereSlug($value) 
+ * @method static \Illuminate\Database\Query\Builder|\MessageFolder whereColor($value) 
  */
 class MessageFolder extends Ardent {
 	protected $fillable = [];

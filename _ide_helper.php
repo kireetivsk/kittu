@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.9 on 2014-10-05.
+ * Generated for Laravel 4.2.9 on 2014-10-17.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12213,6 +12213,221 @@ namespace {
          */
         public static function getNames(){
             return \Illuminate\View\Factory::getNames();
+        }
+        
+    }
+
+
+    class AWS extends \Aws\Laravel\AwsFacade{
+        
+        /**
+         * Create a new service locator for the AWS SDK
+         * 
+         * You can configure the service locator is four different ways:
+         * 
+         * 1. Use the default configuration file shipped with the SDK that wires class names with service short names and
+         *    specify global parameters to add to every definition (e.g. key, secret, credentials, etc)
+         * 
+         * 2. Use a custom configuration file that extends the default config and supplies credentials for each service.
+         * 
+         * 3. Use a custom config file that wires services to custom short names for services.
+         * 
+         * 4. If you are on Amazon EC2, you can use the default configuration file and not provide any credentials so that
+         *    you are using InstanceProfile credentials.
+         *
+         * @param array|string $config The full path to a .php or .js|.json file, or an associative array of data
+         *                                       to use as global parameters to pass to each service.
+         * @param array $globalParameters Global parameters to pass to every service as it is instantiated.
+         * @return \Aws\Common\Aws 
+         * @static 
+         */
+        public static function factory($config = null, $globalParameters = array()){
+            return \Aws\Common\Aws::factory($config, $globalParameters);
+        }
+        
+        /**
+         * Get the full path to the default service builder definition file
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultServiceDefinition(){
+            return \Aws\Common\Aws::getDefaultServiceDefinition();
+        }
+        
+        /**
+         * Returns the configuration for the service builder
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getConfig(){
+            return \Aws\Common\Aws::getConfig();
+        }
+        
+        /**
+         * Enables the facades for the clients defined in the service builder
+         *
+         * @param string|null $namespace The namespace that the facades should be mounted to. Defaults to global namespace
+         * @return \Aws\Common\Aws 
+         * @static 
+         */
+        public static function enableFacades($namespace = null){
+            return \Aws\Common\Aws::enableFacades($namespace);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getAllEvents(){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::getAllEvents();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function unserialize($serialized){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::unserialize($serialized);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function serialize(){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::serialize();
+        }
+        
+        /**
+         * Attach a plugin to every client created by the builder
+         *
+         * @param \Guzzle\Service\Builder\EventSubscriberInterface $plugin Plugin to attach to each client
+         * @return self 
+         * @static 
+         */
+        public static function addGlobalPlugin($plugin){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::addGlobalPlugin($plugin);
+        }
+        
+        /**
+         * Get data from the service builder without triggering the building of a service
+         *
+         * @param string $name Name of the service to retrieve
+         * @return array|null 
+         * @static 
+         */
+        public static function getData($name){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::getData($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function get($name, $throwAway = false){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::get($name, $throwAway);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function set($key, $service){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::set($key, $service);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetSet($offset, $value){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::offsetSet($offset, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetUnset($offset){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::offsetUnset($offset);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetExists($offset){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::offsetExists($offset);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetGet($offset){
+            //Method inherited from \Guzzle\Service\Builder\ServiceBuilder            
+            return \Aws\Common\Aws::offsetGet($offset);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function setEventDispatcher($eventDispatcher){
+            //Method inherited from \Guzzle\Common\AbstractHasDispatcher            
+            return \Aws\Common\Aws::setEventDispatcher($eventDispatcher);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getEventDispatcher(){
+            //Method inherited from \Guzzle\Common\AbstractHasDispatcher            
+            return \Aws\Common\Aws::getEventDispatcher();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function dispatch($eventName, $context = array()){
+            //Method inherited from \Guzzle\Common\AbstractHasDispatcher            
+            return \Aws\Common\Aws::dispatch($eventName, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function addSubscriber($subscriber){
+            //Method inherited from \Guzzle\Common\AbstractHasDispatcher            
+            return \Aws\Common\Aws::addSubscriber($subscriber);
         }
         
     }
