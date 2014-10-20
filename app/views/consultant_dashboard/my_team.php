@@ -20,9 +20,6 @@
 						<h5><?= trans('general.sponsor'); ?></h5>
 
 						<div class="widget-toolbar">
-							<a href="#" data-action="reload">
-								<i class="icon-refresh"></i>
-							</a>
 							<a href="#" data-action="collapse">
 								<i class="icon-chevron-up"></i>
 							</a>
@@ -58,26 +55,20 @@
 											</div>
 										</div>
 									</div>
-									<div
-										class="alert {{person.alert.type}}"
-										role="alert"
-										ng-show="person.alert">
-										{{person.alert.message}}
-									</div>
 
 								</div>
 								<div class="col-md-4 panel-group">
 									<div class="row">
 										<div class="col-xs-12">
 											<button class="btn btn-primary"
-												ng-click="option1(person.id, $index)">
+												ng-click="message(person)">
 												<i class="icon-envelope align-top bigger-125"></i>
-												Message
+												<?= trans('general.message'); ?>
 											</button>
-											<button class="btn btn-info"
+											<button class="btn btn-danger"
 													ng-click="option1(person.id, $index)">
-												<i class="icon-share-alt align-top bigger-125"></i>
-												Visit
+												<i class="icon-remove-circle align-top bigger-125"></i>
+												<?= trans('general.block'); ?>
 											</button>
 										</div>
 									</div>
@@ -102,9 +93,6 @@
 						<h5><?= trans('general.upline'); ?></h5>
 
 						<div class="widget-toolbar">
-							<a href="#" data-action="reload">
-								<i class="icon-refresh"></i>
-							</a>
 							<a href="#" data-action="collapse">
 								<i class="icon-chevron-up"></i>
 							</a>
@@ -142,12 +130,6 @@
 											</div>
 										</div>
 									</div>
-									<div
-										class="alert {{person.alert.type}}"
-										role="alert"
-										ng-show="person.alert">
-										{{person.alert.message}}
-									</div>
 
 								</div>
 								<div class="col-md-4 panel-group">
@@ -183,9 +165,6 @@
 						<h5><?= trans('general.downline'); ?></h5>
 
 						<div class="widget-toolbar">
-							<a href="#" data-action="reload">
-								<i class="icon-refresh"></i>
-							</a>
 							<a href="#" data-action="collapse">
 								<i class="icon-chevron-up"></i>
 							</a>
@@ -221,12 +200,6 @@
 												</p>
 											</div>
 										</div>
-									</div>
-									<div
-										class="alert {{person.alert.type}}"
-										role="alert"
-										ng-show="person.alert">
-										{{person.alert.message}}
 									</div>
 
 								</div>

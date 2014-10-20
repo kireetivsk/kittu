@@ -109,7 +109,8 @@
 		'add_company' => 'Add Company',
 		'add' => 'Add',
 
-		'company_name_invalid' => 'Company name invalid'
+		'company_name_invalid' => 'Company name invalid',
 
+		'block' => 'Block',
 
 	);

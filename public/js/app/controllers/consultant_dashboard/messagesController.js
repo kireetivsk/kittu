@@ -1,6 +1,5 @@
 dsk.controller('messages', function ($scope, $http) {
 
-	$scope.tab = "Inbox";
 	$scope.send_message 				= {};
 	$scope.send_message.recipients 		= [];
 	$scope.send_message.single 			= false;
@@ -283,6 +282,18 @@ dsk.controller('messages', function ($scope, $http) {
 		//getFolders();
 		dsk.custom.getMessages($scope, $http);
 		dsk.custom.getTeam($scope, $http);
+		/**
+		 * See if we were sent from the team page
+		 */
+		if (sessionStorage.send_to !== undefined)
+		{
+			$scope.reply(angular.fromJson(sessionStorage.send_to));
+			sessionStorage.removeItem('send_to');
+		}
+
+
 	}
+
+	$scope.tab = "Inbox";
 
 });
