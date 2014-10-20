@@ -381,12 +381,224 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * get the consultant profile and settings
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postGetConsultantProfile()
 		{
 			$user_profile = new UserProfile();
 			$profile = $user_profile->getConsultantProfile(Auth::id());
+
+			//avatar
+			if (array_key_exists('avatar', $profile['profile']))
+				$profile['profile']['avatar']['url'] = S3_URL . AVATAR_FOLDER . DS . $profile['profile']['avatar']['value'];
+			else
+				$profile['profile']['avatar']['url'] = S3_URL . AVATAR_FOLDER . DS . AVATAR_DEFAULT_FILENAME;
+
+			//email
+			$user = new User();
+			$user_data = $user->find(Auth::id());
+			$profile['profile']['email'] = $user_data->email;
+
+			//socials
+			$social_networks = new MetaSocialNetwork();
+			$networks = $social_networks->all();
+			foreach($networks as $value)
+				$networks_clean[$value->slug] = $value;
+			$profile['fields']['socials'] = $networks_clean;
+
+			if (array_key_exists('social', $profile['profile']))
+			{
+				$profile_socials = json_decode($profile['profile']['social']['value']);
+				foreach($profile['fields']['socials'] as $value) {
+					$profile['profile']['socials'][$value->slug] = [
+						'network_name' => $networks_clean[$value->slug]->name,
+						'network_id'   => $networks_clean[$value->slug]->id,
+						'webpage'      => $profile_socials->{$value->slug}->webpage
+					];
+				}
+				unset($profile['profile']['social']);
+			} else {
+				foreach($profile['fields']['socials'] as $value)
+					$profile['profile']['socials'][$value->slug] = ['webpage' => '', 'network_name' => '', 'network_id' => ''];
+			}
+
+			//get companies
+			$user_companies = $user->find(Auth::id())->company()->get();
+			foreach($user_companies as $company)
+			{
+				$count = UserConnection::where('user_id', '=', Auth::id())->where('company_id', '=', $company->id)->count();
+				$profile['profile']['companies'][$company->slug] = $company;
+				$profile['profile']['companies'][$company->slug]['connections'] = $count;
+			}
+
 			$this->_success('Success', $profile);
 
 			return Response::json($this->data);
 		}
+
+		/**
+		 * upload a photo
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postUploadPhoto()
+		{
+			if (Input::hasFile('photo') && Input::file('photo')->isValid())
+			{
+				$approved_exts = [
+					'jpg', 'gif', 'png', 'jpeg'
+				];
+				$file = Input::file('photo');
+				$ext = $file->getClientOriginalExtension();
+				if (!in_array(strtolower($ext), $approved_exts))
+				{
+					$this->_error(500, trans('general.invalid_file_type'));
+					return Response::json($this->data);
+				}
+				if ($file->getSize() > MAX_UPLOAD_SIZE)
+				{
+					$this->_error(500, trans('general.file_too_big', ['size' => MAX_UPLOAD_SIZE]));
+					return Response::json($this->data);
+				}
+				$file_name = 'avatar_' . Auth::id() . '.' . $ext;
+
+				$s3 = AWS::get('s3');
+				$result = $s3->putObject(array(
+											 'Bucket'     => 'dskapp',
+											 'Key'        => AVATAR_FOLDER . DS . $file_name,
+											 'SourceFile' => $file->getRealPath(),
+											 'ACL' => 'public-read'
+										 ));
+
+				$data = $result->toArray();
+				$saved_path = $data['ObjectURL'];
+
+				//save as setting
+				$profile = new UserProfile();
+				$profile->set(Auth::id(), MetaProfileType::PROFILE_FIELD_AVATAR, $file_name);
+
+				$this->_success('Success', ['img_url' => $saved_path]);
+				return Response::json($this->data);
+			} else {
+				$this->_error(500, "Invalid file");
+
+				return Response::json($this->data);
+			}
+
+		}
+
+		/**
+		 * edit a profile field
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postProfileEdit()
+		{
+			$profile_data = Input::get('value');
+			$profile_field = Input::get('field');
+
+			//get profile type
+			$meta_profile_type = new MetaProfileType();
+			$profile_type = $meta_profile_type->whereSlug($profile_field)->get();
+
+			//save
+			$profile = new UserProfile();
+			$profile->set(Auth::id(), $profile_type->first()->id, $profile_data);
+
+			$this->_success(trans('general.saved'));
+			return Response::json($this->data);
+		}
+
+		/**
+		 * Special handling of the email profile field since it's in the users table
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postEmailEdit()
+		{
+			$user = new User();
+			$this_user = $user->find(Auth::id());
+			$this_user->email = Input::get('email');
+
+			$this_user->updateUniques();
+
+			if ($this_user->validate()) {
+				$this->_success(trans('general.saved'));
+
+				return Response::json($this->data);
+			} else {
+				$this->_error(500, $this_user->validationErrors->first('email'));
+
+				return Response::json($this->data);
+
+			}
+		}
+
+		public function postSocialEdit()
+		{
+			$socials = [];
+			$data = Input::get('data');
+			foreach($data as $key => &$value)
+			{
+				if (!empty($value['new_value']))
+				{
+					$validator =  Validator::make(
+						array('url' => $value['new_value']),
+						array('url' => 'required|url')
+					);
+					if ($validator->fails())
+					{
+						$this->_error(500, $validator->messages()->first('url'));
+						return Response::json($this->data);
+					}
+					$value['webpage'] = $value['new_value'];
+				}
+				unset($data[$key]['new_value']);
+				$socials[$key] = $value;
+			}
+			$result = json_encode($socials);
+
+			//save
+			$profile = new UserProfile();
+			$profile->set(Auth::id(), MetaProfileType::PROFILE_FIELD_SOCIAL, $result);
+
+			$this->_success(trans('general.saved'), $socials);
+			return Response::json($this->data);
+		}
+
+		public function postDeleteCompanyConnection()
+		{
+			$data = Input::get('connection');
+			$user = new User();
+			$user->deleteCompanyConnection(Auth::id(), $data['pivot']['company_id']);
+
+			$this->_success();
+			return Response::json($this->data);
+		}
+
+		public function postAddCompany()
+		{
+			$user = User::find(Auth::id());
+			$company_id = Input::get('company_id');
+			$company_name = Input::get('company_name');
+
+			if (empty($company_id))
+			{
+				$company = new Company();
+				if (!$company_id = $company->addByName($company_name))
+				{
+					$this->_error(500, trans('general.company_name_invalid'));
+					return Response::json($this->data);
+				}
+			}
+			$user->company()->attach($company_id);
+
+			$this->_success();
+			return Response::json($this->data);
+		}
+
 	}
+

@@ -84,6 +84,32 @@
 
 		'companies'                    => 'Companies',
 		'settings'                     => "Settings",
-		'privacy'                      => 'Privacy'
+		'privacy'                      => 'Privacy',
+
+		'upload_photo' => 'Upload Photo',
+		'change_photo' => 'Change Photo',
+
+		'invalid_file_type' => 'Invalid file type',
+		'file_too_big' => 'File must be under :size B',
+
+		'saved' => 'Saved',
+
+		'display_name' => 'Display name',
+		'email' => 'Email',
+		'location' => 'Location',
+		'phone' => 'Phone',
+		'website' => 'Website',
+		'save' => 'Save',
+		'cancel' => 'Cancel',
+
+		'connections' => 'Connections:',
+		'company_connected_date' => 'Connected on:',
+
+		'companies_associated_with' => 'Companies you are associated with:',
+		'add_company' => 'Add Company',
+		'add' => 'Add',
+
+		'company_name_invalid' => 'Company name invalid'
+
 
 	);

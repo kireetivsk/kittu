@@ -76,9 +76,9 @@ class UserSetting extends Ardent {
 	{
 		$table_name = $this->getTable();
 		$sql = "INSERT INTO $table_name
-				(user_id, meta_setting_type_id, value)
-				VALUES ($user_id, $setting_id, '$value')
-				ON DUPLICATE KEY UPDATE value = '$value'";
+				(user_id, meta_setting_type_id, value, created_at)
+				VALUES ($user_id, $setting_id, '$value', NOW())
+				ON DUPLICATE KEY UPDATE value = '$value', updated_at = NOW()";
 		DB::statement($sql);
 	}
 

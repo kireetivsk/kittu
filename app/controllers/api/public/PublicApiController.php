@@ -193,5 +193,5 @@
 
 			return Response::json($this->data);
 		}
-
+		
 	}

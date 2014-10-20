@@ -30,6 +30,14 @@ class MetaProfileType extends Ardent {
 	const PROFILE_TYPE_MARKETPLACE = 'marketplace';
 	const PROFILE_TYPE_ADVERTISER  = 'advertiser';
 
+	const PROFILE_FIELD_DISPLAY_NAME = 1;
+	const PROFILE_FIELD_AVATAR = 2;
+	const PROFILE_FIELD_LOCATION = 3;
+	const PROFILE_FIELD_URL = 4;
+	const PROFILE_FIELD_SOCIAL = 5;
+	const PROFILE_FIELD_PHONE = 6;
+	const PROFILE_FIELD_COMPANY_RANK = 7;
+
 	//validation
 	public static $rules = [
 		'name' 							=> 'required|max:45',
@@ -42,17 +50,17 @@ class MetaProfileType extends Ardent {
 	//relationships
 	public function metaProfileCategory()
 	{
-		return $this->hasOne('MetaProfileCategory');
+		return $this->belongsTo('MetaProfileCategory');
 	}
 
 	public function companyProfile()
 	{
-		return $this->belongsTo('CompanyProfile');
+		return $this->hasOne('CompanyProfile');
 	}
 
 	public function userProfile()
 	{
-		return $this->belongsto('UserProfile');
+		return $this->hasOne('UserProfile');
 	}
 
 

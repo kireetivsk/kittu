@@ -34,3 +34,9 @@
 
 	define('REGISTRATION_EMAIL', 'registrations@directsaleskit.com');
 	define('NOREPLY_EMAIL', 'noreply@directsaleskit.com');
+
+	define('AVATAR_FOLDER', '/avatars');
+	define('AVATAR_DEFAULT_FILENAME', 'default.png');
+	define('S3_URL', 'https://s3-us-west-2.amazonaws.com/dskapp');
+
+	define('MAX_UPLOAD_SIZE', 10000000);

@@ -34,7 +34,7 @@ class UserProfile extends Ardent {
 	//relationships
 	public function metaProfileType()
 	{
-		return $this->hasMany('MetaProfileType');
+		return $this->belongsTo('MetaProfileType');
 	}
 
 	public function user()
@@ -44,20 +44,36 @@ class UserProfile extends Ardent {
 
 	//public functions
 
+	public function set($user_id, $setting_id, $value)
+	{
+		$table_name = $this->getTable();
+		$sql = "INSERT INTO $table_name
+				(user_id, meta_profile_type_id, value, created_at)
+				VALUES ($user_id, $setting_id, '$value', NOW())
+				ON DUPLICATE KEY UPDATE value = '$value', updated_at = NOW()";
+		DB::statement($sql);
+	}
+
 	public function getConsultantProfile($user_id)
 	{
 		//get profile fields
+		$new_profile = [];
+		$new_fields = [];
+
 		$profile_types = new MetaProfileType();
 		$fields = $profile_types->where('profile_type', '=', MetaProfileType::PROFILE_TYPE_CONSULTANT)->get()->toArray();
 		//remap array
 		foreach ($fields as $value){
-			$new_fields[$value['name']] = $value;
+			$new_fields[$value['slug']] = $value;
 		}
 
 		//get profile values
-		$profile = $this->with('metaProfiletype')->whereUserId($user_id)->get()->toArray();
+		$profile = $this->with('metaProfileType')->whereUserId($user_id)->get()->toArray();
+		foreach ($profile as $value){
+			$new_profile[$value['meta_profile_type']['slug']] = $value;
+		}
 
-		return ['fields'=> $fields, 'profile'=>$profile];
+		return ['fields'=> $new_fields, 'profile'=>$new_profile];
 	}
 
 }

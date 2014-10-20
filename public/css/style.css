@@ -171,5 +171,5 @@ ul li .glyphicon {
 	background-color: white;
 }
 .margin-2 {
-	margin: 2px;
+	margin: 2px !important;
 }

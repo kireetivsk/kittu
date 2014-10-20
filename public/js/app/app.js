@@ -74,6 +74,51 @@ dsk.factory('Data', function ($http) {
 	}
 });
 
+dsk.factory('Uploader', function($q, $rootScope) {
+	this.upload = function(url, file, other_data) {
+		var deferred = $q.defer(),
+			formdata = new FormData(),
+			xhr = new XMLHttpRequest();
+
+		formdata.append('photo', file);
+		//formdata.append('user', other_data);
+
+		xhr.onreadystatechange = function(r) {
+			if (4 === this.readyState) {
+				if (xhr.status == 200) {
+					$rootScope.$apply(function() {
+						deferred.resolve(xhr);
+					});
+				} else {
+					$rootScope.$apply(function() {
+						deferred.reject(xhr);
+					});
+				}
+			}
+		}
+		xhr.open("POST", url, true);
+		xhr.send(formdata);
+		return deferred.promise;
+	};
+	return this;
+})
+
+dsk.directive('fileChange', function() {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs) {
+			element.bind('change', function() {
+				scope.$apply(function() {
+					if(element[0].files)
+						scope[attrs['fileChange']](element[0].files);
+					else
+						scope[attrs['fileChange']](element);
+				})
+			})
+		},
+	}
+})
+
 //reusable function for the app
 dsk.custom = {
 	getTeam : function ($scope, $http)
@@ -156,7 +201,34 @@ dsk.custom = {
 			{
 				//successful
 				$scope.consultant_profile = data.results;
+				if (data.results.profile.social !== undefined)
+					$scope.connection_profile.profile.socials = angular.fromJson(data.results.profile.social);
 			})
+	},
+
+	companySearch: function($scope, $http) {
+		$scope.company_names = null;
+		if ($scope.registration_company.length > 3) {
+			var ajax_url = "/publicapi/company-search";
+			var form_data = {
+				company_name: $scope.registration_company
+			};
+			$http.post(ajax_url, form_data)
+				.success(function (data) {
+					//successful
+					if (data.code == 200)
+						$scope.company_names = data.results;
+					else
+						$scope.registration_company_id = undefined;
+				})
+		}
+	},
+
+	setCompanySelection: function($scope, company){
+		$scope.registration_company_id = company.id;
+		$scope.registration_company = company.name;
+		$scope.company_names = null;
 	}
 
 };
+

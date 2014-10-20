@@ -3,48 +3,11 @@
 		try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 	</script>
 
-	<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-		<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-			<button class="btn btn-success">
-				<i class="icon-plus" title="Add a team member"></i>
-			</button>
-
-			<button class="btn btn-info">
-				<i class="icon-pencil" title="Write a post"></i>
-			</button>
-
-			<button class="btn btn-warning">
-				<i class="icon-group" title="View my team"></i>
-			</button>
-
-			<button class="btn btn-danger">
-				<i class="icon-file" title="View my files"></i>
-			</button>
-		</div>
-
-		<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-			<span class="btn btn-success"></span>
-
-			<span class="btn btn-info"></span>
-
-			<span class="btn btn-warning"></span>
-
-			<span class="btn btn-danger"></span>
-		</div>
-	</div><!-- #sidebar-shortcuts -->
-
 	<ul class="nav nav-list">
 		<li ng-class="{ active: isActive('/dashboard')}">
 			<a href="/dashboard">
 				<i class="icon-dashboard"></i>
 				<span class="menu-text"> Dashboard </span>
-			</a>
-		</li>
-
-		<li ng-class="{ active: isActive('/dashboard/settings')}">
-			<a href="/dashboard/settings">
-				<i class="icon-gear"></i>
-				<span class="menu-text"> Settings </span>
 			</a>
 		</li>
 

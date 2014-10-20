@@ -159,7 +159,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	//belongsToMany
 	public function company()
 	{
-		return $this->belongsToMany('Company');
+		return $this->belongsToMany('Company')->withPivot('id', 'meta_user_company_status_id')->withTimestamps();
 	}
 
 	//hasMany
@@ -474,10 +474,46 @@ class User extends Ardent implements UserInterface, RemindableInterface {
         return $settings;
     }
 
-    public function getUserPublicData($user_id)
-    {
+	/**
+	 * Get public info on a user
+	 *
+	 * @param $user_id
+	 * @return array
+	 */
+	public function getUserPublicData($user_id)
+	{
 		$user = $this->find($user_id)->toArray();
 		$user['full_name'] = $user['first_name'] . " " . $user['last_name'];
-        return $user;
-    }
+		return $user;
+	}
+
+	public function deleteCompanyConnection($user_id, $company_id)
+	{
+		//connections
+		$user_connection = UserConnection::
+			orWhere(function ($query) use($user_id, $company_id)
+				{
+					$query->where('user_id', '=', $user_id)
+						->where('company_id', '=', $company_id);
+				})
+			->orWhere(function ($query) use($user_id, $company_id)
+				{
+					$query->where('connection_user_id', '=', $user_id)
+						  ->where('company_id', '=', $company_id);
+				})
+			->with('userConnectionNote')
+			->get();
+		//connection notes
+		foreach($user_connection as $key => &$value)
+		{
+			foreach($value->userConnectionNote as $note)
+			{
+				$note->delete();
+			}
+			$value->delete();
+		}
+		//company user
+//		$pivot = $this->find($user_id)->company()->where('company_id', '=', $company_id)->delete();
+		User::find($user_id)->company()->detach($company_id);
+	}
 }
