@@ -6,7 +6,7 @@ dsk.controller('messages', function ($scope, $http) {
 	$scope.message_checkbox 			= [];
 	$scope.to_delete 					= [];
 	$scope.message_delete 				= {};
-	$scope.preview_length 				= 10;
+	$scope.preview_length 				= 50;
 
 	/**
 	 * Adds a recipient to $scope.send_message.recipients

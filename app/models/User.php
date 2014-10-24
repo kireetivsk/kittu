@@ -281,7 +281,7 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	// hasOne
 	public function userProfile()
 	{
-		return $this->hasOne('UserProfile');
+		return $this->hasMany('UserProfile');
 	}
 
 	//accessors and mutators

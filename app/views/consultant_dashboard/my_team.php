@@ -44,13 +44,15 @@
 											</h4>
 										</div>
 
-										<div class="panel-collapse collapse" id="sponsor_{{person.id}}_collapse">
+										<div class="panel-collapse collapse"
+											 id="sponsor_{{person.id}}_collapse"
+											 ng-show="person.connection_user.user_profile[0].value">
 											<div class="panel-body">
 												<p class="alert alert-info">
 													<strong>
 														<i class="icon-comments-alt"></i>
 													</strong>
-													<span class="text-warning">Text goes here</span>
+													<span class="text-warning">{{person.connection_user.user_profile[0].value}}</span>
 												</p>
 											</div>
 										</div>
@@ -61,21 +63,32 @@
 									<div class="row">
 										<div class="col-xs-12">
 											<button class="btn btn-primary"
-												ng-click="message(person)">
+												ng-click="message(person)"
+												ng-hide="isBlocked(person)">
 												<i class="icon-envelope align-top bigger-125"></i>
 												<?= trans('general.message'); ?>
 											</button>
 											<button class="btn btn-danger"
-													ng-click="option1(person.id, $index)">
+													ng-click="blockUser(person)"
+													ng-hide="isBlocked(person)">
 												<i class="icon-remove-circle align-top bigger-125"></i>
 												<?= trans('general.block'); ?>
+											</button>
+											<button class="btn btn-warning"
+													ng-click="unblockUser(person)"
+													ng-show="isBlocked(person)">
+												<i class="icon-circle-blank align-top bigger-125"></i>
+												<?= trans('general.unblock'); ?>
 											</button>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div ng-show="!sponsor" class="text-center">
-								<button class="btn btn-success" ng-click="addSponsor"><?= trans('general.no_sponsor'); ?></button>
+								<button class="btn btn-success"
+										ng-click="addSponsor">
+									<?= trans('general.no_sponsor'); ?>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -118,13 +131,17 @@
 											</h4>
 										</div>
 
-										<div class="panel-collapse collapse" id="upline_{{person.id}}_collapse">
+										<div class="panel-collapse collapse"
+											 id="upline_{{person.id}}_collapse"
+											 ng-show="person.connection_user.user_profile[0].value">
 											<div class="panel-body">
 												<p class="alert alert-info">
 													<strong>
 														<i class="icon-comments-alt"></i>
 													</strong>
-													<span class="text-warning">Text</span>
+													<span class="text-warning">
+														{{person.connection_user.user_profile[0].value}}
+													</span>
 
 												</p>
 											</div>
@@ -136,14 +153,22 @@
 									<div class="row">
 										<div class="col-xs-12">
 											<button class="btn btn-primary"
-													ng-click="option1(person.id, $index)">
+													ng-click="message(person)"
+													ng-hide="isBlocked(person)">
 												<i class="icon-envelope align-top bigger-125"></i>
-												Message
+												<?= trans('general.message'); ?>
 											</button>
-											<button class="btn btn-info"
-													ng-click="option1(person.id, $index)">
-												<i class="icon-share-alt align-top bigger-125"></i>
-												Visit
+											<button class="btn btn-danger"
+													ng-click="blockUser(person)"
+													ng-hide="isBlocked(person)">
+												<i class="icon-remove-circle align-top bigger-125"></i>
+												<?= trans('general.block'); ?>
+											</button>
+											<button class="btn btn-warning"
+													ng-click="unblockUser(person)"
+													ng-show="isBlocked(person)">
+												<i class="icon-circle-blank align-top bigger-125"></i>
+												<?= trans('general.unblock'); ?>
 											</button>
 										</div>
 									</div>
@@ -190,13 +215,17 @@
 											</h4>
 										</div>
 
-										<div class="panel-collapse collapse" id="downline_{{person.id}}_collapse">
+										<div class="panel-collapse collapse"
+											 id="downline_{{person.id}}_collapse"
+											 ng-show="person.connection_user.user_profile[0].value">
 											<div class="panel-body">
 												<p class="alert alert-info">
 													<strong>
 														<i class="icon-comments-alt"></i>
 													</strong>
-													<span class="text-warning">{{person.connection_user.first_name + " " + person.connection_user.last_name}} - </span>
+													<span class="text-warning">
+														{{person.connection_user.user_profile[0].value}}
+													</span>
 												</p>
 											</div>
 										</div>
@@ -207,19 +236,22 @@
 									<div class="row">
 										<div class="col-xs-12">
 											<button class="btn btn-primary"
-													ng-click="option1(person.id, $index)">
+													ng-click="message(person)"
+													ng-hide="isBlocked(person)">
 												<i class="icon-envelope align-top bigger-125"></i>
-												Message
+												<?= trans('general.message'); ?>
 											</button>
-											<button class="btn btn-info"
-													ng-click="option1(person.id, $index)">
-												<i class="icon-share-alt align-top bigger-125"></i>
-												Visit
+											<button class="btn btn-danger"
+													ng-click="blockUser(person)"
+													ng-hide="isBlocked(person)">
+												<i class="icon-remove-circle align-top bigger-125"></i>
+												<?= trans('general.block'); ?>
 											</button>
 											<button class="btn btn-warning"
-													ng-click="option1(person.id, $index)">
-												<i class="icon-group align-top bigger-125"></i>
-												View Team
+													ng-click="unblockUser(person)"
+													ng-show="isBlocked(person)">
+												<i class="icon-circle-blank align-top bigger-125"></i>
+												<?= trans('general.unblock'); ?>
 											</button>
 										</div>
 									</div>
@@ -227,7 +259,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

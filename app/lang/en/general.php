@@ -96,9 +96,11 @@
 
 		'display_name' => 'Display name',
 		'email' => 'Email',
+		'username' => 'Username',
 		'location' => 'Location',
 		'phone' => 'Phone',
 		'website' => 'Website',
+		'about_me' => 'About me',
 		'save' => 'Save',
 		'cancel' => 'Cancel',
 
@@ -112,5 +114,6 @@
 		'company_name_invalid' => 'Company name invalid',
 
 		'block' => 'Block',
+		'unblock' => 'Un-Block',
 
 	);

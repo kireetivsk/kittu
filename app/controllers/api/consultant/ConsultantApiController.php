@@ -216,19 +216,20 @@
 			$user_connection = new UserConnection();
 			$message         = new Message();
 			$messages        = $message
-				->orWhere(function ($query)
+				->orWhere(function ($query) use($user_id)
 				{
 					$query->where('from_meta_message_status_id', '=', MetaMessageStatus::STATUS_SENT)
-						  ->where('from_user', '=', Auth::id());
+						  ->where('from_user', '=',$user_id);
 				})
-				->orWhere(function ($query)
+				->orWhere(function ($query) use($user_id)
 				{
 					$query->where('from_meta_message_status_id', '!=', MetaMessageStatus::STATUS_REVOKED)
-						  ->where('to_user', '=', Auth::id());
+						  ->where('to_user', '=', $user_id);
 				})
-				->with('toMetaMessageStatus',
-					   'fromMetaMessageStatus',
-					   'fromUser')
+				->with(['toMetaMessageStatus',
+					   'fromUser',
+					   'toUser'
+					   ])
 				->orderBy('created_at', 'desc')
 				->get();
 
@@ -236,9 +237,15 @@
 			$result = [];
 			foreach ($messages as $key => $value)
 			{
-				if ($value->fromUser->id != Auth::id())
+				// ignore users we have blocked
+				if ($value->from_user != $user_id)
 				{
-					$connection_user = $user_connection->getConnectedUser($value->fromUser->id)->first()->toArray();
+					$permission = $user_connection->getConnectedUser($value->from_user)->first();
+					if ($permission->meta_connection_status_id == MetaConnectionStatus::CONNECTION_STATUS_BLOCKED) {
+						continue;
+					}
+
+					$connection_user = $permission->toArray();
 					switch ($value->toMetaMessageStatus->name)
 					{
 						case("New"):
@@ -259,7 +266,7 @@
 					'id'              => $value->id,
 					'to'              => $value->toUser->fullName,
 					'from'            => $value->fromUser->fullName,
-					'from_user_id'    => $value->fromUser->id,
+					'from_user_id'    => $value->from_user,
 					"subject"         => $value->title,
 					'message'         => $value->content,
 					'time_sent'       => $value->created_at->toDayDateTimeString(),
@@ -401,6 +408,7 @@
 			$user = new User();
 			$user_data = $user->find(Auth::id());
 			$profile['profile']['email'] = $user_data->email;
+			$profile['profile']['username'] = $user_data->username;
 
 			//socials
 			$social_networks = new MetaSocialNetwork();
@@ -537,6 +545,11 @@
 			}
 		}
 
+		/**
+		 * edit social networks
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postSocialEdit()
 		{
 			$socials = [];
@@ -569,6 +582,11 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * delete a connection to a company
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postDeleteCompanyConnection()
 		{
 			$data = Input::get('connection');
@@ -579,6 +597,11 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Add a company connection
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postAddCompany()
 		{
 			$user = User::find(Auth::id());
@@ -598,6 +621,30 @@
 
 			$this->_success();
 			return Response::json($this->data);
+		}
+
+		public function postBlockUser()
+		{
+			$other_user = Input::get('person');
+
+			$connection = UserConnection::where('user_id', '=', Auth::id())->where('connection_user_id', '=', $other_user['connection_user']['id'])->first();
+			$connection->meta_connection_status_id = MetaConnectionStatus::CONNECTION_STATUS_BLOCKED;
+			$connection->update();
+			$this->_success();
+			return Response::json($this->data);
+
+		}
+
+		public function postUnblockUser()
+		{
+			$other_user = Input::get('person');
+
+			$connection = UserConnection::where('user_id', '=', Auth::id())->where('connection_user_id', '=', $other_user['connection_user']['id'])->first();
+			$connection->meta_connection_status_id = MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED;
+			$connection->update();
+			$this->_success();
+			return Response::json($this->data);
+
 		}
 
 	}

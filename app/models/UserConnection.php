@@ -384,7 +384,13 @@ class UserConnection extends Ardent {
 		return $this
 			->where('user_id', '=', $user_id)
 			->where('meta_connection_relationship_id', '=', MetaConnectionRelationship::CONNECTION_RELATIONSHIP_DOWNLINE)
-			->with('connectionUser', 'metaConnectionRelationship')
+			->with(['connectionUser',
+					'connectionUser.userProfile' =>
+						function($query){$query->where('meta_profile_type_id',
+													   '=',
+													   MetaProfileType::PROFILE_FIELD_ABOUT_ME);},
+					'metaConnectionRelationship',
+					'metaConnectionStatus'])
 			->get();
 	}
 
@@ -400,7 +406,13 @@ class UserConnection extends Ardent {
 		return $this
 			->where('user_id', '=', $user_id)
 			->where('meta_connection_relationship_id', '=', MetaConnectionRelationship::CONNECTION_RELATIONSHIP_UPLINE)
-			->with('connectionUser', 'metaConnectionRelationship')
+			->with(['connectionUser',
+					'connectionUser.userProfile' =>
+						function($query){$query->where('meta_profile_type_id',
+													   '=',
+													   MetaProfileType::PROFILE_FIELD_ABOUT_ME);},
+					'metaConnectionRelationship',
+					'metaConnectionStatus'])
 			->get();
 	}
 
@@ -416,7 +428,13 @@ class UserConnection extends Ardent {
 		return $this
 			->where('user_id', '=', $user_id)
 			->where('meta_connection_relationship_id', '=', MetaConnectionRelationship::CONNECTION_RELATIONSHIP_SPONSOR)
-			->with('connectionUser', 'metaConnectionRelationship')
+			->with(['connectionUser',
+				   'connectionUser.userProfile' =>
+					   function($query){$query->where('meta_profile_type_id',
+													  '=',
+													  MetaProfileType::PROFILE_FIELD_ABOUT_ME);},
+				   'metaConnectionRelationship',
+				   'metaConnectionStatus'])
 			->get();
 	}
 

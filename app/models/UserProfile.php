@@ -49,9 +49,9 @@ class UserProfile extends Ardent {
 		$table_name = $this->getTable();
 		$sql = "INSERT INTO $table_name
 				(user_id, meta_profile_type_id, value, created_at)
-				VALUES ($user_id, $setting_id, '$value', NOW())
-				ON DUPLICATE KEY UPDATE value = '$value', updated_at = NOW()";
-		DB::statement($sql);
+				VALUES (?, ?, ?, NOW())
+				ON DUPLICATE KEY UPDATE value = ?, updated_at = NOW()";
+		DB::statement($sql, [$user_id, $setting_id, $value, $value]);
 	}
 
 	public function getConsultantProfile($user_id)

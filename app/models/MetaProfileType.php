@@ -31,12 +31,13 @@ class MetaProfileType extends Ardent {
 	const PROFILE_TYPE_ADVERTISER  = 'advertiser';
 
 	const PROFILE_FIELD_DISPLAY_NAME = 1;
-	const PROFILE_FIELD_AVATAR = 2;
-	const PROFILE_FIELD_LOCATION = 3;
-	const PROFILE_FIELD_URL = 4;
-	const PROFILE_FIELD_SOCIAL = 5;
-	const PROFILE_FIELD_PHONE = 6;
+	const PROFILE_FIELD_AVATAR       = 2;
+	const PROFILE_FIELD_LOCATION     = 3;
+	const PROFILE_FIELD_URL          = 4;
+	const PROFILE_FIELD_SOCIAL       = 5;
+	const PROFILE_FIELD_PHONE        = 6;
 	const PROFILE_FIELD_COMPANY_RANK = 7;
+	const PROFILE_FIELD_ABOUT_ME     = 8;
 
 	//validation
 	public static $rules = [

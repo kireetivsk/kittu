@@ -81,6 +81,18 @@
 
 				<div class="profile-info-row">
 					<div class="profile-info-name">
+						<?= trans('general.username'); ?>
+					</div>
+
+					<div class="profile-info-value">
+						<span>
+							&nbsp;{{consultant_profile.profile.username}}
+						</span>
+					</div>
+				</div>
+
+				<div class="profile-info-row">
+					<div class="profile-info-name">
 						<?= trans('general.email'); ?>
 						<i class="icon-edit pointer" ng-click="edit = 'email'"></i>
 					</div>
@@ -157,6 +169,38 @@
 							<input class="form-control input-mask-date"
 								   type="text"
 								   ng-model="consultant_profile.profile.phone.new_value">
+							<span class="input-group-btn">
+								<button class="btn btn-sm btn-success"
+										type="button" ng-click="profileEdit()">
+									<i class="icon-ok bigger-110"></i>
+									Save
+								</button>
+							</span>
+							<span class="input-group-btn">
+								<button class="btn btn-sm btn-danger"
+										type="button" ng-click="edit = ''">
+									<i class="icon-remove"></i>
+									Cancel
+								</button>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="profile-info-row">
+					<div class="profile-info-name">
+						<?= trans('general.about_me'); ?>
+						<i class="icon-edit pointer" ng-click="edit = 'about_me'"></i>
+					</div>
+
+					<div class="profile-info-value">
+						<span ng-hide="edit == 'about_me'">
+							&nbsp;{{consultant_profile.profile.about_me.value}}
+						</span>
+						<div class="input-group" ng-show="edit == 'about_me'">
+							<input class="form-control input-mask-date"
+								   type="text" placeholder="This is what your team sees about you on their team page."
+								   ng-model="consultant_profile.profile.about_me.new_value">
 							<span class="input-group-btn">
 								<button class="btn btn-sm btn-success"
 										type="button" ng-click="profileEdit()">
