@@ -37,7 +37,7 @@ class DiscussionTopic extends Ardent {
 	public static $rules = [
 		'user_id' 							=> 'required|integer',
 		'discussion_category_id'			=> 'required|integer',
-		'title'								=> 'required|alpha_num|max:100',
+		'title'								=> 'required|max:100',
 		'content'							=> 'required',
 		'meta_discussion_permission_id'		=> 'required|integer',
 		'meta_discussion_status_id'			=> 'required|integer'

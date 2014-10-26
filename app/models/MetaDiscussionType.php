@@ -17,6 +17,11 @@
 class MetaDiscussionType extends Ardent {
 	protected $fillable = [];
 
+	const CATEGORY = 1;
+	const TOPIC    = 2;
+	const POST     = 3;
+	const COMMENT  = 4;
+
 	//validation
 	public static $rules = [
 		'name' 				=> 'required|max:45',

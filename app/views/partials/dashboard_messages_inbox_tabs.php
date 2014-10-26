@@ -3,14 +3,14 @@
 	<li>
 		<a data-toggle="tab" href="#send" data-target="send" ng-click="tab = 'Send'; clearReply()" id="send_tab">
 			<i class="purple icon-envelope bigger-130"></i>
-			<span class="bigger-110">Send</span>
+			<span class="bigger-110"><?= trans('general.send'); ?></span>
 		</a>
 	</li>
 
 	<li class="active">
 		<a data-toggle="tab" href="#inbox" data-target="inbox" ng-click="tab = 'Inbox'">
 			<i class="blue icon-inbox bigger-130"></i>
-			<span class="bigger-110">Inbox</span>
+			<span class="bigger-110"><?= trans('general.inbox'); ?></span>
 		</a>
 	</li>
 

@@ -516,4 +516,86 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 //		$pivot = $this->find($user_id)->company()->where('company_id', '=', $company_id)->delete();
 		User::find($user_id)->company()->detach($company_id);
 	}
+
+	public function getDiscussions()
+	{
+		$discussion_category = new DiscussionCategory();
+
+		//get my discussions
+		$mine = $discussion_category->getMyDiscussions();
+
+		//get upline discussions
+		$upline = $discussion_category->getUplineDiscussions(Auth::id());
+
+		//get downline discussions
+		$downline = $discussion_category->getDownlineDiscussions(Auth::id());
+
+		return [
+			'mine' => $mine->toArray(),
+			'upline' => $upline,
+			'downline' => $downline
+		];
+
+	}
+
+	public function getUpline($user_id, $list = [])
+	{
+		$upline = [];
+		$user_connection = new UserConnection();
+		$results = $user_connection
+			->where('meta_connection_relationship_id', '=',  MetaConnectionRelationship::CONNECTION_RELATIONSHIP_DOWNLINE)
+			->where('connection_user_id', '=', $user_id)
+			->where('meta_connection_status_id', '=', MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED)
+			->get();
+
+		foreach($results as $value)
+		{
+			if (in_array($value->user_id, $list) || $value->user_id == Auth::id())
+				continue;
+			$upline[] = $value->user_id;
+			// only direct connections.....
+			//$list[] = $value->user_id;
+			//$recurse = $this->getUpline($value->user_id, $list);
+			//if (!empty($recurse)) {
+			//	foreach ($recurse as $upupline) {
+			//		$upline[] = $upupline;
+			//	}
+			//}
+		}
+		return $upline;
+	}
+
+	public function getDownline($user_id, $list = [])
+	{
+		$downline = [];
+		$user_connection = new UserConnection();
+		$results = $user_connection
+			->where(
+				function ($query) use($user_id)
+				{
+					$query
+						->orWhere('meta_connection_relationship_id', '=',  MetaConnectionRelationship::CONNECTION_RELATIONSHIP_SPONSOR)
+						->orWhere('meta_connection_relationship_id', '=',  MetaConnectionRelationship::CONNECTION_RELATIONSHIP_UPLINE);
+				}
+			)
+			->where('connection_user_id', '=', $user_id)
+			->where('meta_connection_status_id', '=', MetaConnectionStatus::CONNECTION_STATUS_ACCEPTED)
+			->get();
+
+		foreach($results as $value)
+		{
+			if (in_array($value->user_id, $list) || $value->user_id == Auth::id())
+				continue;
+			$downline[] = $value->user_id;
+			// only direct connections.....
+			//$list[] = $value->user_id;
+			//$recurse = $this->getUpline($value->user_id, $list);
+			//if (!empty($recurse)) {
+			//	foreach ($recurse as $downdownline) {
+			//		$downline[] = $downdownline;
+			//	}
+			//}
+		}
+		return $downline;
+	}
 }

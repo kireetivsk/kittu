@@ -24,6 +24,11 @@
 class UserProfile extends Ardent {
 	protected $fillable = [];
 
+	public $publicProfileFields = [
+		'avatar',
+		'display_name'
+	];
+
 	//validation
 	public static $rules = [
 		'user_id' 				=> 'required|integer',
@@ -74,6 +79,41 @@ class UserProfile extends Ardent {
 		}
 
 		return ['fields'=> $new_fields, 'profile'=>$new_profile];
+	}
+
+	public function getAvatar($user_id)
+	{
+		return $this
+			->where('user_id', '=', $user_id)
+			->where('meta_profile_type_id', '=', MetaProfileType::PROFILE_FIELD_AVATAR)
+			->pluck('value');
+	}
+
+	public function getPublicProfile($user_id)
+	{
+		$result = [];
+		//get profile values
+		$profile = $this->with('metaProfileType')->whereUserId($user_id)->get()->toArray();
+		foreach ($profile as $value){
+			if (in_array($value['meta_profile_type']['slug'], $this->publicProfileFields)) {
+				if ($value['meta_profile_type']['slug'] == 'avatar')
+				{
+					$result[$value['meta_profile_type']['slug']] = S3_URL . AVATAR_FOLDER . DS . $value['value'];
+				} else {
+					$result[$value['meta_profile_type']['slug']] = $value['value'];
+				}
+			}
+		}
+		if (!array_key_exists('avatar', $result))
+		{
+			$result['avatar'] = S3_URL . AVATAR_FOLDER . DS . AVATAR_DEFAULT_FILENAME;
+		}
+		if (!array_key_exists('display_name', $result))
+		{
+			$name = User::whereId($user_id)->select('first_name', 'last_name')->first();
+			$result['display_name'] = $name->first_name . ' ' . $name->last_name;
+		}
+		return $result;
 	}
 
 }

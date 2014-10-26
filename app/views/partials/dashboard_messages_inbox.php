@@ -3,7 +3,7 @@
 	<div class="tab-pane in active">
 		<div class="message-container">
 
-			<? include(PARTIALS_DIR . '/dashboard_messages_inbox_header.php'); ?>
+			<? include(PARTIALS_DIR . '/dashboard_tabbable_header.php'); ?>
 
 			<div class="message-list-container">
 				<div class="message-list" id="message-list">

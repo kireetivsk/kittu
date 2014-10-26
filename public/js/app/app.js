@@ -228,6 +228,39 @@ dsk.custom = {
 		$scope.registration_company_id = company.id;
 		$scope.registration_company = company.name;
 		$scope.company_names = null;
+	},
+
+	getDiscussionMeta: function($scope, $http){
+		var ajax_url = "/consultantapi/get-discussion-meta";
+		$http.post(ajax_url)
+			.success(function (data) {
+				//successful
+				if (data.code == 200)
+					$scope.meta = data.results;
+				})
+
+	},
+
+	getDiscussionMyCategories: function($scope, $http){
+		var ajax_url = "/consultantapi/get-discussion-my-categories";
+		$http.post(ajax_url)
+			.success(function (data) {
+				//successful
+				if (data.code == 200)
+					$scope.my_categories = data.results;
+			})
+
+	},
+
+	getDiscussions: function($scope, $http){
+		var ajax_url = "/consultantapi/get-discussions";
+		$http.post(ajax_url)
+			.success(function (data) {
+				//successful
+				if (data.code == 200)
+					$scope.view_categories = data.results;
+			})
+
 	}
 
 };

@@ -20,6 +20,11 @@
 class MetaDiscussionPermission extends Ardent {
 	protected $fillable = [];
 
+	const PERMISSION_PUBLIC = 1;
+	const PERMISSION_DOWNLINE = 2;
+	const PERMISSION_UPLINE = 3;
+	const PERMISSION_PRIVATE = 4;
+
 	//validation
 	public static $rules = [
 		'name' 				=> 'required|max:45',

@@ -4,12 +4,12 @@
 			<h2><?= trans('general.companies_associated_with'); ?></h2>
 		</div>
 		<div class="col-md-2 text-right">
-			<button class="btn btn-success btn-sm right" ng-click="show_add_company = true"><?= trans('general.add_company'); ?></button>
+			<button class="btn btn-success btn-sm right" ng-click="show_add_company = !show_add_company"><?= trans('general.add_company'); ?></button>
 		</div>
 	</div>
 	<div class="row spacer" ng-show="show_add_company">
 		<div class="form-group col-sm-12">
-			<label class="sr-only" for="company">Company</label>
+			<label class="sr-only" for="company"><?= trans('general.add_company'); ?></label>
 			<input
 				type="text"
 				class="form-control full"
@@ -72,7 +72,9 @@
 		<div class="col-md-3">
 			<div class="row">
 				<div class="col-md-6 col-md-push-6">
-					<button class="btn btn-danger" ng-click="deleteCompanyConnection(company)">Delete</button>
+					<button class="btn btn-danger" ng-click="deleteCompanyConnection(company)">
+						<?= trans('general.delete'); ?>
+					</button>
 				</div>
 			</div>
 		</div>

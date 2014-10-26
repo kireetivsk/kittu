@@ -96,6 +96,15 @@ class ConsultantDashboardController extends BaseController {
 		return View::make('template_consultant_dashboard', $this->data);
 	}
 
+	public function getDiscussion()
+	{
+		$this->data['view']        = 'discussion';
+		$this->data['files']->js[] = JS_CONTROLLER_DIR . "/$this->_module/discussionController.js";
+		$this->data['files']->js[] = "/$this->_module/discussion.js";
+
+		return View::make('template_consultant_dashboard', $this->data);
+	}
+
 	public function getCrm()
 	{
 		$this->data['view']        = 'crm';

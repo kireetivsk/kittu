@@ -102,7 +102,7 @@
 		public function postGetConnectionRequests()
 		{
 			$user_id 		 = Auth::id();
-			$company_id      = Input::get('company_id');
+			$company_id      = Session::get('userdata.current.company');
 			$user_connection = new UserConnection();
 			$result          = $user_connection->getUserConnectionRequests($user_id, $company_id);
 
@@ -623,6 +623,11 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Block a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postBlockUser()
 		{
 			$other_user = Input::get('person');
@@ -635,6 +640,11 @@
 
 		}
 
+		/**
+		 * Unblock a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postUnblockUser()
 		{
 			$other_user = Input::get('person');
@@ -645,6 +655,189 @@
 			$this->_success();
 			return Response::json($this->data);
 
+		}
+
+		/**
+		 * Add a new discussion category for a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postAddCategory()
+		{
+			$category_name 							= Input::get('category_name');
+			$category_description 					= Input::get('category_description');
+			$category_permission 					= Input::get('category_permission');
+
+			$cat 									= new DiscussionCategory();
+			$cat->user_id 							= Auth::id();
+			$cat->title 							= $category_name;
+			$cat->description 						= $category_description;
+			$cat->meta_discussion_permission_id 	= $category_permission;
+			$cat->meta_discussion_status_id 		= MetaDiscussionStatus::PUBLISHED;
+			$cat->save();
+
+			$this->_success();
+			return Response::json($this->data);
+
+		}
+
+		/**
+		 * Get discussion meta fields
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postGetDiscussionMeta()
+		{
+			$result = [
+				"statuses" => MetaDiscussionStatus::all(),
+				"types" => MetaDiscussionType::all(),
+				"permissions" => MetaDiscussionPermission::all()
+			];
+			$this->_success('Success', $result);
+			return Response::json($this->data);
+
+		}
+
+		public function postGetDiscussionMyCategories()
+		{
+			$categories = DiscussionCategory::whereUserId(Auth::id())
+				->with('metaDiscussionPermission')
+				->get();
+
+			$result = [];
+			foreach($categories as $category)
+			{
+				$topic_count = DiscussionTopic::
+								where('discussion_category_id', '=', $category->id)
+								->where('meta_discussion_status_id', '=', MetaDiscussionStatus::PUBLISHED)
+								->count();
+
+				$result[] = [
+					'id'            => $category->id,
+					'title'         => $category->title,
+					'description'   => $category->description,
+					'topic_count'   => $topic_count,
+					'permission'    => $category->metaDiscussionPermission->name,
+					'permission_id' => $category->meta_discussion_permission_id,
+				];
+			}
+
+			$this->_success('Success', $result);
+			return Response::json($this->data);
+		}
+
+		public function postDeleteCategory()
+		{
+			$dicussion_category = new DiscussionCategory();
+			$category_id = Input::get('category_id');
+			$category_owner = $dicussion_category->whereId($category_id)->first(['user_id']);
+
+			//security
+			if ($category_owner->user_id == Auth::id())
+			{
+				$dicussion_category->remove($category_id);
+
+				$this->_success(trans('general.discussion_category_deleted'));
+				return Response::json($this->data);
+
+			} else {
+
+				$this->_error(403, trans('general.not_authorized2'));
+				return Response::json($this->data);
+			}
+		}
+
+		public function postEditCategory()
+		{
+
+			$id = Input::get('category_id');
+			$name = Input::get('category_title');
+			$description = Input::get('category_description');
+			$permission = Input::get('category_permission');
+
+			$cat = DiscussionCategory::find($id);
+			$cat->title = $name;
+			$cat->description = $description;
+			$cat->meta_discussion_permission_id = $permission;
+			$cat->save();
+
+			$this->_success(trans('general.discussion_category_saved'));
+			return Response::json($this->data);
+
+		}
+
+		public function postGetDiscussions()
+		{
+			$user = new User();
+			$user_profile = new UserProfile();
+
+			$result = $user->getDiscussions();
+
+			//get profile
+			$profiles = [];
+
+			//my, upline, downline
+			foreach($result as $level => &$categories)
+			{
+				// categories
+				if (empty($categories))
+					continue;
+				foreach($categories as $cat_key => &$category)
+				{
+					//get owner profile
+					if (array_key_exists($category['user_id'], $profiles))
+						$category['owner'] = $profiles[$category['user_id']];
+					else {
+						$category['owner'] = $user_profile->getPublicProfile($category['user_id']);
+						$profiles[$category['user_id']] = $category['owner'];
+					}
+
+					//loop through topics
+					if (empty($category['discussion_topic']))
+						continue;
+					foreach ($category['discussion_topic'] as $topic_key => &$topic)
+					{
+						//get owner profile
+						if (array_key_exists($topic['user_id'], $profiles))
+							$topic['owner'] = $profiles[$topic['user_id']];
+						else {
+							$topic['owner'] = $user_profile->getPublicProfile($topic['user_id']);
+							$profiles[$topic['user_id']] = $topic['owner'];
+						}
+
+						//posts
+						if (empty($topic['discussion_post']))
+							continue;
+						foreach ($topic['discussion_topic'] as $post_key => &$post)
+						{
+							//get owner profile
+							if (array_key_exists($post['user_id'], $profiles))
+								$post['owner'] = $profiles[$post['user_id']];
+							else {
+								$post['owner'] = $user_profile->getPublicProfile($post['user_id']);
+								$profiles[$post['user_id']] = $post['owner'];
+							}
+
+							//comments
+							if (empty($post['discussion_comment']))
+								continue;
+							foreach ($post['discussion_comment'] as $comment_key => &$comment)
+							{
+								//get owner profile
+								if (array_key_exists($comment['user_id'], $profiles))
+									$comment['owner'] = $profiles[$comment['user_id']];
+								else {
+									$comment['owner'] = $user_profile->getPublicProfile($comment['user_id']);
+									$profiles[$comment['user_id']] = $comment['owner'];
+								}
+							}
+						}
+					}
+				}
+			}
+
+			$this->_success('Success', $result);
+			return Response::json($this->data);
 		}
 
 	}

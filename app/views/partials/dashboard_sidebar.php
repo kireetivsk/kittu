@@ -43,6 +43,13 @@
 			</a>
 		</li>
 
+		<li ng-class="{ active: isActive('/dashboard/discussion')}">
+			<a href="/dashboard/discussion">
+				<i class="icon-comments-alt"></i>
+				<span class="menu-text"> Discussion </span>
+			</a>
+		</li>
+
 		<li ng-class="{ active: isActive('/dashboard/crm')}">
 			<a href="/dashboard/crm">
 				<i class="icon-phone"></i>
