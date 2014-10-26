@@ -53,4 +53,12 @@ class DiscussionFollow extends Ardent {
 	{
 		return $this->belongsTo('MetaDiscussionType');
 	}
+
+	public function remove($id, $type)
+	{
+		$this
+			->where('discussion_id', '=', $id)
+			->where('meta_discussion_type_id', '=', $type)
+			->delete();
+	}
 }

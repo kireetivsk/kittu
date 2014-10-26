@@ -33,7 +33,7 @@ class DiscussionCategory extends Ardent {
 	//validation
 	public static $rules = [
 		'user_id' 							=> 'required|integer',
-		'title'								=> 'required|alpha_num|max:100',
+		'title'								=> 'required|max:100',
 		'description'						=> 'max:100',
 		'meta_discussion_permission_id'		=> 'required|integer',
 		'meta_discussion_status_id'			=> 'required|integer'
@@ -58,5 +58,46 @@ class DiscussionCategory extends Ardent {
 	public function metaDiscussionPermission()
 	{
 		return $this->belongsTo('MetaDiscussionPermission');
+	}
+
+	/**
+	 * Removes a category and all of the records associated with it.
+	 * 	- Topics
+	 * 	- Posts
+	 * 	- Comments
+	 * 	- Follows
+	 * 	- Views
+	 *
+	 * @param $id
+	 * @throws Exception
+	 */
+	public function remove($id)
+	{
+		$follow = new DiscussionFollow();
+		$view = new DiscussionView();
+
+		$cat = $this
+			->whereId($id)
+			->with('discussionTopic',
+				   'discussionTopic.discussionPost',
+				   'discussionTopic.discussionPost.discussionComment')
+			->first();
+
+		foreach ($cat->discussionTopic as $topic) {
+			foreach ($topic->discussionPost as $post) {
+				foreach ($post->discussionComment as $comment) {
+					$follow->remove($comment->id, MetaDiscussionType::COMMENT);
+					$comment->delete();
+				}
+				$follow->remove($post->id, MetaDiscussionType::POST);
+				$view->whereDiscussionPostId($post->id)->delete();
+				$post->delete();
+			}
+			$follow->remove($topic->id, MetaDiscussionType::TOPIC);
+			$topic->delete();
+		}
+		$follow->remove($cat->id, MetaDiscussionType::CATEGORY);
+		$cat->delete();
+
 	}
 }

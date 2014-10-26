@@ -20,6 +20,10 @@
 class MetaDiscussionStatus extends Ardent {
 	protected $fillable = [];
 
+	const PENDING = 1;
+	const PUBLISHED = 2;
+	const DELETED = 3;
+
 	//validation
 	public static $rules = [
 		'name' 				=> 'required|max:45',

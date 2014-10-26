@@ -623,6 +623,11 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Block a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postBlockUser()
 		{
 			$other_user = Input::get('person');
@@ -635,6 +640,11 @@
 
 		}
 
+		/**
+		 * Unblock a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postUnblockUser()
 		{
 			$other_user = Input::get('person');
@@ -647,5 +657,113 @@
 
 		}
 
+		/**
+		 * Add a new discussion category for a user
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postAddCategory()
+		{
+			$category_name 							= Input::get('category_name');
+			$category_description 					= Input::get('category_description');
+			$category_permission 					= Input::get('category_permission');
+
+			$cat 									= new DiscussionCategory();
+			$cat->user_id 							= Auth::id();
+			$cat->title 							= $category_name;
+			$cat->description 						= $category_description;
+			$cat->meta_discussion_permission_id 	= $category_permission;
+			$cat->meta_discussion_status_id 		= MetaDiscussionStatus::PUBLISHED;
+			$cat->save();
+
+			$this->_success();
+			return Response::json($this->data);
+
+		}
+
+		/**
+		 * Get discussion meta fields
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postGetDiscussionMeta()
+		{
+			$result = [
+				"statuses" => MetaDiscussionStatus::all(),
+				"types" => MetaDiscussionType::all(),
+				"permissions" => MetaDiscussionPermission::all()
+			];
+			$this->_success('Success', $result);
+			return Response::json($this->data);
+
+		}
+
+		public function postGetDiscussionMyCategories()
+		{
+			$categories = DiscussionCategory::whereUserId(Auth::id())
+				->with('metaDiscussionPermission')
+				->get();
+
+			$result = [];
+			foreach($categories as $category)
+			{
+				$topic_count = DiscussionTopic::
+								where('discussion_category_id', '=', $category->id)
+								->where('meta_discussion_status_id', '=', MetaDiscussionStatus::PUBLISHED)
+								->count();
+
+				$result[] = [
+					'id'            => $category->id,
+					'title'         => $category->title,
+					'description'   => $category->description,
+					'topic_count'   => $topic_count,
+					'permission'    => $category->metaDiscussionPermission->name,
+					'permission_id' => $category->meta_discussion_permission_id,
+				];
+			}
+
+			$this->_success('Success', $result);
+			return Response::json($this->data);
+		}
+
+		public function postDeleteCategory()
+		{
+			$dicussion_category = new DiscussionCategory();
+			$category_id = Input::get('category_id');
+			$category_owner = $dicussion_category->whereId($category_id)->first(['user_id']);
+
+			//security
+			if ($category_owner->user_id == Auth::id())
+			{
+				$dicussion_category->remove($category_id);
+
+				$this->_success(trans('general.discussion_category_deleted'));
+				return Response::json($this->data);
+
+			} else {
+
+				$this->_error(403, trans('general.not_authorized2'));
+				return Response::json($this->data);
+			}
+		}
+
+		public function postEditCategory()
+		{
+
+			$id = Input::get('category_id');
+			$name = Input::get('category_title');
+			$description = Input::get('category_description');
+			$permission = Input::get('category_permission');
+
+			$cat = DiscussionCategory::find($id);
+			$cat->title = $name;
+			$cat->description = $description;
+			$cat->meta_discussion_permission_id = $permission;
+			$cat->save();
+
+			$this->_success(trans('general.discussion_category_saved'));
+			return Response::json($this->data);
+
+		}
 	}
 
