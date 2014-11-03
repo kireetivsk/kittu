@@ -38,7 +38,6 @@ class DiscussionTopic extends Ardent {
 		'user_id' 							=> 'required|integer',
 		'discussion_category_id'			=> 'required|integer',
 		'title'								=> 'required|max:100',
-		'content'							=> 'required',
 		'meta_discussion_permission_id'		=> 'required|integer',
 		'meta_discussion_status_id'			=> 'required|integer'
 	];
@@ -69,6 +68,38 @@ class DiscussionTopic extends Ardent {
 		return $this->belongsTo('MetaDiscussionStatus');
 	}
 
+	/**
+	 * Removes a topic and all of the records associated with it.
+	 * 	- Posts
+	 * 	- Comments
+	 * 	- Follows
+	 * 	- Views
+	 *
+	 * @param $id
+	 * @throws Exception
+	 */
+	public function remove($id)
+	{
+		$follow = new DiscussionFollow();
+		$view = new DiscussionView();
 
+		$topic = $this
+			->whereId($id)
+			->with('discussionPost',
+				   'discussionPost.discussionComment')
+			->first();
+
+		foreach ($topic->discussionPost as $post) {
+			foreach ($post->discussionComment as $comment) {
+				$follow->remove($comment->id, MetaDiscussionType::COMMENT);
+				$comment->delete();
+			}
+			$follow->remove($post->id, MetaDiscussionType::POST);
+			$view->whereDiscussionPostId($post->id)->delete();
+			$post->delete();
+		}
+		$follow->remove($topic->id, MetaDiscussionType::TOPIC);
+		$topic->delete();
+	}
 
 }

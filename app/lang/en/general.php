@@ -146,5 +146,12 @@
 		'my_discussions' => 'My Discussions',
 		'upline_discussions' => 'Upline Discussions',
 		'downline_discussions' => 'Downline Discussions',
-
+		'add_topic' => 'Add Topic',
+		'ignore' => 'Ignore',
+		'topic_name' => 'Topic Name',
+		'topic_description' => 'Topic Description',
+		'delete_topic' => 'Delete Topic',
+		'discussion_topic_saved' => 'Topic Saved',
+		'discussion_topic_deleted' => 'Topic Deleted',
+		'no_topics' => "No topics in this category. Add one with the 'Add Topic' button.",
 	);

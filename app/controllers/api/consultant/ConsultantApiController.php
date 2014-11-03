@@ -698,6 +698,11 @@
 
 		}
 
+		/**
+		 * gets the logged in user's categories with topics
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postGetDiscussionMyCategories()
 		{
 			$categories = DiscussionCategory::whereUserId(Auth::id())
@@ -707,18 +712,19 @@
 			$result = [];
 			foreach($categories as $category)
 			{
-				$topic_count = DiscussionTopic::
+				$topics = DiscussionTopic::
 								where('discussion_category_id', '=', $category->id)
 								->where('meta_discussion_status_id', '=', MetaDiscussionStatus::PUBLISHED)
-								->count();
+								->get();
 
 				$result[] = [
 					'id'            => $category->id,
 					'title'         => $category->title,
 					'description'   => $category->description,
-					'topic_count'   => $topic_count,
+					'topic_count'   => $topics->count(),
 					'permission'    => $category->metaDiscussionPermission->name,
 					'permission_id' => $category->meta_discussion_permission_id,
+					'topics'		=> $topics->toArray()
 				];
 			}
 
@@ -726,6 +732,11 @@
 			return Response::json($this->data);
 		}
 
+		/**
+		 * Deletes a category
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postDeleteCategory()
 		{
 			$dicussion_category = new DiscussionCategory();
@@ -747,6 +758,11 @@
 			}
 		}
 
+		/**
+		 * edits a category
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postEditCategory()
 		{
 
@@ -766,6 +782,81 @@
 
 		}
 
+		/**
+		 * Add a new discussion topic for a category
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postAddTopic()
+		{
+			$topic_title							= Input::get('topic_title');
+			$topic_description 						= Input::get('topic_description');
+			$topic_category							= Input::get('topic_category');
+
+			$topic 									= new DiscussionTopic();
+			$topic->user_id 						= Auth::id();
+			$topic->title 							= $topic_title;
+			$topic->description 					= $topic_description;
+			$topic->discussion_category_id		 	= $topic_category;
+			$topic->meta_discussion_permission_id 	= MetaDiscussionPermission::PERMISSION_PUBLIC;
+			$topic->meta_discussion_status_id 		= MetaDiscussionStatus::PUBLISHED;
+			$topic->save();
+
+			$this->_success();
+			return Response::json($this->data);
+		}
+
+		/**
+		 * Edits a topic
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postEditTopic()
+		{
+			$id = Input::get('topic_id');
+			$name = Input::get('topic_title');
+			$description = Input::get('topic_description');
+
+			$topic = DiscussionTopic::find($id);
+			$topic->title = $name;
+			$topic->description = $description;
+			$topic->save();
+
+			$this->_success(trans('general.discussion_topic_saved'));
+			return Response::json($this->data);
+		}
+
+		/**
+		 * Deletes a topic
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postDeleteTopic()
+		{
+			$dicussion_topic = new DiscussionTopic();
+			$topic_id = Input::get('topic_id');
+			$topic_owner = $dicussion_topic->whereId($topic_id)->first(['user_id']);
+
+			//security
+			if ($topic_owner->user_id == Auth::id())
+			{
+				$dicussion_topic->remove($topic_id);
+
+				$this->_success(trans('general.discussion_topic_deleted'));
+				return Response::json($this->data);
+
+			} else {
+
+				$this->_error(403, trans('general.not_authorized2'));
+				return Response::json($this->data);
+			}
+		}
+
+		/**
+		 * Gets discussions
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
 		public function postGetDiscussions()
 		{
 			$user = new User();
