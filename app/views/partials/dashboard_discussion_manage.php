@@ -31,6 +31,7 @@
 								class="form-control full"
 								placeholder="<?= trans('general.category_name'); ?>"
 								ng-model="new_category.name"
+								required
 								ng-readonly="readonly">
 						</div>
 						<div class="form-group col-sm-4">
@@ -63,10 +64,9 @@
 					</div>
 					<div class="row">
 						<button
-							type="submit"
-							class="btn btn-info col-sm-2 col-sm-push-10"
-							ng-click="addCategory()"
-							><?= trans('general.add'); ?>
+							class="btn btn-info col-sm-2"
+							ng-click="addCategory()">
+							<?= trans('general.add'); ?>
 						</button>
 					</div>
 				</div>
