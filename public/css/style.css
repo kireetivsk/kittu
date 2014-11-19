@@ -173,3 +173,42 @@ ul li .glyphicon {
 .margin-2 {
 	margin: 2px !important;
 }
+.topic-owner {
+	float: right;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+span.topic-owner {
+	font-size: 11px;
+}
+.topic-selected {
+	border: 1px solid purple !important;
+}
+.post-body {
+	border: solid 1px #ccc;
+	margin: 10px 0;
+	background-color: white;
+	padding: 10px;
+ }
+.post-menu {
+	background-color: #eee;
+	text-align: center;
+}
+.discussion .widget-body {
+	background-color: #f1f5fa;
+}
+.topic-body {
+	background-color: white;
+}
+.post-title {
+	font-weight: bold;
+}
+.comment-avatar {
+	padding: 0 20px;
+}
+.comment-spacer {
+	margin-top: 25px
+}
+.topic-avatar{
+	margin-top: -10px;
+}

@@ -519,16 +519,21 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 
 	public function getDiscussions()
 	{
-		$discussion_category = new DiscussionCategory();
-
+		$discussion_category 	= new DiscussionCategory();
+		$discussion_view 		= new DiscussionView();
+		$last_view_data			= $discussion_view->whereUserId(Auth::id())->first(['updated_at']);
+		if (is_null($last_view_data))
+			$last_view = Carbon\Carbon::now();
+		else
+			$last_view = $last_view_data->updated_at;
 		//get my discussions
-		$mine = $discussion_category->getMyDiscussions();
+		$mine = $discussion_category->getMyDiscussions($last_view);
 
 		//get upline discussions
-		$upline = $discussion_category->getUplineDiscussions(Auth::id());
+		$upline = $discussion_category->getUplineDiscussions(Auth::id(), $last_view);
 
 		//get downline discussions
-		$downline = $discussion_category->getDownlineDiscussions(Auth::id());
+		$downline = $discussion_category->getDownlineDiscussions(Auth::id(), $last_view);
 
 		return [
 			'mine' => $mine->toArray(),

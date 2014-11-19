@@ -833,14 +833,14 @@
 		 */
 		public function postDeleteTopic()
 		{
-			$dicussion_topic = new DiscussionTopic();
+			$discussion_topic = new DiscussionTopic();
 			$topic_id = Input::get('topic_id');
-			$topic_owner = $dicussion_topic->whereId($topic_id)->first(['user_id']);
+			$topic_owner = $discussion_topic->whereId($topic_id)->first(['user_id']);
 
 			//security
 			if ($topic_owner->user_id == Auth::id())
 			{
-				$dicussion_topic->remove($topic_id);
+				$discussion_topic->remove($topic_id);
 
 				$this->_success(trans('general.discussion_topic_deleted'));
 				return Response::json($this->data);
@@ -851,6 +851,155 @@
 				return Response::json($this->data);
 			}
 		}
+
+		/**
+		 * Add a new discussion post for a topic
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postAddPost()
+		{
+			$user_profile							= new UserProfile();
+			$avatar									= $user_profile->getAvatar(Auth::id());
+			$avatar_url								= $user_profile->getAvatarUrl($avatar);
+
+			$post_title								= Input::get('post_title');
+			$post_content 							= Input::get('post_content');
+			$post_topic								= Input::get('post_topic');
+
+			$post 									= new DiscussionPost();
+			$post->user_id 							= Auth::id();
+			$post->title 							= $post_title;
+			$post->content 							= $post_content;
+			$post->discussion_topic_id		 		= $post_topic;
+			$post->meta_discussion_permission_id 	= MetaDiscussionPermission::PERMISSION_PUBLIC;
+			$post->meta_discussion_status_id 		= MetaDiscussionStatus::PUBLISHED;
+			$post->save();
+
+			$return = $post->toArray();
+			$return['owner'] = [
+				'avatar' => $avatar_url,
+				'display_name' => Session::get('userdata.full_name'),
+			];
+			$return['discussion_comment'] = [];
+
+			$this->_success(trans('general.post_saved'), $return);
+			return Response::json($this->data);
+		}
+
+		/**
+		 * Edits a post
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postEditPost()
+		{
+			$id 			= Input::get('post_id');
+			$title 			= Input::get('post_title');
+			$content		= Input::get('post_content');
+
+			$post 			= DiscussionPost::find($id);
+			$post->title 	= $title;
+			$post->content 	= $content;
+			$post->save();
+
+			$this->_success(trans('general.discussion_post_saved'));
+			return Response::json($this->data);
+		}
+
+		/**
+		 * Deletes a post
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postDeletePost()
+		{
+			$discussion_topic 	= new DiscussionTopic();
+			$discussion_post 	= new DiscussionPost();
+			$post_id 			= Input::get('post_id');
+			$post				= $discussion_post->whereId($post_id)->first(['user_id',
+																			   'discussion_topic_id']);
+			$topic_id 			= $post->discussion_topic_id;
+			$topic				= $discussion_topic->whereId($topic_id)->first(['user_id']);
+
+			//security
+			if ($topic->user_id == Auth::id() || $post->user_id == Auth::id())
+			{
+				$discussion_post->remove($post_id);
+
+				$this->_success(trans('general.discussion_post_deleted'));
+				return Response::json($this->data);
+
+			} else {
+
+				$this->_error(403, trans('general.not_authorized2'));
+				return Response::json($this->data);
+			}
+		}
+
+		/**
+		 * Add a new discussion comment for a post
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postAddComment()
+		{
+			$user_profile							= new UserProfile();
+			$avatar									= $user_profile->getAvatar(Auth::id());
+			$avatar_url								= $user_profile->getAvatarUrl($avatar);
+
+			$content 								= Input::get('comment');
+			$post_id								= Input::get('post_id');
+
+			$comment 								= new DiscussionComment();
+			$comment->user_id 						= Auth::id();
+			$comment->content 						= $content;
+			$comment->discussion_post_id		 	= $post_id;
+			$comment->meta_discussion_permission_id = MetaDiscussionPermission::PERMISSION_PUBLIC;
+			$comment->meta_discussion_status_id 	= MetaDiscussionStatus::PUBLISHED;
+			$comment->save();
+
+			$return = $comment->toArray();
+			$return['owner'] = [
+				'avatar' => $avatar_url,
+				'display_name' => Session::get('userdata.full_name')
+			];
+
+			$this->_success(trans('general.post_saved'), $return);
+			return Response::json($this->data);
+		}
+
+		/**
+		 * Deletes a comment
+		 *
+		 * @return \Illuminate\Http\JsonResponse
+		 */
+		public function postDeleteComment()
+		{
+			$discussion_post 	= new DiscussionPost();
+			$discussion_comment	= new DiscussionComment();
+			$comment_id			= Input::get('comment_id');
+			$comment			= $discussion_comment->whereId($comment_id)->first(['user_id',
+																					'discussion_post_id']);
+			$post_id 			= $comment->discussion_post_id;
+			$post				= $discussion_post->whereId($post_id)->first(['user_id']);
+
+			//security
+			if ($post->user_id == Auth::id() || $comment->user_id == Auth::id())
+			{
+				$discussion_comment->remove($comment_id);
+
+				$this->_success(trans('general.discussion_post_deleted'));
+				return Response::json($this->data);
+
+			} else {
+
+				$this->_error(403, trans('general.not_authorized2'));
+				return Response::json($this->data);
+			}
+		}
+
+
 
 		/**
 		 * Gets discussions
@@ -899,7 +1048,7 @@
 						//posts
 						if (empty($topic['discussion_post']))
 							continue;
-						foreach ($topic['discussion_topic'] as $post_key => &$post)
+						foreach ($topic['discussion_post'] as $post_key => &$post)
 						{
 							//get owner profile
 							if (array_key_exists($post['user_id'], $profiles))
@@ -926,6 +1075,11 @@
 					}
 				}
 			}
+
+			//update views
+			$new_view = DiscussionView::firstOrNew(['user_id' => Auth::id()]);
+			$new_view->updated_at =  Carbon::now();
+			$new_view->save();
 
 			$this->_success('Success', $result);
 			return Response::json($this->data);

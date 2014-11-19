@@ -11,19 +11,8 @@ jQuery(function ($)
 	$('#inbox-tabs a[data-toggle="tab"]').on('show.bs.tab', function (e)
 	{
 		var currentTab = $(e.target).data('target');
-		if (currentTab == 'write') {
-			Inbox.show_form();
-		}
-		else {
-			if (prevTab == 'write')
-				Inbox.show_list();
-
-			//load and display the relevant messages
-			$('#' + prevTab).first().children().removeClass('active');
-			$('#' + currentTab).first().children().addClass('active');
-			//hide the message form
-			$('#id-message-form').hide();
-		}
+		$('#' + prevTab).first().children().removeClass('active');
+		$('#' + currentTab).first().children().addClass('active');
 		prevTab = currentTab;
 	})
 

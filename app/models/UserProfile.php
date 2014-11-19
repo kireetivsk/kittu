@@ -89,6 +89,15 @@ class UserProfile extends Ardent {
 			->pluck('value');
 	}
 
+	public function getAvatarUrl($avatar)
+	{
+		//avatar
+		if (!empty($avatar))
+			return S3_URL . AVATAR_FOLDER . DS . $avatar;
+		else
+			return S3_URL . AVATAR_FOLDER . DS . AVATAR_DEFAULT_FILENAME;
+	}
+
 	public function getPublicProfile($user_id)
 	{
 		$result = [];
@@ -113,6 +122,7 @@ class UserProfile extends Ardent {
 			$name = User::whereId($user_id)->select('first_name', 'last_name')->first();
 			$result['display_name'] = $name->first_name . ' ' . $name->last_name;
 		}
+		$result['user_id'] = $user_id;
 		return $result;
 	}
 

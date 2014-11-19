@@ -33,6 +33,7 @@
  */
 class DiscussionPost extends Ardent {
 	protected $fillable = [];
+	protected $dates = ['created_at'];
 
 	//validation
 	public static $rules = [
@@ -75,4 +76,35 @@ class DiscussionPost extends Ardent {
 	{
 		return $this->belongsTo('MetaDiscussionPermission');
 	}
+
+	/**
+	 * Removes a post and all of the records associated with it.
+	 * 	- Comments
+	 * 	- Follows
+	 * 	- Views
+	 *
+	 * @param $id
+	 * @throws Exception
+	 */
+	public function remove($id)
+	{
+		$follow = new DiscussionFollow();
+		$view = new DiscussionView();
+
+		$post = $this
+			->whereId($id)
+			->with('discussionComment')
+			->first();
+
+		foreach ($post->discussionComment as $comment) {
+			$follow->remove($comment->id, MetaDiscussionType::COMMENT);
+			$comment->delete();
+		}
+		$follow->remove($post->id, MetaDiscussionType::POST);
+		$view->whereDiscussionPostId($post->id)->delete();
+
+		$follow->remove($post->id, MetaDiscussionType::TOPIC);
+		$post->delete();
+	}
+
 }

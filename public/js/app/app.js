@@ -261,7 +261,7 @@ dsk.custom = {
 					$scope.view_categories = data.results;
 			})
 
-	}
+	},
 
 };
 

@@ -91,6 +91,61 @@
 						</span>
 
 					</h4>
+					<div class="row" ng-show="show_edit_category">
+						<div class="form-group col-sm-3">
+							<label for="edit_category_name_{{my_category.id}}">
+								<?= trans('general.category_name'); ?>
+							</label>
+							<input
+								type="text"
+								id="edit_category_name_{{my_category.id}}"
+								class="form-control full"
+								placeholder="<?= trans('general.category_name'); ?>"
+								ng-model="my_category.title"
+								ng-readonly="readonly">
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="edit_category_description_{{my_category.id}}">
+								<?= trans('general.category_description'); ?>
+							</label>
+							<input
+								id="edit_category_description_{{my_category.id}}"
+								type="text"
+								class="form-control full"
+								placeholder="<?= trans('general.category_description'); ?>"
+								ng-model="my_category.description"
+								ng-readonly="readonly">
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="edit_category_permisssion_{{my_category.id}}">
+								<?= trans('general.category_permission'); ?>
+							</label>
+							<select class="form-control full"
+									id="edit_category_permisssion_{{my_category.id}}"
+									ng-options="permission.id as permission.name for permission in meta.permissions"
+									placeholder="<?= trans('general.category_permission'); ?>"
+									ng-model="my_category.permission_id"
+									ng-readonly="readonly">
+								<option value="{{my_category.permission_id}}">{{my_category.permission}}</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-1">
+							<label for="edit_category_save_{{my_category.id}}">&nbsp;</label>
+							<button class="btn btn-info btn-sm col-md-12"
+									id="edit_category_save_{{my_category.id}}"
+									ng-click="edit(my_category); show_edit_category = false">
+								<?= trans('general.save'); ?>
+							</button>
+						</div>
+						<div class="form-group col-sm-1">
+							<label for="edit_category_cancel_{{my_category.id}}">&nbsp;</label>
+							<button class="btn btn-danger btn-sm col-md-12"
+									id="edit_category_cancel_{{my_category.id}}"
+									ng-click="show_edit_category = false">
+								<?= trans('general.cancel'); ?>
+							</button>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-xs-12 col-sm-9">
 							<div class="profile-user-info">
@@ -152,62 +207,6 @@
 								</div>
 
 							</div>
-						</div>
-					</div>
-
-					<div class="row" ng-show="show_edit_category">
-						<div class="form-group col-sm-3">
-							<label for="edit_category_name_{{my_category.id}}">
-								<?= trans('general.category_name'); ?>
-							</label>
-							<input
-								type="text"
-								id="edit_category_name_{{my_category.id}}"
-								class="form-control full"
-								placeholder="<?= trans('general.category_name'); ?>"
-								ng-model="my_category.title"
-								ng-readonly="readonly">
-						</div>
-						<div class="form-group col-sm-3">
-							<label for="edit_category_description_{{my_category.id}}">
-								<?= trans('general.category_description'); ?>
-							</label>
-							<input
-								id="edit_category_description_{{my_category.id}}"
-								type="text"
-								class="form-control full"
-								placeholder="<?= trans('general.category_description'); ?>"
-								ng-model="my_category.description"
-								ng-readonly="readonly">
-						</div>
-						<div class="form-group col-sm-3">
-							<label for="edit_category_permisssion_{{my_category.id}}">
-								<?= trans('general.category_permission'); ?>
-							</label>
-							<select class="form-control full"
-									id="edit_category_permisssion_{{my_category.id}}"
-									ng-options="permission.id as permission.name for permission in meta.permissions"
-									placeholder="<?= trans('general.category_permission'); ?>"
-									ng-model="my_category.permission_id"
-									ng-readonly="readonly">
-								<option value="{{my_category.permission_id}}">{{my_category.permission}}</option>
-							</select>
-						</div>
-						<div class="form-group col-sm-1">
-							<label for="edit_category_save_{{my_category.id}}">&nbsp;</label>
-							<button class="btn btn-info btn-sm col-md-12"
-									id="edit_category_save_{{my_category.id}}"
-									ng-click="edit(my_category); show_edit_category = false">
-								<?= trans('general.save'); ?>
-							</button>
-						</div>
-						<div class="form-group col-sm-1">
-							<label for="edit_category_cancel_{{my_category.id}}">&nbsp;</label>
-							<button class="btn btn-danger btn-sm col-md-12"
-									id="edit_category_cancel_{{my_category.id}}"
-									ng-click="show_edit_category = false">
-								<?= trans('general.cancel'); ?>
-							</button>
 						</div>
 					</div>
 

@@ -101,14 +101,62 @@ class DiscussionCategory extends Ardent {
 
 	}
 
-	public function getMyDiscussions()
+	public function getMyDiscussions(Carbon\Carbon $last_view)
 	{
-		return $this->where('user_id', '=', Auth::id())
-					   ->where('meta_discussion_status_id', '=', MetaDiscussionStatus::PUBLISHED)
-					   ->get();
+		$result = $this
+			->where('user_id', '=', Auth::id())
+			->where('meta_discussion_status_id', '=', MetaDiscussionStatus::PUBLISHED)
+			->with('discussionTopic',
+				   'discussionTopic.discussionPost',
+				   'discussionTopic.discussionPost.discussionComment')
+			->get();
+
+		if(!$result->isEmpty()) {
+			$result->each(
+				function ($category) use($last_view) {
+					$category->timestamp = $category->created_at->diffForHumans();
+					$category->new_count = 0;
+					if(!$category->discussionTopic->isEmpty()) {
+						$category->discussionTopic->each(
+							function ($topic) use($last_view, &$category) {
+								$topic->timestamp = $topic->created_at->diffForHumans();
+								if ($topic->created_at > $last_view)
+									$category->new_count++;
+								$topic->new_count = 0;
+								if(!$topic->discussionPost->isEmpty()) {
+									$topic->discussionPost->each(
+										function ($post) use($last_view, &$topic, &$category) {
+											$post->timestamp = $post->created_at->diffForHumans();
+											if ($post->created_at > $last_view) {
+												$topic->new_count++;
+												$category->new_count++;
+											}
+											$post->new_count = 0;
+											if(!$post->discussionComment->isEmpty()) {
+												$post->discussionComment->each(
+													function ($comment) use($last_view, &$post, &$topic, &$category) {
+														$comment->timestamp = $comment->created_at->diffForHumans();
+														if ($comment->created_at > $last_view) {
+															$post->new_count++;
+															$topic->new_count++;
+															$category->new_count++;
+														}
+													}
+												);
+											}
+										}
+									);
+								}
+							}
+						);
+					}
+				}
+			);
+		}
+		return $result;
 	}
 
-	public function getUplineDiscussions($user_id)
+	public function getUplineDiscussions($user_id, Carbon\Carbon $last_view)
 	{
 		$user = new User();
 		$upline = $user->getUpline($user_id);
@@ -130,6 +178,58 @@ class DiscussionCategory extends Ardent {
 					   'discussionTopic.discussionPost',
 					   'discussionTopic.discussionPost.discussionComment')
 				->get();
+
+			//remove empty topics
+			foreach($result as $key => $value)
+			{
+				if ($value->discussionTopic->isEmpty())
+					unset($result[$key]);
+			}
+
+			//get counts
+			if(!$result->isEmpty()) {
+				$result->each(
+					function ($category) use($last_view) {
+						$category->timestamp = $category->created_at->diffForHumans();
+						$category->new_count = 0;
+						if(!$category->discussionTopic->isEmpty()) {
+							$category->discussionTopic->each(
+								function ($topic) use($last_view, &$category) {
+									$topic->timestamp = $topic->created_at->diffForHumans();
+									if ($topic->created_at > $last_view)
+										$category->new_count++;
+									$topic->new_count = 0;
+									if(!$topic->discussionPost->isEmpty()) {
+										$topic->discussionPost->each(
+											function ($post) use($last_view, &$topic, &$category) {
+												$post->timestamp = $post->created_at->diffForHumans();
+												if ($post->created_at > $last_view) {
+													$topic->new_count++;
+													$category->new_count++;
+												}
+												$post->new_count = 0;
+												if(!$post->discussionComment->isEmpty()) {
+													$post->discussionComment->each(
+														function ($comment) use($last_view, &$post, &$topic, &$category) {
+															$comment->timestamp = $comment->created_at->diffForHumans();
+															if ($comment->created_at > $last_view) {
+																$post->new_count++;
+																$topic->new_count++;
+																$category->new_count++;
+															}
+														}
+													);
+												}
+											}
+										);
+									}
+								}
+							);
+						}
+					}
+				);
+			}
+
 			if (!$result->isEmpty()) {
 				$categories = array_merge($categories,  $result->toArray());
 			}
@@ -139,7 +239,7 @@ class DiscussionCategory extends Ardent {
 
 	}
 
-	public function getDownlineDiscussions($user_id)
+	public function getDownlineDiscussions($user_id, Carbon\Carbon $last_view)
 	{
 		$user = new User();
 		$downline = $user->getDownline($user_id);
@@ -161,9 +261,62 @@ class DiscussionCategory extends Ardent {
 								  'discussionTopic.discussionPost',
 								  'discussionTopic.discussionPost.discussionComment')
 						   ->get();
+
+			//remove empty topics
+			foreach($result as $key => $value)
+			{
+				if ($value->discussionTopic->isEmpty())
+					unset($result[$key]);
+			}
+
+			//get counts
+			if(!$result->isEmpty()) {
+				$result->each(
+					function ($category) use($last_view) {
+						$category->timestamp = $category->created_at->diffForHumans();
+						$category->new_count = 0;
+						if(!$category->discussionTopic->isEmpty()) {
+							$category->discussionTopic->each(
+								function ($topic) use($last_view, &$category) {
+									$topic->timestamp = $topic->created_at->diffForHumans();
+									if ($topic->created_at > $last_view)
+										$category->new_count++;
+									$topic->new_count = 0;
+									if(!$topic->discussionPost->isEmpty()) {
+										$topic->discussionPost->each(
+											function ($post) use($last_view, &$topic, &$category) {
+												$post->timestamp = $post->created_at->diffForHumans();
+												if ($post->created_at > $last_view) {
+													$topic->new_count++;
+													$category->new_count++;
+												}
+												$post->new_count = 0;
+												if(!$post->discussionComment->isEmpty()) {
+													$post->discussionComment->each(
+														function ($comment) use($last_view, &$post, &$topic, &$category) {
+															$comment->timestamp = $comment->created_at->diffForHumans();
+															if ($comment->created_at > $last_view) {
+																$post->new_count++;
+																$topic->new_count++;
+																$category->new_count++;
+															}
+														}
+													);
+												}
+											}
+										);
+									}
+								}
+							);
+						}
+					}
+				);
+			}
+			
 			if (!$result->isEmpty())
 				$categories = array_merge($categories,  $result->toArray());
 		}
+
 
 		return $categories;
 

@@ -36,7 +36,7 @@ class DiscussionComment extends Ardent {
 	public static $rules = [
 		'user_id' 							=> 'required|integer',
 		'discussion_post_id'				=> 'required|integer',
-		'title'								=> 'required|max:100',
+		'title'								=> 'max:100',
 		'content'							=> 'required',
 		'meta_discussion_permission_id'		=> 'required|integer',
 		'meta_discussion_status_id'			=> 'required|integer'
@@ -62,4 +62,18 @@ class DiscussionComment extends Ardent {
 	{
 		return $this->belongsTo('DiscussionStatus');
 	}
+
+	/**
+	 * Removes a comment and all of the records associated with it.
+	 * 	- Follows
+	 * 	- Views
+	 *
+	 * @param $id
+	 * @throws Exception
+	 */
+	public function remove($id)
+	{
+		$this->whereId($id)->delete();
+	}
+
 }

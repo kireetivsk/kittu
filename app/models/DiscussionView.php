@@ -20,12 +20,12 @@
  * @property-read \DiscussionPost $discussionPost
  */
 class DiscussionView extends Ardent {
-	protected $fillable = [];
+	protected $fillable = ['user_id'];
 
 	//validation
 	public static $rules = [
 		'user_id' 							=> 'required|integer',
-		'discussion_post_id'				=> 'required|integer'
+		'discussion_post_id'				=> 'integer'
 	];
 
 	//relationships
