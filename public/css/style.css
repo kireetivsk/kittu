@@ -212,3 +212,6 @@ span.topic-owner {
 .topic-avatar{
 	margin-top: -10px;
 }
+.not-ready {
+	display: none !important;
+}

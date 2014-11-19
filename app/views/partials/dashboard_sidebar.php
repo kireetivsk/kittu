@@ -50,63 +50,63 @@
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/crm')}">
-			<a href="/dashboard/crm">
-				<i class="icon-phone"></i>
-				<span class="menu-text"> CRM </span>
-			</a>
-		</li>
-
-		<li ng-class="{ active: isActive('/dashboard/goals')}">
-			<a href="/dashboard/goals">
-				<i class="icon-check"></i>
-				<span class="menu-text"> Goals </span>
-			</a>
-		</li>
-
-		<li ng-class="{ active: isActive('/dashboard/dreamboard')}">
-			<a href="/dashboard/dreamboard">
-				<i class="icon-cloud"></i>
-				<span class="menu-text"> Dreamboard </span>
-			</a>
-		</li>
-
-		<li ng-class="{ active: isActive('/dashboard/qna')}">
+		<li ng-class="{ active: isActive('/dashboard/qna')}" class="not-ready">
 			<a href="/dashboard/qna">
 				<i class="icon-question"></i>
 				<span class="menu-text"> Question and Answer </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/social-tools')}">
+		<li ng-class="{ active: isActive('/dashboard/crm')}" class="not-ready">
+			<a href="/dashboard/crm">
+				<i class="icon-phone"></i>
+				<span class="menu-text"> CRM </span>
+			</a>
+		</li>
+
+		<li ng-class="{ active: isActive('/dashboard/goals')}" class="not-ready">
+			<a href="/dashboard/goals">
+				<i class="icon-check"></i>
+				<span class="menu-text"> Goals </span>
+			</a>
+		</li>
+
+		<li ng-class="{ active: isActive('/dashboard/dreamboard')}" class="not-ready">
+			<a href="/dashboard/dreamboard">
+				<i class="icon-cloud"></i>
+				<span class="menu-text"> Dreamboard </span>
+			</a>
+		</li>
+
+		<li ng-class="{ active: isActive('/dashboard/social-tools')}" class="not-ready">
 			<a href="/dashboard/social-tools">
 				<i class="icon-briefcase"></i>
 				<span class="menu-text"> Social Tools </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: false}">
+		<li ng-class="{ active: false}" class="not-ready">
 			<a href="#">
 				<i class="icon-rocket"></i>
 				<span class="menu-text"> Company Progress </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/analytics')}">
+		<li ng-class="{ active: isActive('/dashboard/analytics')}" class="not-ready">
 			<a href="/dashboard/analytics">
 				<i class="icon-bar-chart"></i>
 				<span class="menu-text"> Analytics </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/marketplace')}">
+		<li ng-class="{ active: isActive('/dashboard/marketplace')}" class="not-ready">
 			<a href="/dashboard/marketplace">
 				<i class="icon-shopping-cart"></i>
 				<span class="menu-text"> Marketplace </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/advertisers')}">
+		<li ng-class="{ active: isActive('/dashboard/advertisers')}" class="not-ready">
 			<a href="/dashboard/advertisers">
 				<i class="icon-money"></i>
 				<span class="menu-text"> Advertisers </span>
@@ -117,21 +117,21 @@
 			<span class="menu-text"> &nbsp; </span>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/blog')}">
+		<li ng-class="{ active: isActive('/dashboard/blog')}" class="not-ready">
 			<a href="/dashboard/blog">
 				<i class="icon-pencil"></i>
 				<span class="menu-text"> Blog </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/marketing')}">
+		<li ng-class="{ active: isActive('/dashboard/marketing')}" class="not-ready">
 			<a href="/dashboard/marketing">
 				<i class="icon-level-down"></i>
 				<span class="menu-text"> Marketing </span>
 			</a>
 		</li>
 
-		<li ng-class="{ active: isActive('/dashboard/leads')}">
+		<li ng-class="{ active: isActive('/dashboard/leads')}" class="not-ready">
 			<a href="/dashboard/leads">
 				<i class="icon-users"></i>
 				<span class="menu-text"> Leads </span>

@@ -312,7 +312,7 @@ class DiscussionCategory extends Ardent {
 					}
 				);
 			}
-			
+
 			if (!$result->isEmpty())
 				$categories = array_merge($categories,  $result->toArray());
 		}

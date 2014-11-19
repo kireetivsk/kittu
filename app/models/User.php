@@ -482,8 +482,11 @@ class User extends Ardent implements UserInterface, RemindableInterface {
 	 */
 	public function getUserPublicData($user_id)
 	{
-		$user = $this->find($user_id)->toArray();
-		$user['full_name'] = $user['first_name'] . " " . $user['last_name'];
+		$user_profile 		= new UserProfile();
+		$user 				= $this->find($user_id)->toArray();
+		$user['full_name'] 	= $user['first_name'] . " " . $user['last_name'];
+		$avatar 			= $user_profile->getAvatar($user_id);
+		$user['avatar'] 	= $user_profile->getAvatarUrl($avatar);
 		return $user;
 	}
 

@@ -31,155 +31,7 @@
 					<div class="widget-body">
 						<div class="widget-main">
 
-							<div id="discussion_accordion" class="accordion-style1 panel-group">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#discussion_accordion" href="#discussion_company_news_collapse">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;Company News
-												<span class="badge badge-pink">11</span>
-											</a>
-										</h4>
-									</div>
 
-									<div class="panel-collapse collapse" id="discussion_company_news_collapse">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#discussion_accordion"
-											   href="#discussion_upline_communication_colapse">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;Upline Communications
-												<span class="badge badge-pink">3</span>
-											</a>
-										</h4>
-									</div>
-
-									<div class="panel-collapse collapse" id="discussion_upline_communication_colapse">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#discussion_accordion" href="#discussion_crm_notifications_colapse">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;Other Subscribed Discussions
-												<span class="badge badge-pink">254</span>
-											</a>
-										</h4>
-									</div>
-
-									<div class="panel-collapse collapse" id="discussion_crm_notifications_colapse">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -189,7 +41,7 @@
 
 		<div class="space-24"></div>
 
-		<div class="row">
+		<div class="row not-ready">
 			<div class="col-xs-12 widget-container-span">
 				<div class="widget-box">
 					<div class="widget-header header-color-green">
@@ -210,105 +62,8 @@
 					<div class="widget-body">
 						<div class="widget-main">
 
-							<div id="qna_accordian" class="accordion-style1 panel-group">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#qna_accordian" href="#qna_your_answers_colapse">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;Answers to your questions
-												<span class="badge badge-pink">1</span>
-											</a>
-										</h4>
-									</div>
 
-									<div class="panel-collapse collapse" id="qna_your_answers_colapse">
-										<div class="panel-body">
-											<p class="alert alert-success">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-success">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-success">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
 
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#qna_accordian" href="#qna_new_questions_collapse">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;New Questions
-												<span class="badge badge-pink">3</span>
-											</a>
-										</h4>
-									</div>
-
-									<div class="panel-collapse collapse" id="qna_new_questions_collapse">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -317,7 +72,7 @@
 
 		<div class="space-24"></div>
 
-		<div class="row">
+		<div class="row not-ready">
 			<div class="col-xs-12 widget-container-span">
 				<div class="widget-box">
 					<div class="widget-header header-color-purple">
@@ -338,154 +93,7 @@
 					<div class="widget-body">
 						<div class="widget-main">
 
-							<div id="accordion" class="accordion-style1 panel-group">
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#accordion" href="#collapseOne">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;New Leads
-												<span class="badge badge-pink">5</span>
-											</a>
-										</h4>
-									</div>
 
-									<div class="panel-collapse collapse" id="collapseOne">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#accordion" href="#collapseTwo">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;Customers to contact
-												<span class="badge badge-pink">3</span>
-											</a>
-										</h4>
-									</div>
-
-									<div class="panel-collapse collapse" id="collapseTwo">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-heading">
-										<h4 class="panel-title">
-											<a class="accordion-toggle collapsed" data-toggle="collapse"
-											   data-parent="#accordion" href="#collapseThree">
-												<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down"
-												   data-icon-show="icon-angle-right"></i>
-												&nbsp;Stale customers
-												<span class="badge badge-pink">254</span>
-											</a>
-										</h4>
-									</div>
-
-									<div class="panel-collapse collapse" id="collapseThree">
-										<div class="panel-body">
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Jill P. - </span>Big announcement coming Moday!! <a
-													href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Sally M. - </span>Don't forget to sign up for
-												training tonight. <a href="#">Read more...</a>
-											</p>
-											<p class="alert alert-info">
-												<button type="button" class="close" data-dismiss="alert">
-													<i class="icon-remove"></i>
-												</button>
-												<strong>
-													<i class="icon-comments-alt"></i>
-												</strong>
-												<span class="text-warning">Becky L. - </span>Orders due tomorrow. <a href="#">Read
-													more...</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -554,7 +162,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-xs-12 widget-container-span">
+		<div class="col-xs-12 widget-container-span not-ready">
 			<div class="widget-box">
 				<div class="widget-header header-color-red">
 					<h5>Goals</h5>
@@ -604,7 +212,7 @@
 
 		<div class="space-24"></div>
 
-		<div class="col-xs-12 widget-container-span">
+		<div class="col-xs-12 widget-container-span not-ready">
 			<div class="widget-box">
 				<div class="widget-header header-color-orange">
 					<h5>Notes</h5>

@@ -27,21 +27,21 @@
 							</a>
 						</li>
 
-						<li>
+						<li class="not-ready">
 							<a data-toggle="tab" href="#companies">
 								<i class="orange icon-building bigger-120"></i>
 								<?= trans('general.companies'); ?>
 							</a>
 						</li>
 
-						<li ng-show="false">
+						<li class="not-ready">
 							<a data-toggle="tab" href="#settings">
 								<i class="blue icon-gears bigger-120"></i>
 								<?= trans('general.settings'); ?>
 							</a>
 						</li>
 
-						<li ng-show="false">
+						<li class="not-ready">
 							<a data-toggle="tab" href="#privacy">
 								<i class="pink icon-eye-open bigger-120"></i>
 								<?= trans('general.privacy'); ?>
