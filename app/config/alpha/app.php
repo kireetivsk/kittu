@@ -14,6 +14,6 @@ return array(
 	*/
 
 	'debug' => true,
-	'url' => 'http://osc.dskl',
+	'url' => 'http://alpha.directsaleskit.com',
 
 );

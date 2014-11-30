@@ -24,14 +24,17 @@ $app = new Illuminate\Foundation\Application;
 |
 */
 
-$env = $app->detectEnvironment(array(
-
-//								   'local' => array('Dons-iMac.local'),
-//									'local' => array('Don-4.local'),
-									'local' => array('Don-5.local'),
-
-));
-
+$env = $app->detectEnvironment(function() {
+	switch($_SERVER['HTTP_HOST'])
+	{
+		case('osc.dskl'):
+			return 'local';
+			break;
+		case('alpha.directsaleskit.com'):
+			return 'alpha';
+			break;
+	}
+});
 /*
 |--------------------------------------------------------------------------
 | Bind Paths

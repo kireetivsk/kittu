@@ -48,7 +48,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => 'dsk.czhpsc2klrwt.us-east-1.rds.amazonaws.com',
 			'database'  => 'dsk_1',
 			'username'  => $_ENV['DB_USER'],
 			'password'  => $_ENV['DB_PASSWORD'],
